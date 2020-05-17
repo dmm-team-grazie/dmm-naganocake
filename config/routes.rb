@@ -16,11 +16,11 @@ Rails.application.routes.draw do
     get 'orders/thanks' => 'orders#thanks'
     post 'orders/confirm' => 'orders#confirm'
 
-
-    root 'homes#top'
   end
 
-  namespace :admins do
+  root 'homes#top'
+
+  namespace :admin do
     resources :items, except:[:new]
     get 'items/:id/new' => 'items#new'
     resources :members
