@@ -1,0 +1,253 @@
+<!-- pb/show -->
+  <div class="row">
+    <h2>注文履歴詳細</h2>
+
+    <h3>注文情報</h3>
+    <table>
+      <tr>
+        <th>注文日</th>
+        <th><%= @order.created_at %></th>
+      </tr>
+      <tr>
+        <th>配送先</th>
+        <th><%= order.postal_code %><%= order.address %><%= order.address_name %></th>
+      </tr>
+      <tr>
+        <th>支払い方法</th>
+        <th><%= @order.payment_method %></th>
+      </tr>
+      <tr>
+        <th>ステータス</th>
+        <th><%= @order.order_status %></th>
+      </tr>
+    </table>
+
+
+    <h3>請求情報</h3>
+    <table>
+      <tr>
+        <th>商品合計</th>
+        <th><%= @order %></th>
+      </tr>
+      <tr>
+        <th>配送料</th>
+        <th><%= @order.postage %></th>
+      </tr>
+      <tr>
+        <th>ご請求額</th>
+        <th><%= @order.payment %></th>
+      </tr>
+    </table>
+
+  </div><!-- /.row -->
+
+  <div class="row">
+    <h3>注文内容</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>個数</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.price %></td>
+            <td><%= item.nember %></td>
+            <td><%= item.price*item.number %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<!-- pb/show -->
+<!-- pb/index -->
+  <div class="row">
+    <h2>注文履歴一覧</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>注文日</th>
+          <th>配送先</th>
+          <th>注文商品</th>
+          <th>支払金額</th>
+          <th>ステータス</th>
+          <th>注文詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.created_at %></td>
+            <td><%= order.postal_code %><%= order.address %><%= order.address_name %></td>
+            <td><%= order.item.name %></td>
+            <td><%= order.payment %></td>
+            <td><%= order.order_status %></td>
+            <td><%= link_to "表示する", path %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div><!-- /.row -->
+<!-- pb/index -->
+<!-- pb/confirm -->
+  <div class="row">
+    <h2>注文情報確認</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% @items.each do |item| %>
+            <tr>
+              <td><%= item.name %></td>
+              <td><%= item.price %></td>
+              <td><%= item.nember %></td>
+              <td><%= item. %></td>
+            </tr>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>支払方法</h2>
+      <%= @order.payment_method %>
+    <h2>お届け先</h2>
+      <%= @order.address %>
+      <%= @order.address_name %>
+
+    <%= link_to "購入を確定する", class: "btn btn-primary btn-large" %>
+      
+  </div><!-- /.row -->
+<!-- pb/confirm -->
+<!-- pb/input -->
+  <div class="row">
+    <h2>注文情報入力</h2>
+
+    <h3>支払方法</h3>
+    <%= form_with(model: , local: true) do |f| %>
+
+      <%= f.radio_button :payment_method, 0, checked: true %>
+        <%= f.label :payment_method, "クレジットカード", {value: 0, style: "display: inline-block;"} %>
+
+      <%= f.radio_button :payment_method, 1 %>
+        <%= f.label :payment_method, "銀行振込", {value: 1, style: "display: inline-block;"} %>
+
+      <%= f.submit %>
+    <% end %>
+
+    <h3>お届け先</h3>
+    <%= form_with(model: , local: true) do |f| %>
+
+      <%= f.radio_button :address, 0, checked: true %>
+        <%= f.label :address, "ご自身の住所", {value: 0, style: "display: inline-block;"} %>
+
+      <%= f.radio_button :address, 1 %>
+        <%= f.label :address, "登録済住所から選択", {value: 1, style: "display: inline-block;"} %>
+        <%= form.collection_select(:job_id, @jobs, :id, :name, {prompt: "住所を選択してください"}) %>
+
+      <%= f.radio_button :address, 2 %>
+        <%= f.label :address, "新しいお届け先", {value: 2, style: "display: inline-block;"} %>
+        <%= f.label "郵便番号（ハイフンなし）" %>
+        <%= f.text_field :postal_code %>
+        <%= f.label "住所" %>
+        <%= f.text_field :address %>
+        <%= f.label "宛名" %>
+        <%= f.text_field :address_name %>
+
+      <%= f.submit %>
+    <% end %>
+    
+  </div>
+<!-- pb/input -->
+<!-- ad/show -->
+  <div class="row">
+    <h2>注文履歴詳細</h2>
+
+    <table>
+      <tr>
+        <th>購入者</th>
+        <th><%= @order.address_name %></th>
+      </tr>
+      <tr>
+        <th>配送先</th>
+        <th><%= order.postal_code %><%= order.address %><%= order.address_name %></th>
+      </tr>
+      <tr>
+        <th>支払方法</th>
+        <th><%= @order.payment_method %></th>
+      </tr>
+      <tr>
+        <th>注文ステータス</th>
+        <th><%= @order %></th>
+      </tr>
+    </table>
+
+    <table>
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>個数</th>
+          <th>小計</th>
+          <th>製作ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.name %></td>
+            <td><%= item.price %></td>
+            <td><%= item.number %></td>
+            <td><%= item.price*item.number %></td>
+            <td>
+              <%= form.select :job_id,[["着手不可",1], 
+                                      ["製作待ち", 2], 
+                                      ["製作中", 3 ],
+                                      ["製作完了", 4]] %></td>
+            <td><%= link_to "更新", path%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div><!-- /.row -->
+<!-- ad/show -->
+<!-- ad/index -->
+  <div class="row">
+    <h2>注文履歴一覧</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.created_at %></td>
+            <td><%= order.address_name %></td>
+            <td><%= order.number %></td>
+            <td><%= order.order_status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+  </div><!-- /.row -->
+<!-- ad/index -->

@@ -1,48 +1,38 @@
-<h2>注文履歴詳細</h2>
+<div class="row mt-5" style="margin-top: 200px;">
+  <h2>注文履歴詳細</h2>
 
-<table>
-  <tr>
-    <th>購入者</th>
-    <th><%= @order.address_name %></th>
-  </tr>
-  <tr>
-    <th>配送先</th>
-    <th><%= order.postal_code %><%= order.address %><%= order.address_name %></th>
-  </tr>
-  <tr>
-    <th>支払方法</th>
-    <th><%= @order.payment_method %></th>
-  </tr>
-  <tr>
-    <th>注文ステータス</th>
-    <th><%= @order %></th>
-  </tr>
-</table>
-
-<table>
-  <thead>
+  <table>
     <tr>
-      <th>商品名</th>
-      <th>単価（税込）</th>
-      <th>個数</th>
-      <th>小計</th>
-      <th>製作ステータス</th>
+      <th>購入者</th>
+      <th>aa</th>
     </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
+    <tr>
+      <th>配送先</th>
+      <th>配送先</th>
+    </tr>
+    <tr>
+      <th>支払方法</th>
+      <th>支払方法</th>
+    </tr>
+    <tr>
+      <th>注文ステータス</th>
+      <th>注文ステータス</th>
+    </tr>
+  </table>
+
+  <table>
+    <thead>
       <tr>
-        <td><%= item.name %></td>
-        <td><%= item.price %></td>
-        <td><%= item.number %></td>
-        <td><%= item.price*item.number %></td>
-        <td>
-          <%= form.select :job_id,[["着手不可",1], 
-                                  ["製作待ち", 2], 
-                                  ["製作中", 3 ],
-                                  ["製作完了", 4]] %></td>
-        <td><%= link_to "更新", path%></td>
+        <th>商品名</th>
+        <th>単価（税込）</th>
+        <th>個数</th>
+        <th>小計</th>
+        <th>製作ステータス</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+  
+</div><!-- /.row -->
