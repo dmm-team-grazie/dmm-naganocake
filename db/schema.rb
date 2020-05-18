@@ -69,6 +69,14 @@ ActiveRecord::Schema.define(version: 2020_05_17_091036) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "first_kana_name"
+    t.string "last_kana_name"
+    t.string "postal_code"
+    t.string "address"
+    t.string "phone_number"
+    t.boolean "is_valid", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_members_on_email", unique: true
@@ -79,7 +87,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_091036) do
     t.integer "order_id", null: false
     t.integer "item_id", null: false
     t.integer "price", null: false
-    t.integer "number", null: false
+    t.integer "number", default: 1, null: false
     t.integer "production_status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -90,11 +98,11 @@ ActiveRecord::Schema.define(version: 2020_05_17_091036) do
     t.integer "member_id", null: false
     t.integer "postage", null: false
     t.integer "payment", null: false
-    t.integer "payment_method", null: false
+    t.integer "payment_method", default: 0, null: false
     t.string "postal_code", null: false
     t.string "address", null: false
     t.string "address_name", null: false
-    t.integer "order_status", null: false
+    t.integer "order_status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["id"], name: "index_orders_on_id"

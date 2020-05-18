@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
       t.integer "non_taxed_price", null: false
       t.text "introduction",       null: false
       t.string "item_image_id",    null: false
-      t.boolean "is_valid",        null: false, default: "TRUE"
+      t.boolean "is_valid",        null: false, default: true
       t.timestamps
     end
     add_index :items, :id
