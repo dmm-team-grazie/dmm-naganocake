@@ -1,2 +1,9 @@
 class Admin::ItemsController < ApplicationController
+  def index
+    @items = Item.all.page(params[:page]).reverse_order.per(10)
+  end
+
+  def new
+    @item = Item.new
+  end
 end

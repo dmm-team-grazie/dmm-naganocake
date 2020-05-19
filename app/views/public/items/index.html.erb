@@ -9,7 +9,7 @@
           <div class="card">
             <%= attachment_image_tag item, :item_image, :fill, 160, 90, fallback: "no-image.jpg", class: "card-img-top" %>
             <div class="card-body">
-              <h5 class="card-title"><%= link_to item.name, item_path %></h5>
+              <h5 class="card-title"><%= link_to item.name, puclic_item_path(item.id) %></h5>
               <p class="card-text">¥<%= item.non_taxed_price %></p>
             </div>
           </div>
