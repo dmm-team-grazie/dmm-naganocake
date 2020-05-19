@@ -1,7 +1,7 @@
 <div class="row">
   <h2>注文履歴一覧</h2>
   <table class="table table-bordered">
-    <thead class="table-active">
+    <thead>
       <tr>
         <th class="col-xs-1">注文日</th>
         <th class="col-xs-3">配送先</th>
@@ -12,16 +12,22 @@
       </tr>
     </thead>
     <tbody>
-      <% @orders.each do |order| %>
-        <tr>
-          <td><%= order.created_at %></td>
-          <td><%= order.postal_code %><%= order.address %><%= order.address_name %></td>
-          <td><%= order.item.name %></td>
-          <td><%= order.payment %></td>
-          <td><%= order.order_status %></td>
-          <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
-        </tr>
-      <% end %>
+      <tr>
+        <td>商品名</td>
+        <td>単価（税込）</td>
+        <td>個数</td>
+        <td>小計</td>
+        <td>小計</td>
+        <td>小計</td>
+      </tr>
+      <tr>
+        <td>商品名</td>
+        <td>単価（税込）</td>
+        <td>単価（税込）</td>
+        <td>単価（税込）</td>
+        <td>個数</td>
+        <td>小計</td>
+      </tr>
     </tbody>
   </table>
 </div><!-- /.row -->
