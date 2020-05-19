@@ -5,10 +5,11 @@ class Public::OrdersController < ApplicationController
     # @neworder = Order.new
   end
   def index
-    # @orders = Order.all 
+    @orders = Order.all 
   end
   def show 
-    # @order = Order.find(params[:id])
+    @order = Order.find(params[:id])
+    @items = Order.items.all
   end
   def input
     # @neworder = Order.new
