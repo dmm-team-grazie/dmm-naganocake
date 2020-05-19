@@ -8,7 +8,7 @@ class Order < ApplicationRecord
     waiting: 0,
     checking: 1, 
     making: 2, 
-    predeliver: 3,
+    before_deli: 3,
     delivered: 4
   }
 end
