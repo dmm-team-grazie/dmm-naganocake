@@ -36,15 +36,15 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :パスワード %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> 文字以上)</em>
     <% end %>
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %>
+    <%= f.label :パスワード %><span>(確認用)</span>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
