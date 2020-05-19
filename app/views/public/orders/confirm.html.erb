@@ -17,11 +17,29 @@
     </tbody>
   </table>
 
-  <h2>支払方法</h2>
-    
-  <h2>お届け先</h2>
-    
+  <table class="table">
+    <tr>
+      <th class="col-xs-5">送料</th><th>aaa</th></tr>
+    <tr>
+      <th>商品合計</th><th>aaa</th></tr>
+    <tr>
+      <th>請求金額</th><th>aaa</th></tr>
+  </table>
+</div>
 
-  <%= link_to "購入を確定する", class: "btn btn-primary btn-large" %>
-    
+<div class="row">
+  <table class="table table-borderless">
+    <tr>
+      <th class="col-xs-3">支払方法</th>
+      <th><%= @order.payment_method %></th>
+    </tr>
+    <tr>
+      <th class="">お届け先</th>
+      <th><%= @order.postal_code %>
+          <%= @order.address %>
+          <%= @order.address_name %>
+      </th>
+    </tr>
+  </table>
+  <%= f.submit '購入を確定する' class: "btn btn-primary btn-large" %>
 </div><!-- /.row -->

@@ -1,18 +1,33 @@
 <div class="row">
   <h2>注文履歴一覧</h2>
-  <table>
+  <table class="table table-bordered">
     <thead>
       <tr>
-        <th>注文日</th>
-        <th>配送先</th>
-        <th>注文商品</th>
-        <th>支払金額</th>
-        <th>ステータス</th>
-        <th>注文詳細</th>
+        <th class="col-xs-1">注文日</th>
+        <th class="col-xs-3">配送先</th>
+        <th class="col-xs-1">注文商品</th>
+        <th class="col-xs-1">支払金額</th>
+        <th class="col-xs-1">ステータス</th>
+        <th class="col-xs-1">注文詳細</th>
       </tr>
     </thead>
     <tbody>
-      <%= link_to "購入を確定する", class: "btn btn-primary btn-large" %>
+      <tr>
+        <td>商品名</td>
+        <td>単価（税込）</td>
+        <td>個数</td>
+        <td>小計</td>
+        <td>小計</td>
+        <td>小計</td>
+      </tr>
+      <tr>
+        <td>商品名</td>
+        <td>単価（税込）</td>
+        <td>単価（税込）</td>
+        <td>単価（税込）</td>
+        <td>個数</td>
+        <td>小計</td>
+      </tr>
     </tbody>
   </table>
 </div><!-- /.row -->
