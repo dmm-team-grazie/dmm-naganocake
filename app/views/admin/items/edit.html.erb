@@ -17,7 +17,7 @@
       </tr>
       <tr>
         <td><%= f.label :genre_id, "ジャンル" %></td>
-        <td><%= f.select :genre_id,[[""]] class: "genre" %></td>
+        <td><%= f.select :genre_id, @genres.map{|genre| [genre.name, genre_id]} %></td>
       </tr>
       <tr>
         <td><%= f.label :non_taxed_price, "税抜価格" %></td>

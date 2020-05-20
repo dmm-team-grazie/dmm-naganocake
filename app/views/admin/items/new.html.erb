@@ -16,7 +16,7 @@
       </div>
       <div class="field">
       	<%= f.label :genre_id, "ジャンル" %>
-      	<%= f.select :genre_id,[[""]] class: "genre" %>
+      	<%= f.select :genre_id, @genres.map{|genre| [genre.name, genre_id]} %>
       </div>
       <div class="field">
       	<%= f.label :non_taxed_price, "税抜価格" %>
