@@ -1,18 +1,18 @@
-<h3>新規会員登録</h3>
+<h2>新規会員登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
 <div class = "form-row">
   <label class="col-sm-2"><%= f.label "名前" %></label>
-    <span class = "col-sm-1">(姓)</span><%= f.email_field :last_name, autofocus: true, autocomplete: "last_name", class: "col-sm-3" %>
-    <span class = "col-sm-1">(名)</span><%= f.email_field :first_name, autofocus: true, autocomplete: "first_name", class: "col-sm-3" %>
+    <span class = "col-sm-1">(姓)</span><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "col-sm-3" %>
+    <span class = "col-sm-1">(名)</span><%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "col-sm-3" %>
 </div><br>
 
 <div class = "form-row">
     <label class = "col-sm-2"><%= f.label "フリガナ" %></label>
-    <span class = "col-sm-1">(セイ)</span><%= f.email_field :last_kana_name, autofocus: true, autocomplete: "last_kana_name", class: "col-sm-3" %>
-    <span class = "col-sm-1">(メイ)</span><%= f.email_field :first_kana_name, autofocus: true, autocomplete: "first_kana_name", class: "col-sm-3" %>
+    <span class = "col-sm-1">(セイ)</span><%= f.text_field :last_kana_name, autofocus: true, autocomplete: "last_kana_name", class: "col-sm-3" %>
+    <span class = "col-sm-1">(メイ)</span><%= f.text_field :first_kana_name, autofocus: true, autocomplete: "first_kana_name", class: "col-sm-3" %>
 </div><br>
 
 <div class = "form-row">
@@ -54,7 +54,5 @@
 <% end %>
 </div>
 
-
-
-<h3>既に登録済みの方</h3>
+<h2>既に登録済みの方</h2>
 <span><%= render "members/shared/links" %>からログインしてください。</span>
