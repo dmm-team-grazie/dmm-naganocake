@@ -1,0 +1,41 @@
+<h3>の会員情報</h3>
+
+<table>
+	<tr>
+		<th>顧客ID</th>
+		<td><%= @mumber.id %></td>
+	</tr>
+
+	<tr>
+		<th>氏名</th>
+		<td><%= @member.last_name %><%= @member.first_name %></td>
+	</tr>
+
+	<tr>
+		<th>フリガナ</th>
+		<td><%= @member.last_kana_name %><%= @member.first_kana_name %></td>
+	</tr>
+
+	<tr>
+		<th>郵便番号</th>
+		<td>@member.postal_code %></td>
+	</tr>
+
+	<tr>
+		<th>住所</th>
+		<td><%= @member.address %></td>
+	</tr>
+
+	<tr>
+		<th>電話番号</th>
+		<td><%= @member.phone_number %></td>
+	</tr>
+
+	<tr>
+		<th>メールアドレス</th>
+		<td><%= @member.e,email %></td>
+	</tr>
+</table>
+
+<%= link_to "編集する", "#", class: "btn btn-primary" %>
+<%= link_to "注文履歴一覧を見る", "#", class: "btn btn-primary" %>
