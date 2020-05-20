@@ -1,6 +1,6 @@
 class Admin::MembersController < ApplicationController
 	def index
-		@members = Member.all
+		# @members = Member.page(params[:page]).reverse_order
 	end
 
 	def show
@@ -8,5 +8,6 @@ class Admin::MembersController < ApplicationController
 	end
 
 	def edit
+		@member = Member.find(params[:id])
 	end
 end
