@@ -1,0 +1,31 @@
+<h2>商品詳細</h2>
+<div class="row">
+  <div class="col-xs-4">
+    <%= attachment_image_tag @item, :item_image, :fill, 240, 100, fallback: "no-image.jpg", class: "card-img-top" %>
+  </div>
+  <div class="col-xs-4">
+    <table>
+      <tr>
+        <td>商品名</td>
+        <td><%= @item.name %></td>
+      </tr>
+      <tr>
+        <td>商品説明</td>
+        <td><%= @item.introduction %></td>
+      </tr>
+      <tr>
+        <td>ジャンル</td>
+        <td><%= @item.genre_id %></td>
+      </tr>
+      <tr>
+        <td>税込価格(税抜価格)</td>
+        <td><%= @item.non_taxed_price %> ( @taxed_price )</td>
+      </tr>
+      <tr>
+        <td>販売ステータス</td>
+        <td><%= @item.is_valid %></td>
+      </tr>
+    </table>
+    <a class="btn btn-primary" href="admin/items/:id/edit" role="button">編集</a>
+  </div>
+</div>
