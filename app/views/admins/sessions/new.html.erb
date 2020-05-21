@@ -1,28 +1,13 @@
- <div class="row">
-  <div class="col-sm-3">
-  <h6 class="bg-info text-center">管理者画面</h6>
-  </div>
-  <div class="col-sm-9"></div>
-</div>
 
-<div class="row">
-  <div class="col-sm-3">
-  <h5>本日の注文件数　　8件</h5>
-  </div>
-  <div class="col-sm-9"></div>
-  </div>
-</div>
-
-
-<div class="row">
+<div class="row mt-5">
   <div class="col-sm-4"></div>
   <div class="col-sm-2">
   <h6 class="bg-info text-center">管理者ログイン</h6>
   </div>
   <div class="col-sm-6"></div>
 </div>
-  <div class="row justify-content-center">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="row justify-content-center mt-3">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-group row">
     <label class="col-md-4"><font size="1">メールアドレス</font></label>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-md-8" %>
@@ -31,7 +16,7 @@
     <label class="col-md-4"><font size="1">　　パスワード</font></label>
     <%= f.password_field :password, autocomplete: "current-password", class: "col-md-8" %>
   </div>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center mt-4">
     <%= f.submit "　ログイン　", class: "btn btn-primary" %>
   </div>
   </div>
