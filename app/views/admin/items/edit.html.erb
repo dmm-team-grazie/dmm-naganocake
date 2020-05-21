@@ -1,8 +1,8 @@
 <h2>商品編集</h2>
 <div class="row">
-  <%= form_with model: @item, local: true do |f| %>
+  <%= form_with model: @item,url: {controller: 'admin/items', action: 'edit' }, local: true do |f| %>
   <div class="col-xs-4">
-    <%= attachment_image_tag @item, :item_image, :fill, 240, 100, fallback: "no-image.jpg", class: "card-img-top" %>
+    <%= attachment_image_tag @item, :item_image, :fill, 240, 100, fallback: "no-image.jpg" %>
     <%= f.attachment_field :item_image, class: "item_image" %>
   </div>
   <div class="col-xs-4">
@@ -17,7 +17,7 @@
       </tr>
       <tr>
         <td><%= f.label :genre_id, "ジャンル" %></td>
-        <td><%= f.select :genre_id, @genres.map{|genre| [genre.name, genre_id]} %></td>
+        <td><%= f.select :genre_id, Genre.all.map{|genre| [genre.name, genre.id]} %></td>
       </tr>
       <tr>
         <td><%= f.label :non_taxed_price, "税抜価格" %></td>
@@ -25,7 +25,7 @@
       </tr>
       <tr>
         <td><%= f.label :is_valid, "販売ステータス" %></td>
-        <td><%= f.select :is_valid,[["販売中",true],["販売停止中",false]],{include_blank: false, selected: 1},{}, {class: "is_valid"} %></td>
+        <td><%= f.select :is_valid,[["販売中",0],["販売停止中",1]],{include_blank: false, selected: 0},{class: "is_valid"} %></td>
       </tr>
     </table>
     <%= f.submit "変更を保存" , class:"btn btn-primary btn-sm" %>

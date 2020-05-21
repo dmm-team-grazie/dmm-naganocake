@@ -1,6 +1,6 @@
 <h2>配送先編集</h2>
 <div class="row">
-  <%= form_with model: @address, lacal: true do |f| %>
+  <%= form_with model: @address,url: {controller: 'public/addresses', action: 'edit' }, lacal: true do |f| %>
   <div class="row field">
     <%= f.label :postal_code, "郵便番号(ハイフンなし)", class:"col-xs-4" %>
     <%= f.text_field :postal_code, class: "postal_code col-xs-4" %>

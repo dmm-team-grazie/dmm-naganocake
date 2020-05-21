@@ -1,7 +1,7 @@
-class AddressesController < ApplicationController
+class Public::AddressesController < ApplicationController
 
   def index
-    @addresses = Address.Item.page(params[:page]).reverse_order.per(3)
+    @addresses = Address.page(params[:page]).reverse_order.per(3)
     @address = Address.new
   end
 
