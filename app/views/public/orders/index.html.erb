@@ -1,5 +1,5 @@
 <div class="row">
-  <h2>注文履歴一覧</h2>
+  <h2 class="view-title">注文履歴一覧</h2>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -13,21 +13,26 @@
     </thead>
     <tbody>
       <tr>
-        <td>商品名</td>
-        <td>単価（税込）</td>
-        <td>個数</td>
-        <td>小計</td>
-        <td>小計</td>
-        <td>小計</td>
+
+        <td>2019/11/20 23:55:12</td>
+        <td>44444<br>ふぁっふぇふぁっfファf<br>臼井雄飛</td>
+        <td>ジャンプ<br>サンデー<br>マガジン</td>
+        <td>3343円</td>
+        <td>入金待ち</td>
+        <td><%= link_to "表示する", root_path, class: "btn btn-primary" %></td>
       </tr>
-      <tr>
-        <td>商品名</td>
-        <td>単価（税込）</td>
-        <td>単価（税込）</td>
-        <td>単価（税込）</td>
-        <td>個数</td>
-        <td>小計</td>
-      </tr>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= order.created_at %></td>
+          <td><%= order.postal_code %><%= order.address %><%= order.address_name %></td>
+          <td><%= order.item.name %></td>
+          <td><%= order.payment %></td>
+          <td><%= order.order_status %></td>
+          <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
+
     </tbody>
   </table>
+  <%= paginate @orders %>
 </div><!-- /.row -->

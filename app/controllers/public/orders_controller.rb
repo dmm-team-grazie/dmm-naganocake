@@ -1,22 +1,26 @@
 class Public::OrdersController < ApplicationController
-  def thanks 
+  def thanks
   end
   def new
     # @neworder = Order.new
   end
   def index
-    # @orders = Order.all 
+
+    @orders = Order.page(params[:page]).reverse_order.per(5)
   end
-  def show 
+  def show
     # @order = Order.find(params[:id])
+    @orders = Order.all
+
   end
   def input
     # @neworder = Order.new
   end
-  def confirm 
+  def confirm
+    @orders = Order.all
     @order = Order.new(order_params)
     render :new if @order.invalid?
   end
-  
+
 
 end
