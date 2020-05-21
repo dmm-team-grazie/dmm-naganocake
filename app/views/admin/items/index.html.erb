@@ -26,7 +26,13 @@
           <td><%= link_to item.name, admin_item_path(item.id) %></td>
           <td><%= item.non_taxed_price %></td>
           <td><%= item.genre.name%></td>
-          <td><%= item.is_valid %></td>
+          <td>
+            <% if item.is_valid == true %>
+              <span>販売中</span>
+            <% else %>
+              <span>販売停止中</span>
+            <% end %>
+          </td>
         </tr>
         <% end %>
       </tbody>

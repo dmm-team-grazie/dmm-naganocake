@@ -23,17 +23,15 @@ class Admin::ItemsController < ApplicationController
   		@items = Item.all.page(params[:page]).reverse_order.per(10)
   		render :index
   	end
+  end
 
-    def update
-    	@item = Item.find(params[:id])
-    	if @item.update(item_params)
-    		redirect_to admin_item_path(@item), notice: "successfully updated item!"
-    	else 
-    		render :edit
-    	end
-    end
-
-
+  def update
+    @item = Item.find(params[:id])
+  	if @item.update(item_params)
+  		redirect_to admin_item_path(@item), notice: "successfully updated item!"
+  	else
+  		render :edit
+  	end
   end
 
   private
