@@ -8,33 +8,33 @@
 	<div style="width: 65%;">
 	<table class="table table-bordered">
 	<tr>
-		<th>氏名</th>
-		<td>北村有佑</td>
+		<th class="bg-light">氏名</th>
+		<td><%= current_member.last_name %><%= current_member.first_name %></td>
 	</tr>
 
 	<tr>
-		<th>カナ</th>
-		<td>キタムラユウスケ</td>
+		<th class="bg-light">カナ</th>
+		<td><%= current_member.last_kana_name %><%= current_member.first_kana_name %></td>
 	</tr>
 
 	<tr>
-		<th>郵便番号</th>
-		<td>5940074</td>
+		<th class="bg-light">郵便番号</th>
+		<td><%= current_member.postal_code %></td>
 	</tr>
 
 	<tr>
-		<th>住所</th>
-		<td>大阪府和泉市小田町</td>
+		<th class="bg-light">住所</th>
+		<td><%= current_member.address %></td>
 	</tr>
 
 	<tr>
-		<th>電話番号</th>
-		<td>0900000000000</td>
+		<th class="bg-light">電話番号</th>
+		<td><%= current_member.phone_number %></td>
 	</tr>
 
 	<tr>
-		<th>メールアドレス</th>
-		<td>yyyyyyyyyyyyyyyyyyy</td>
+		<th class="bg-light">メールアドレス</th>
+		<td><%= current_member.email %></td>
 	</tr>
 	</table>
 	</div>
