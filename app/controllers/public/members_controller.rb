@@ -6,6 +6,7 @@ class Public::MembersController < ApplicationController
 	end
 
 	def update
+		
 	end
 
 	def leave
