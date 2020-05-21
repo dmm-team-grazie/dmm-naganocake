@@ -1,6 +1,11 @@
-<h2>登録情報編集</h2>
+<h2><%= @member.last_name %><%= @member.first_name %>の会員情報</h2>
 
-<%= form_for(current_member) do |f| %>
+<%= form_for(@member) do |f| %>
+
+<div class = "form-row">
+	<label class="col-sm-2"><%= f.label "会員ID" %></label>
+	<%= id %>
+</div>
 
 <div class = "form-row">
   <label class="col-sm-2"><%= f.label "名前" %></label>
@@ -33,7 +38,13 @@
     <label class = "col-sm-3"><%= f.label "電話番号" %><span>(ハイフンなし)</span></label>
     <%= f.text_field :phone_number, class: "col-sm-3" %>
 </div><br>
+
+<div class ="form_row">
+	<label class = "col-sm-3"><%= f.label "会員ステータス" %></label>
+	<!-- 会員ステータス追加 -->
+</div>
+
+<%= f.submit "変更を保存する" %>
+
 <% end %>
 
-<%= f.submit "編集内容を保存する", class: "btn btn-primary" %>
-<%= link_to "退会する",  public_leave_path(current_member), class: "btn btn-danger" %>

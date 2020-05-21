@@ -2,6 +2,19 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
-#
+Admin.create!(
+  email: 'aa@gmail.com',
+  password: 'admin1',
+  )
+
+Item.create!(
+
+      name: 'ショートケーキ',
+      description: 'うまいよ',
+      genre_id: 'ケーキ',
+      price: '1200',
+      status: '販売中',
+      image: open('./app/assets/images/no_image.jpg')
+            )
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)

@@ -1,12 +1,48 @@
-<h3>マイページ</h3>
+<h2>マイページ</h2><br>
 
-<h3>登録情報</h3>
-<%= link_to "編集する", "#", class: "btn btn-primary" %>
-<%= link_to "パスワードを変更する", "#" , class: "btn btn-primary" %>
+<h5>登録情報
+	<%= link_to "編集する", public_edit_path(current_member), class: "btn btn-primary" %>
+	<%= link_to "パスワードを変更する", "#" , class: "btn btn-primary" %></h5>
 
-<table>
+<div class = "row">
+	<div style="width: 65%;">
+	<table class="table table-bordered">
 	<tr>
-		<td>氏名</td>
-		<td></td>
+		<th>氏名</th>
+		<td>北村有佑</td>
 	</tr>
-</table>
+
+	<tr>
+		<th>カナ</th>
+		<td>キタムラユウスケ</td>
+	</tr>
+
+	<tr>
+		<th>郵便番号</th>
+		<td>5940074</td>
+	</tr>
+
+	<tr>
+		<th>住所</th>
+		<td>大阪府和泉市小田町</td>
+	</tr>
+
+	<tr>
+		<th>電話番号</th>
+		<td>0900000000000</td>
+	</tr>
+
+	<tr>
+		<th>メールアドレス</th>
+		<td>yyyyyyyyyyyyyyyyyyy</td>
+	</tr>
+	</table>
+	</div>
+</div>
+
+<h5>配送先
+	<%= link_to "一覧を見る", public_addresses_path, class: "btn btn-primary" %></h5>
+
+<h5>注文履歴
+	<%= link_to "一覧を見る", public_orders_path, class: "btn btn-primary" %></h5>
+
