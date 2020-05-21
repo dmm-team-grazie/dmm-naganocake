@@ -1,5 +1,7 @@
 <h2>ショッピングカート</h2>
 
+<%= link_to "カートを空にする", public_cart_items_path, method: :delete, class: "btn btn-danger" %>
+
 <table border="1">
 	<tr>
 		<th>商品名</th>
@@ -9,24 +11,26 @@
 		<th></th>
 	</tr>
 
-	<% @cart_item.each do |cart_item| %>
+	<% @cart_items.each do |cart_item| %>
 
 	<tr>
 		<td>cart_item.items.name</td>
-		<td></td>
+		<td>税込価格</td>
 		<td>cart_item.number</td>
-		<td></td>
-		<!-- <td><%= link_to "削除する", public_cart_items_path(cart_item), method: :delete, class: "btn btn-danger" %></td> -->
+		<td>小計</td>
+		<td><%= link_to "削除する", public_cart_items_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
 	</tr>
 
 	<% end %>
 
 </table>
 
+<%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %>
+
 <table>
 
 	<tr>
-		<td>合計金額</td>
+		<th>合計金額</th>
 		<td></td>
 	</tr>
 

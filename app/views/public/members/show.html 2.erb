@@ -1,0 +1,44 @@
+<h3>マイページ</h3>
+
+<h3>登録情報</h3>
+	<%= link_to "編集する", "#", class: "btn btn-primary" %>
+	<%= link_to "パスワードを変更する", "#" , class: "btn btn-primary" %>
+
+<table border="1">
+	<tr>
+		<td>氏名</td>
+		<td><%= current_member.last_name %><%= current_member.first_name %></td>
+	</tr>
+
+	<tr>
+		<td>カナ</td>
+		<td><%= current_member.last_kana_name %><%= current_member.first_kana_name %></td>
+	</tr>
+
+	<tr>
+		<td>郵便番号</td>
+		<td><%= current_member.postal_code %></td>
+	</tr>
+
+	<tr>
+		<td>住所</td>
+		<td><%= current_member.address %></td>
+	</tr>
+
+	<tr>
+		<td>電話番号</td>
+		<td><%= current_member.phone_number %></td>
+	</tr>
+
+	<tr>
+		<td>メールアドレス</td>
+		<td><%= current_member.email %></td>
+	</tr>
+</table>
+
+<h3>配送先</h3>
+	<%= link_to "一覧を見る", "#", class: "btn btn-primary" %>
+
+<h3>注文履歴</h3>
+	<%= link_to "一覧を見る", "#", class: "btn btn-primary" %>
+
