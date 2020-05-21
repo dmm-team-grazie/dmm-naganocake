@@ -1,63 +1,93 @@
-<div class="row mt-5" style="margin-top: 200px;">
-  <h2>注文履歴詳細</h2>
+<div class="most-outline" style="position: relative; height: 800px;">
+  <div class="row">
+    <h2 class="view-title">注文履歴詳細</h2>
 
-  <table class="row table table-borderless">
-    <tr>
-      <th class="col-xs-3">購入者</th>
-      <th class="col-xs-9">山田花子</th>
-    </tr>
-    <tr>
-      <th>配送先</th>
-      <th>配送先sdfaddddddddddddddddddddd</th>
-    </tr>
-    <tr>
-      <th>支払方法</th>
-      <th>銀行振込</th>
-    </tr>
-    <tr>
-      <th>注文ステータス</th>
-      <th class="btn btn-primary">更新</th>
-    </tr>
-  </table>
-</div>
-<div class="row">
-  <table class="table table-borderless" style="width: 70%;">
-    <thead class="bg-light">
+    <table class="table table-borderless">
       <tr>
-        <th class="col-xs-3">商品名</th>
-        <th class="col-xs-2">単価（税込）</th>
-        <th class="col-xs-1">個数</th>
-        <th class="col-xs-2">小計</th>
-        <th class="col-xs-3">製作ステータス</th>
-        <th class="col-xs-1"></th>
+        <th class="col-xs-2">購入者</th>
+        <th class="col-xs-9">山田花子</th>
       </tr>
-    </thead>
-    <tbody>
       <tr>
-          <th>リンゴ</th>
-          <th>333円</th>
-          <th>2個</th>
-          <th>333円</th>
-          <th></th>
-          <th class="btn btn-primary">更新</th>
-        </tr>
-      
-    </tbody>
-  </table>
+        <th>配送先</th>
+        <th>配送先sdfaddddddddddddddddddddd</th>
+      </tr>
+      <tr>
+        <th>支払方法</th>
+        <th>銀行振込</th>
+      </tr>
+      <tr>
+        <th>注文ステータス</th>
+        <th><select><option>入金待ち</option><option>入金確認中</option>
+                    <option>製作中</option><option>発送準備中</option><option>発送済み</option>
+            </select>
+            <p class="btn btn-primary">更新</p>
+        </th>
+      </tr>
+    </table>
   </div>
+  <div class="row">
+    <div class="col-md-9" style="position: absolute; bottom: 80px;">
+      <table class="table table-borderless">
+        <thead class="bg-light">
+          <tr>
+            <th class="col-xs-3">商品名</th>
+            <th class="col-xs-2">単価（税込）</th>
+            <th class="col-xs-1">個数</th>
+            <th class="col-xs-2">小計</th>
+            <th class="col-xs-3">製作ステータス</th>
+            <th class="col-xs-1"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>リンゴ</th>
+            <th>333円</th>
+            <th>2個</th>
+            <th>333円</th>
+            <th><select name="blood">
+                <option value="A">着手不可</option><option value="B">製作待ち</option><option value="O">製作中</option><option value="AB">製作完了</option>
+                </select></th>
+            <th class="btn btn-primary">更新</th>
+          </tr>
+          <tr>
+            <th>リンゴ</th>
+            <th>333円</th>
+            <th>2個</th>
+            <th>333円</th>
+            <th><select name="blood">
+                <option value="A">着手不可</option><option value="B">製作待ち</option><option value="O">製作中</option><option value="AB">製作完了</option>
+                </select></th>
+            <th class="btn btn-primary">更新</th>
+          </tr>
+          <tr>
+            <th>リンゴ</th>
+            <th>333円</th>
+            <th>2個</th>
+            <th>333円</th>
+            <th>
+              
+            </th>
+            <th class="btn btn-primary">更新</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-  <table class="row table table-borderless">
-    <tr>
-      <th class="col-xs-3">商品合計</th>
-      <th>44円</th>
-    </tr>
-    <tr>
-      <th>送料</th>
-      <th>44円</th>
-    </tr>
-    <tr>
-      <th>請求金額合計</th>
-      <th>44円</th>
-    </tr>
-  </table>
-</div><!-- /.row -->
+    <div class="col-md-3" style="position: absolute; bottom: 80px; right: -50px;">
+      <table class="row table table-borderless">
+        <tr>
+          <th class="col-xs-3">商品合計</th>
+          <th>44円</th>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <th>44円</th>
+        </tr>
+        <tr>
+          <th>請求金額合計</th>
+          <th>44円</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

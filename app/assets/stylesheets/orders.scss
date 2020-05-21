@@ -2,12 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 h2 {
   display: inline-block;
   background-color: orange;
   padding: 1px 30px;
+  margin: 50px 10%;
 }
 
 h3 {
   font-weight: 600;
+}
+
+li {
+  list-style: none;
+}
+
+.thanks-outer{
+  position: relative;
+  height: 600px;
+}
+.thanks-inner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
 }

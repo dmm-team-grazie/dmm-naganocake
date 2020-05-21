@@ -1,48 +1,48 @@
-  <h2>注文履歴詳細</h2>
+<h2 class="view-title">注文履歴詳細</h2>
 <div class="row">
-  <div style="width: 50%;">
+  <div class="col-sm-6">
     <h3>注文情報</h3>
     <table class="table table-bordered">
       <tr>
         <th class="col-xs-3 bg-light">注文日</th>
-        <th><%= @order %></th>
+        <th>2010/42/42</th>
       </tr>
       <tr>
         <th class="col-xs-3 bg-light">配送先</th>
-        <th><%= @order.postal_code %><%= @order.address %><%= @order.address_name %></th>
+        <th>444444ふぁっふぇふぁっfファf<br>臼井雄飛</th>
       </tr>
       <tr>
         <th class="col-xs-3 bg-light">支払い方法</th>
-        <th><%= @order.payment_method %></th>
+        <th>カード</th>
       </tr>
       <tr>
         <th class="col-xs-3 bg-light">ステータス</th>
-        <th><%= @order.order_status %></th>
+        <th>入金済み</th>
       </tr>
     </table>
   </div>
 
-  <div style="margin-left:30px; width: 30%;">
+  <div class="col-sm-3">
     <h3>請求情報</h3>
     <table class="table table-bordered">
       <tr>
         <th class="col-xs-6 bg-light">商品合計</th>
-        <th><%= @order %></th>
+        <th>333円</th>
       </tr>
       <tr>
         <th class="col-xs-6 bg-light">配送料</th>
-        <th><%= @order.postage %></th>
+        <th>333円</th>
       </tr>
       <tr>
         <th class="col-xs-6 bg-light">ご請求額</th>
-        <th><%= @order.payment %></th>
+        <th>333</th>
       </tr>
     </table>
   </div>
 </div>
 
 <div class="row">
-  <div style="width: 65%;">
+  <div class="col-sm-7">
   <h3>注文内容</h3>
   <table class="table table-bordered">
     <thead>
@@ -54,12 +54,18 @@
       </tr>
     </thead>
     <tbody>
-      <% @items.each do |item| %>
+      <tr>
+        <th >苺ショートケーキ</th>
+        <th >1,000円</th>
+        <th >100個</th>
+        <th >100,000円</th>
+      </tr>
+      <% @orders.each do |order| %>
         <tr>
-          <td><%= item.name %></td>
-          <td><%= item.price %></td>
-          <td><%= item.nember %></td>
-          <td><%= item.price*item.number %></td>
+          <td><%= order.items.name %></td>
+          <td><%= order.items.price %></td>
+          <td><%= order.items.nember %></td>
+          <td><%= order.items.price*item.number %></td>
         </tr>
       <% end %>
     </tbody>  

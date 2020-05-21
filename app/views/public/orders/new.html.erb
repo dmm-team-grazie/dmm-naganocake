@@ -1,4 +1,4 @@
-  <h2>注文情報入力</h2>
+  <h2 class="view-title">注文情報入力</h2>
 
   <h3>支払方法</h3>
   <%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
@@ -21,6 +21,13 @@
       <li>
         <%= f.radio_button :address, 1 %>
         <%= f.label :address, "登録済住所から選択", {value: 1, style: "display: inline-block;"} %>
+        <select name="blood" style="width: 80%;">
+          <option value="A">000-0000 東京都明石市4343−４４</option>
+          <option value="B">000-0000 東京都明石市4343−４４</option>
+          <option value="O">000-0000 東京都明石市4343−４４</option>
+          <option value="AB">000-0000 東京都明石市4343−４４</option>
+          <option value="AB">000-0000 東京都明石市4343−４４</option>
+        </select>
       </li>
 
       <li>
@@ -47,17 +54,3 @@
   <% end %>
 
 
-<style>
-  h2 {
-    display: inline-block;
-    background-color: orange;
-    padding: 1px 30px;
-  }
-
-  h3 {
-    font-weight: 400;
-  }
-  li {
-    list-style: none;
-  }
-</style>
