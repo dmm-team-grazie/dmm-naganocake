@@ -11,4 +11,12 @@ class Order < ApplicationRecord
     before_deli: 3,
     delivered: 4
   }
+
+  def subtotal_price
+    self.price * self.number
+  end
+
+  def total_price
+    self.all.set(:price * :number)
+  end
 end

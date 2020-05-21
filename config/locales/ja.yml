@@ -2,25 +2,18 @@ ja:
   enums:
     order:
       order_status:
-        waiting: 牛肉
-        checking: 魚
-        making: 豚肉
-        before_deli: 羊肉
-        delivered: 羊肉
-      production_status:
-        none: 緑茶
-        waiting: コーヒー
-        halfway: 紅茶
-        complete: ビール
+        waiting: 入金待ち
+        checking: 入金確認中
+        making: 製作中
+        before_deli: 発送準備中
+        delivered: 発送済み
     order_detail:
-      order_status:
-        waiting: 牛肉
-        checking: 魚
-        making: 豚肉
-        before_deli: 羊肉
-        delivered: 羊肉
       production_status:
-        none: 緑茶
-        waiting: コーヒー
-        halfway: 紅茶
-        complete: ビール
+        none: 着手不可
+        waiting: 製作待ち
+        halfway: 製作中
+        complete: 製作完了
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%m/%d %H:%M"
