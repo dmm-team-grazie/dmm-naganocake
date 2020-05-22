@@ -7,6 +7,10 @@ class Public::MembersController < ApplicationController
 	end
 
 	def update
+		@member = Member.find(params[:id])
+		@member.update(is_valid: false)
+		reset_session # ログアウトさせる
+		redirect_to root_path
 	end
 
 	def leave

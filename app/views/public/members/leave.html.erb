@@ -6,9 +6,6 @@
 <p>退会する場合、「退会する」をクリックしてください。</p>
 
 <%= link_to "退会しない", public_path, class: " btn btn-primary" %>
+<%= link_to "退会する",root_path, method: :patch, class: "btn btn-danger" %>
 
-<% form_with model: @member do |f| %>
-<%= f.submit "退会する", :is_valid, :false, class: "btn btn-danger" %>
-<!-- <%= link_to "退会する", "#", class: " btn btn-danger" %> -->
-<% end %>
 </div>
