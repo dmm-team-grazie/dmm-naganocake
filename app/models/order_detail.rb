@@ -11,5 +11,5 @@ class OrderDetail < ApplicationRecord
   }
 
 
-
+    
 end

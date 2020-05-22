@@ -7,7 +7,7 @@ class Order < ApplicationRecord
   enum order_status:{
     waiting: 0,
     checking: 1,
-    making: 2,
+    making: 2, 
     before_deli: 3,
     delivered: 4
   }

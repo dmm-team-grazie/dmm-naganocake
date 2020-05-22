@@ -19,6 +19,6 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     render :new if @order.invalid?
   end
-
+  
 
 end
