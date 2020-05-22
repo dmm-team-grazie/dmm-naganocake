@@ -11,12 +11,19 @@ class Order < ApplicationRecord
     before_deli: 3,
     delivered: 4
   }
-
-  def subtotal_price
-    self.price * self.number
+  def total_price_from_cartitem
+    self.each do |cart_item|
+      item = cart_item.item
+      @subtotal_price += item.price * cart_item.number
+      @total_price = @subtotal_price
+    end
   end
 
-  def total_price
-    self.all.set(:price * :number)
+  def total_price_from_order
+    self.each do |order|
+      item = order.order_detail.item
+      @subtotal_price += item.price * order.ordet_detail.number
+      @total_price = @subtotal_price
+    end
   end
 end

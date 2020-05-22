@@ -5,26 +5,28 @@
     <table class="table table-borderless">
       <tr>
         <th class="col-xs-2">購入者</th>
-        <th class="col-xs-9">山田花子</th>
+        <th class="col-xs-9"><%= @order.address_name %></th>
       </tr>
       <tr>
         <th>配送先</th>
-        <th>配送先sdfaddddddddddddddddddddd</th>
+        <th><%= order.postal_code %><%= order.address %><br><%= order.address_name %></th>
       </tr>
       <tr>
         <th>支払方法</th>
-        <th>銀行振込</th>
+        <th><%= order.postal_code %><%= order.address %><br><%= order.address_name %></th>
       </tr>
       <tr>
         <th>注文ステータス</th>
-        <th><select><option>入金待ち</option><option>入金確認中</option>
-                    <option>製作中</option><option>発送準備中</option><option>発送済み</option>
-            </select>
-            <p class="btn btn-primary">更新</p>
+        <th>
+          <%= form.select :order_status, 
+              Order.order_statuses.keys, 
+              :selected=>Order.order_statuses[order.order_status], prompt: "選択してください" %>
+          <%= f.submit "更新", class: "btn btn-primary" %>
         </th>
       </tr>
     </table>
   </div>
+
   <div class="row">
     <div class="col-md-9" style="position: absolute; bottom: 80px;">
       <table class="table table-borderless">
@@ -39,36 +41,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th>リンゴ</th>
-            <th>333円</th>
-            <th>2個</th>
-            <th>333円</th>
-            <th><select name="blood">
-                <option value="A">着手不可</option><option value="B">製作待ち</option><option value="O">製作中</option><option value="AB">製作完了</option>
-                </select></th>
-            <th class="btn btn-primary">更新</th>
-          </tr>
-          <tr>
-            <th>リンゴ</th>
-            <th>333円</th>
-            <th>2個</th>
-            <th>333円</th>
-            <th><select name="blood">
-                <option value="A">着手不可</option><option value="B">製作待ち</option><option value="O">製作中</option><option value="AB">製作完了</option>
-                </select></th>
-            <th class="btn btn-primary">更新</th>
-          </tr>
-          <tr>
-            <th>リンゴ</th>
-            <th>333円</th>
-            <th>2個</th>
-            <th>333円</th>
-            <th>
-
-            </th>
-            <th class="btn btn-primary">更新</th>
-          </tr>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.items.name %></td>
+              <td><%= order.items.price %></td>
+              <td><%= order.order_detail.number %></td>
+              <td><%= order.item.price * order.order_detail.number %></td>
+              <td>
+                <%= form_with(model: order, local: true) do |f| %>
+                  <%= form.select :production_status, 
+                      OrderDetail.production_statuses.keys, 
+                      :selected=>OrderDetail.production_statuses[@order_detail.production_status] %>
+                  <%= f.submit "更新", class: "btn btn-primary" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
@@ -76,16 +64,16 @@
     <div class="col-md-3" style="position: absolute; bottom: 80px; right: -50px;">
       <table class="row table table-borderless">
         <tr>
-          <th class="col-xs-3">商品合計</th>
-          <th>44円</th>
+          <th>送料</th>
+          <th><%= 800.to_i %>円</th>
         </tr>
         <tr>
-          <th>送料</th>
-          <th>44円</th>
+          <th class="col-xs-3">商品合計</th>
+          <th><%= @total_price %>円</th>
         </tr>
         <tr>
           <th>請求金額合計</th>
-          <th>44円</th>
+          <th><%= @total_price + 800 %>円</th>
         </tr>
       </table>
     </div>

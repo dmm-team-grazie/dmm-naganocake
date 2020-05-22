@@ -12,14 +12,6 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>2019/11/20 23:55:12</td>
-        <td>44444<br>ふぁっふぇふぁっfファf<br>臼井雄飛</td>
-        <td>ジャンプ<br>サンデー<br>マガジン</td>
-        <td>3343円</td>
-        <td>入金待ち</td>
-        <td><%= link_to "表示する", root_path, class: "btn btn-primary" %></td>
-      </tr>
       <% @orders.each do |order| %>
         <tr>
           <td><%= order.created_at %></td>
