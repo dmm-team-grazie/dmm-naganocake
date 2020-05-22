@@ -4,6 +4,7 @@ class Admin::OrdersController < ApplicationController
   end
   def show
     @order = Order.find(params[:id])
+    @order_detail = OrderDetail.find(params[:id])
     @orders = current_member.orders
     # 合計金額
       @subtotal_price = 0

@@ -13,9 +13,11 @@ class Public::OrdersController < ApplicationController
       @orders.total_price_from_order
   end
 
-  def input
-    @new_order = Order.new(order_params)
+  def new
+    @new_order = Order.new
+    @addresses = current_member.address_info
   end
+
   def confirm
     @cart_items = current_member.cart_items
     @new_order =Order.new
@@ -23,9 +25,8 @@ class Public::OrdersController < ApplicationController
       @subtotal_price = 0
       @cart_items.total_price_from_cartitem
   end
-
   def create 
-    @new_order = Order.new(order_params)
+    @new_order = Order.new
     if @new_order.save
       redirect_to public_order_thanks_path
     else
