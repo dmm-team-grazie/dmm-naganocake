@@ -11,6 +11,12 @@ class Order < ApplicationRecord
     before_deli: 3,
     delivered: 4
   }
+  # ユーザーアドレス情報並べて表示
+  def address_info
+    self.postal_code + self.address + self.first_name + self.last_name
+  end
+
+
   def total_price_from_cartitem
     self.each do |cart_item|
       item = cart_item.item
