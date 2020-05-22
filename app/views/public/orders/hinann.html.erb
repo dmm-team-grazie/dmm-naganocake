@@ -264,6 +264,7 @@
 
 
 
+
   <h3>支払方法</h3>
     <%= form_with(local: true, url: {action: 'confirm'}) do |f| %>
       <div class="form-check">
@@ -281,7 +282,6 @@
         <%= f.label :address, "ご自身の住所", {value: 0, style: "display: inline-block;", class: "form-check-label"} %>
         <%= "DDDDD" %>
       </li>
-
       <li class="form-check">
         <%= f.radio_button :address, 1 %>
         <%= f.label :address, "登録済住所から選択", {value: 1, style: "display: inline-block;", class: "form-check-label"} %>
@@ -450,3 +450,4 @@
       <%= paginate @orders %>
     </div><!-- /.row -->
 <!-- ad/index -->
+

@@ -1,9 +1,10 @@
 class Public::OrdersController < ApplicationController
-  def thanks 
+  def thanks
   end
   def index
     @orders = Order.page(params[:page]).reverse_order.per(5)
   end
+
   def show 
     @order = Order.find(params[:id])
     @orders = current_member.orders
@@ -22,6 +23,7 @@ class Public::OrdersController < ApplicationController
       @subtotal_price = 0
       @cart_items.total_price_from_cartitem
   end
+
   def create 
     @new_order = Order.new(order_params)
     if @new_order.save

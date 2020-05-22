@@ -4,6 +4,7 @@ class OrderDetail < ApplicationRecord
   belongs_to :order
 
   enum production_status:{
+
     impossible: 0, 
     waiting: 1, 
     ontheway: 2,
