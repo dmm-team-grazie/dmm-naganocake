@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'admins#top'
-    get 'items/:id/new' => 'items#new'
+    get 'items/new' => 'items#new'
     resources :items, except:[:new]
     resources :members
     resources :orders

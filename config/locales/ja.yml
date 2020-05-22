@@ -9,7 +9,7 @@ ja:
         delivered: 発送済み
     order_detail:
       production_status:
-        none: 着手不可
+        impossible: 着手不可
         waiting: 製作待ち
         halfway: 製作中
         complete: 製作完了
