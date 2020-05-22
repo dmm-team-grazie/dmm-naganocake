@@ -14,10 +14,8 @@
 	<% @cart_items.each do |cart_item| %>
 
 	<tr>
-
 		<td>cart_item.items.name</td>
 		<td>税込価格</td>
-
 		<td>cart_item.number</td>
 		<td>小計</td>
 		<td><%= link_to "削除する", public_cart_items_path(cart_item), method: :delete, class: "btn btn-danger" %></td>

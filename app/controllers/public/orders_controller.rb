@@ -5,13 +5,11 @@ class Public::OrdersController < ApplicationController
     # @neworder = Order.new
   end
   def index
-
     @orders = Order.page(params[:page]).reverse_order.per(5)
   end
   def show
     # @order = Order.find(params[:id])
     @orders = Order.all
-
   end
   def input
     # @neworder = Order.new

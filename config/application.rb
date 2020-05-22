@@ -16,11 +16,9 @@ module DmmNaganocake
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-
     #日本語に翻訳
     config.i18n.default_locale = :ja
     # タイムゾーンを日本時間に設定
     config.time_zone = 'Asia/Tokyo'
-
   end
 end

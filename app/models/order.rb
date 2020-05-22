@@ -1,9 +1,8 @@
 class Order < ApplicationRecord
 
   has_many :order_details, dependent: :destroy
-
+  has_many :items, through: :order_details
   belongs_to :member
-
 
   enum order_status:{
     waiting: 0,
@@ -20,5 +19,4 @@ class Order < ApplicationRecord
   def total_price
     self.all.set(:price * :number)
   end
-
 end

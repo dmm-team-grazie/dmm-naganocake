@@ -1,7 +1,7 @@
 <div class="row">
   <h2 class="view-title">注文履歴一覧</h2>
   <table class="table table-bordered">
-    <thead>
+    <thead class="table-active">
       <tr>
         <th class="col-xs-1">注文日</th>
         <th class="col-xs-3">配送先</th>
@@ -13,7 +13,6 @@
     </thead>
     <tbody>
       <tr>
-
         <td>2019/11/20 23:55:12</td>
         <td>44444<br>ふぁっふぇふぁっfファf<br>臼井雄飛</td>
         <td>ジャンプ<br>サンデー<br>マガジン</td>
@@ -31,7 +30,6 @@
           <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
         </tr>
       <% end %>
-
     </tbody>
   </table>
   <%= paginate @orders %>
