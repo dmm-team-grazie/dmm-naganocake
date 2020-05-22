@@ -12,12 +12,6 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><%= "2019/11/20 23:55:12" %></td>
-          <td><%= "臼井雄飛" %></td>
-          <td><%= 0 %></td>
-          <td><%= "入金待ち" %></td>
-        </tr>
         <% @orders.each do |order| %>
           <tr>
             <td><%= order.created_at %></td>

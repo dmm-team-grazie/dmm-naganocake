@@ -1,48 +1,5 @@
 <!-- pb/show -->
   <div class="row">
-    <h2>注文履歴詳細</h2>
-    <div class="col-xs-6">
-    <h3>注文情報</h3>
-    <table class="table">
-      <tr>
-        <th>注文日</th>
-        <th><%= @order.created_at %></th>
-      </tr>
-      <tr>
-        <th>配送先</th>
-        <th><%= @order.postal_code %><%= @order.address %><%= @order.address_name %></th>
-      </tr>
-      <tr>
-        <th>支払い方法</th>
-        <th><%= @order.payment_method %></th>
-      </tr>
-      <tr>
-        <th>ステータス</th>
-        <th><%= @order.order_status %></th>
-      </tr>
-    </table>
-    </div><!-- /.col-xs-6 -->
-
-    <div class="col-xs-4">
-    <h3>請求情報</h3>
-    <table class="table">
-      <tr>
-        <th>商品合計</th>
-        <th><%= @order %></th>
-      </tr>
-      <tr>
-        <th>配送料</th>
-        <th><%= @order.postage %></th>
-      </tr>
-      <tr>
-        <th>ご請求額</th>
-        <th><%= @order.payment %></th>
-      </tr>
-    </table>
-    </div><!-- /.col-xs-4 -->
-  </div><!-- /.row -->
-
-  <div class="row">
     <h3>注文内容</h3>
     <table class="table">
       <thead>
@@ -65,22 +22,107 @@
       </tbody>
     </table>
   </div>
-<!-- pb/show -->
-<!-- pb/index -->
+
+
+  <h2 class="view-title">注文履歴詳細</h2>
   <div class="row">
-    <h2>注文履歴一覧</h2>
-    <table>
-      <thead>
+    <div class="col-sm-6">
+      <h3>注文情報</h3>
+      <table class="table table-bordered">
         <tr>
-          <th>注文日</th>
-          <th>配送先</th>
-          <th>注文商品</th>
-          <th>支払金額</th>
-          <th>ステータス</th>
-          <th>注文詳細</th>
+          <th class="col-xs-3 bg-light">注文日</th>
+          <th>2010/42/42</th>
+        </tr>
+        <tr>
+          <th class="col-xs-3 bg-light">配送先</th>
+          <th>444444ふぁっふぇふぁっfファf<br>臼井雄飛</th>
+        </tr>
+        <tr>
+          <th class="col-xs-3 bg-light">支払い方法</th>
+          <th>カード</th>
+        </tr>
+        <tr>
+          <th class="col-xs-3 bg-light">ステータス</th>
+          <th>入金済み</th>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-sm-3">
+      <h3>請求情報</h3>
+      <table class="table table-bordered">
+        <tr>
+          <th class="col-xs-6 bg-light">商品合計</th>
+          <th>333円</th>
+        </tr>
+        <tr>
+          <th class="col-xs-6 bg-light">配送料</th>
+          <th>333円</th>
+        </tr>
+        <tr>
+          <th class="col-xs-6 bg-light">ご請求額</th>
+          <th>333</th>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-7">
+    <h3>注文内容</h3>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-active">
+          <th class="col-xs-6">商品名</th>
+          <th class="col-xs-3">単価（税込）</th>
+          <th class="col-xs-1">個数</th>
+          <th class="col-xs-1">小計</th>
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <th >苺ショートケーキ</th>
+          <th >1,000円</th>
+          <th >100個</th>
+          <th >100,000円</th>
+        </tr>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.items.name %></td>
+            <td><%= order.items.price %></td>
+            <td><%= order.items.nember %></td>
+            <td><%= order.items.price*item.number %></td>
+          </tr>
+        <% end %>
+      </tbody>  
+    </table>
+    </div><!-- /.col-xs-7 -->
+  </div><!-- /.row -->
+<!-- pb/show -->
+<!-- pb/index -->
+ 
+  <div class="row">
+    <h2 class="view-title">注文履歴一覧</h2>
+    <table class="table table-bordered">
+      <thead class="table-active">
+        <tr>
+          <th class="col-xs-1">注文日</th>
+          <th class="col-xs-3">配送先</th>
+          <th class="col-xs-1">注文商品</th>
+          <th class="col-xs-1">支払金額</th>
+          <th class="col-xs-1">ステータス</th>
+          <th class="col-xs-1">注文詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2019/11/20 23:55:12</td>
+          <td>44444<br>ふぁっふぇふぁっfファf<br>臼井雄飛</td>
+          <td>ジャンプ<br>サンデー<br>マガジン</td>
+          <td>3343円</td>
+          <td>入金待ち</td>
+          <td><%= link_to "表示する", admin_top_path, class: "btn btn-primary" %></td>
+        </tr>
         <% @orders.each do |order| %>
           <tr>
             <td><%= order.created_at %></td>
@@ -93,10 +135,12 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate @orders %>
   </div><!-- /.row -->
 <!-- pb/index -->
 <!-- pb/confirm -->
   <div class="row">
+    <%= form_with(local: true, url: {action: 'create'}) do |f| %>
     <h2>注文情報確認</h2>
 
     <table class="table">
@@ -110,14 +154,14 @@
       </thead>
       <tbody>
         <tr>
-          <% @orders.each do |order| %>
+          <% @cart_items.each do |cart_item| %>
             <tr>
               <td>
                 <%= attachment_image_tag item, :item_image_id, :fill, 40, 40, fallback: "no-image-mini.jpg", size:'40x40' %>
-                <%= order.itmes.name %></td>
-              <td><%= order.itmes.price %>円</td>
-              <td><%= order.itmes.number %>個</td>
-              <td><%= order.itmes.subtotal_price %>円</td>
+                <%= cart_item.item.name %></td>
+              <td><%= taxed_price(cart_item.item.non_taxed_price) %>円</td>
+              <td><%= cart_item.number %>個</td>
+              <td><%= taxed_price(cart_item.item.non_taxed_price) * cart_item.number %>円</td>
             </tr>
           <% end %>
         </tr>
@@ -128,9 +172,9 @@
       <tr>
         <th class="col-xs-5">送料</th><th><%= 800.to_i %>円</th></tr>
       <tr>
-        <th>商品合計</th><th><%= @order.items.total_price %>円</th></tr>
+        <th>商品合計</th><th><%= @total_price %>円</th></tr>
       <tr>
-        <th>請求金額</th><th><%= @order.items.payment %>円</th></tr>
+        <th>請求金額</th><th><%= @total_price + 800 %>円</th></tr>
     </table>
   </div>
 
@@ -138,187 +182,271 @@
     <table class="table table-borderless">
       <tr>
         <th class="col-xs-3">支払方法</th>
-        <th><%= @order.payment_method %></th>
+        <th><%= @new_order.payment_method %></th>
       </tr>
       <tr>
         <th class="">お届け先</th>
-        <th><%= @order.postal_code %><%= @order.address %>
-            <br><<%= @order.address_name %>
+        <th><%= @new_order.postal_code %><%= @new_order.address %>
+            <br><<%= @new_order.address_name %>
         </th>
       </tr>
     </table>
 
 
-    <%= f.submit '購入を確定する' class: "btn btn-primary btn-large" %>   
-
-
-
+    <%= f.submit '購入を確定する', class: "btn btn-primary btn-large" %>   
+    <% end %>
   </div><!-- /.row -->
 <!-- pb/confirm -->
 <!-- pb/input -->
-  <div class="row">
-    <h2>注文情報入力</h2>
 
-    <h3>支払方法</h3>
-    <%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
-      <div class="field">
-      <%= f.radio_button :payment_method, 0, checked: true %>
-        <%= f.label :payment_method, "クレジットカード", {value: 0, style: "display: inline-block;"} %>
-      <%= f.radio_button :payment_method, 1 %>
-        <%= f.label :payment_method, "銀行振込", {value: 1, style: "display: inline-block;"} %>
-      </div>
-      
-    <h3>お届け先</h3>
-      <div class="field">
-      <%= f.radio_button :address, 0, checked: true %>
-        <%= f.label :address, "ご自身の住所", {value: 0, style: "display: inline-block;"} %>
+  <h2 class="view-title">注文情報入力</h2>
 
-      <%= f.radio_button :address, 1 %>
-        <%= f.label :address, "登録済住所から選択", {value: 1, style: "display: inline-block;"} %>
-        <%= form.collection_select(:job_id, @jobs, :id, :name, {prompt: "住所を選択してください"}) %>
-
-      <%= f.radio_button :address, 2 %>
-        <%= f.label :address, "新しいお届け先", {value: 2, style: "display: inline-block;"} %>
-        <%= f.label "郵便番号（ハイフンなし）" %>
-        <%= f.text_field :postal_code %>
-        <%= f.label "住所" %>
-        <%= f.text_field :address %>
-        <%= f.label "宛名" %>
-        <%= f.text_field :address_name %>
-      </div>
-
-      <%= f.submit "確認画面へ進む" %>
-    <% end %>
+  <h3>支払方法</h3>
+    <%= form_with(local: true, url: {action: 'confirm'}) do |f| %>
+      <ul>
+        <li><%= f.radio_button :payment_method, 0, checked: true %>
+          <%= f.label :payment_method, "クレジットカード", {value: 0, style: "display: inline-block;"} %>
+        </li>
+        <li><%= f.radio_button :payment_method, 1 %>
+          <%= f.label :payment_method, "銀行振込", {value: 1, style: "display: inline-block;"} %>
+        </li>
+      </ul>
     
-  </div>
+  <h3>お届け先</h3>
+      <ul>
+        <li>
+          <%= f.radio_button :address, 0, checked: true %>
+          <%= f.label :address, "ご自身の住所", {value: 0, style: "display: inline-block;"} %>
+          <%= "DDDDD" %>
+        </li>
+
+        <li>
+          <%= f.radio_button :address, 1 %>
+          <%= f.label :address, "登録済住所から選択", {value: 1, style: "display: inline-block;"} %>
+          <select name="blood" style="width: 70%;">
+            <option value="A">000-0000 東京都明石市4343−４４</option>
+            <option value="B">000-0000 東京都明石市4343−４４</option>
+            <option value="O">000-0000 東京都明石市4343−４４</option>
+            <option value="AB">000-0000 東京都明石市4343−４４</option>
+            <option value="AB">000-0000 東京都明石市4343−４４</option>
+          </select>
+        </li>
+
+        <li>
+          <%= f.radio_button :address, 2 %>
+          <%= f.label :address, "新しいお届け先", {value: 2, style: "display: inline-block;"} %>
+          <li>
+          <table>
+            <tr class="form-group">
+              <th class="col-xs-5"><%= f.label "郵便番号（ハイフンなし）" %></th>
+              <th><%= f.text_field :postal_code, class: "form-control" %></th>
+            </tr>
+            <tr class="form-group">
+              <th><%= f.label "住所" %></th>
+              <th><%= f.text_field :address, class: "form-control" %></th>
+            </tr>
+            <tr class="form-group">
+              <th><%= f.label "宛名" %></th>
+              <th><%= f.text_field :address_name, class: "form-control" %></th>
+            </tr>
+        </table>
+      </li>
+        </li>
+      </ul>
+      <div class="c-inline">
+        <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-lg"%>
+        <!-- public_orders_confirm_path -->
+      </div>
+    <% end %>
+
+
+
+
+
+
+  <h3>支払方法</h3>
+    <%= form_with(local: true, url: {action: 'confirm'}) do |f| %>
+      <div class="form-check">
+        <%= f.radio_button :payment_method, 0, checked: true, class: "form-check-input" %>
+        <%= f.label :payment_method, "クレジットカード", {value: 0, style: "display: inline-block;", class: "form-check-label"} %>
+      </div>
+      <div class="form-check">
+        <%= f.radio_button :payment_method, 1 %>
+        <%= f.label :payment_method, "銀行振込", {value: 1, style: "display: inline-block;", class: "form-check-label"} %>
+      </div>  
+  <h3>お届け先</h3>
+    <ul>
+      <li class="form-check">
+        <%= f.radio_button :address, 0, checked: true, class: "form-check-input" %>
+        <%= f.label :address, "ご自身の住所", {value: 0, style: "display: inline-block;", class: "form-check-label"} %>
+        <%= "DDDDD" %>
+      </li>
+
+      <li class="form-check">
+        <%= f.radio_button :address, 1 %>
+        <%= f.label :address, "登録済住所から選択", {value: 1, style: "display: inline-block;", class: "form-check-label"} %>
+        <select name="blood" style="width: 70%;" class="form-control">
+          <option value="A">000-0000 東京都明石市4343−４４</option>
+          <option value="B">000-0000 東京都明石市4343−４４</option>
+          <option value="O">000-0000 東京都明石市4343−４４</option>
+          <option value="AB">000-0000 東京都明石市4343−４４</option>
+          <option value="AB">000-0000 東京都明石市4343−４４</option>
+        </select>
+      </li>
+
+      <li class="form-check">
+        <%= f.radio_button :address, 2 %>
+        <%= f.label :address, "新しいお届け先", {value: 2, style: "display: inline-block;", class: "form-check-label"} %>
+      </li>
+        <table>
+          <tr class="form-group">
+            <th class="col-xs-5"><%= f.label "郵便番号（ハイフンなし）" %></th>
+            <th><%= f.text_field :postal_code, class: "form-control" %></th>
+          </tr>
+          <tr class="form-group">
+            <th><%= f.label "住所" %></th>
+            <th><%= f.text_field :address, class: "form-control" %></th>
+          </tr>
+          <tr class="form-group">
+            <th><%= f.label "宛名" %></th>
+            <th><%= f.text_field :address_name, class: "form-control" %></th>
+          </tr>
+        </table>
+    </ul>
+    <div class="c-inline">
+    <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-lg"%>
+    </div>
+  <% end %>
 <!-- pb/input -->
 
 <!-- ad/show -->
-  <div class="row">
-    <h2>注文履歴詳細</h2>
 
-    <table>
-      <tr>
-        <th>購入者</th>
-        <th><%= @order.address_name %></th>
-      </tr>
-      <tr>
-        <th>配送先</th>
-        <th><%= order.postal_code %><%= order.address %><br><%= order.address_name %></th>
-      </tr>
-      <tr>
-        <th>支払方法</th>
-        <th><%= @order.payment_method %></th>
-      </tr>
-      <tr>
-        <th>注文ステータス</th>
-        <th>
-          <%= form_with(model: order, local: true) do |f| %>
-            <%=# form.select :order_status,[["着手不可",1], ["製作待ち", 2], ["製作中", 3 ], ["製作完了", 4]] %>
-            <%=# form.select :production_status, OrderDetail.production_statuses.keys.to_a, include_blank: true %>
-            <%= form.select :order_status, 
-                Order.order_statuses.keys, 
-                :selected=>Order.order_statuses[order.order_status], prompt: "選択してください" %>
-            <%= f.submit "更新", class: "btn btn-primary" %>
-          <% end %>
-        </th>
-      </tr>
-    </table>
+  <div class="most-outline" style="position: relative; height: 800px;">
+    <div class="row">
+      <h2 class="view-title">注文履歴詳細</h2>
 
-    <table>
-      <thead>
+      <table class="table table-borderless">
         <tr>
-          <th>商品名</th>
-          <th>単価（税込）</th>
-          <th>個数</th>
-          <th>小計</th>
-          <th>製作ステータス</th>
+          <th class="col-xs-2">購入者</th>
+          <th class="col-xs-9">山田花子</th>
         </tr>
-      </thead>
-      <tbody>
-        <% @orders.each do |order| %>
+        <tr>
+          <th>配送先</th>
+          <th>配送先sdfaddddddddddddddddddddd</th>
+        </tr>
+        <tr>
+          <th>支払方法</th>
+          <th>銀行振込</th>
+        </tr>
+        <tr>
+          <th>注文ステータス</th>
+          <th><select><option>入金待ち</option><option>入金確認中</option>
+                      <option>製作中</option><option>発送準備中</option><option>発送済み</option>
+              </select>
+              <p class="btn btn-primary">更新</p>
+          </th>
+        </tr>
+      </table>
+    </div>
+    <div class="row">
+      <div class="col-md-9" style="position: absolute; bottom: 80px;">
+        <table class="table table-borderless">
+          <thead class="bg-light">
+            <tr>
+              <th class="col-xs-3">商品名</th>
+              <th class="col-xs-2">単価（税込）</th>
+              <th class="col-xs-1">個数</th>
+              <th class="col-xs-2">小計</th>
+              <th class="col-xs-3">製作ステータス</th>
+              <th class="col-xs-1"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>リンゴ</th>
+              <th>333円</th>
+              <th>2個</th>
+              <th>333円</th>
+              <th><select name="blood">
+                  <option value="A">着手不可</option><option value="B">製作待ち</option><option value="O">製作中</option><option value="AB">製作完了</option>
+                  </select></th>
+              <th class="btn btn-primary">更新</th>
+            </tr>
+            <tr>
+              <th>リンゴ</th>
+              <th>333円</th>
+              <th>2個</th>
+              <th>333円</th>
+              <th><select name="blood">
+                  <option value="A">着手不可</option><option value="B">製作待ち</option><option value="O">製作中</option><option value="AB">製作完了</option>
+                  </select></th>
+              <th class="btn btn-primary">更新</th>
+            </tr>
+            <tr>
+              <th>リンゴ</th>
+              <th>333円</th>
+              <th>2個</th>
+              <th>333円</th>
+              <th>
+                
+              </th>
+              <th class="btn btn-primary">更新</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-3" style="position: absolute; bottom: 80px; right: -50px;">
+        <table class="row table table-borderless">
           <tr>
-            <td><%= order.items.name %></td>
-            <td><%= order.items.price %></td>
-            <td><%= order.items.number %></td>
-            <td><%= order.items.price*order.items.number %></td>
-            <td>
-              <%= form_with(model: order, local: true) do |f| %>
-                <%=# form.select :production_status,[["着手不可",1], ["製作待ち", 2], ["製作中", 3 ], ["製作完了", 4]] %>
-                <%=# form.select :production_status, OrderDetail.production_statuses.keys.to_a, include_blank: true %>
-                <%= form.select :production_status, 
-                    OrderDetail.production_statuses.keys, 
-                    :selected=>OrderDetail.production_statuses[@order_detail.production_status] %>
-                <%= f.submit "更新", class: "btn btn-primary" %>
-              <% end %>
-            </td>
+            <th class="col-xs-3">商品合計</th>
+            <th>44円</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-    
-  </div><!-- /.row -->
+          <tr>
+            <th>送料</th>
+            <th>44円</th>
+          </tr>
+          <tr>
+            <th>請求金額合計</th>
+            <th>44円</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 <!-- ad/show -->
 <!-- ad/index -->
-  <div class="row">
-    <h2>注文履歴一覧</h2>
+    <h2 class="view-title">注文履歴一覧</h2>
+    <div class="row">
+      <div class="col-md-12">
 
-    <table>
-      <thead>
-        <tr>
-          <th>購入日時</th>
-          <th>購入者</th>
-          <th>注文個数</th>
-          <th>注文ステータス</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @orders.each do |order| %>
-          <tr>
-            <td><%= order.created_at %></td>
-            <td><%= order.address_name %></td>
-            <td><%= order.number %></td>
-            <td><%= order.order_status %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    
-  </div><!-- /.row -->
+        <table class="table table-border">
+          <thead class="bg-light">
+            <tr>
+              <th class="col-xs-3">購入日時</th>
+              <th class="col-xs-3">購入者</th>
+              <th class="col-xs-3">注文個数</th>
+              <th class="col-xs-3">注文ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= "2019/11/20 23:55:12" %></td>
+              <td><%= "臼井雄飛" %></td>
+              <td><%= 0 %></td>
+              <td><%= "入金待ち" %></td>
+            </tr>
+            <% @orders.each do |order| %>
+              <tr>
+                <td><%= order.created_at %></td>
+                <td><%= order.address_name %></td>
+                <td><%= order.number %></td>
+                <td><%= order.order_status %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <%= paginate @orders %>
+    </div><!-- /.row -->
 <!-- ad/index -->
-<!-- ad/new -->
-  <h2>注文情報入力</h2>
-
-    <h3>支払方法</h3>
-    <%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
-      <div class="field">
-        <%= f.radio_button :payment_method, 0, checked: true %>
-          <%= f.label :payment_method, "クレジットカード", {value: 0, style: "display: inline-block;"} %>
-        <%= f.radio_button :payment_method, 1 %>
-          <%= f.label :payment_method, "銀行振込", {value: 1, style: "display: inline-block;"} %>
-      </div>
-      
-    <h3>お届け先</h3>
-      <div class="field">
-        <%= f.radio_button :address, 0, checked: true %>
-          <%= f.label :address, "ご自身の住所", {value: 0, style: "display: inline-block;"} %>
-
-        <%= f.radio_button :address, 1 %>
-          <%= f.label :address, "登録済住所から選択", {value: 1, style: "display: inline-block;"} %>
-          <%= f.collection_select(:address, @orders, :id, :name, {prompt: "住所を選択してください"}) %>
-
-        <%= f.radio_button :address, 2 %>
-          <%= f.label :address, "新しいお届け先", {value: 2, style: "display: inline-block;"} %>
-          <%= f.label "郵便番号（ハイフンなし）" %>
-          <%= f.text_field :postal_code %>
-          <%= f.label "住所" %>
-          <%= f.text_field :address %>
-          <%= f.label "宛名" %>
-          <%= f.text_field :address_name %>
-      </div>
-
-      <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
-    <% end %>
-
-<!-- ad/new -->
-
