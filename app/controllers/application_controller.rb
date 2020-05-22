@@ -5,14 +5,14 @@ class ApplicationController < ActionController::Base
     tax = 1.1
     return ((self.non_taxed_price * tax).round(2)).ceil
   end
-  
+
   protected
   def after_sign_in_path_for(resource)
     case resource
     when Admin
-      admin_top_path
+      admin_top_path(current_user)
     when Member
-      root_path
+      root_path(current_user)
     end
   end
 
@@ -31,5 +31,5 @@ class ApplicationController < ActionController::Base
    devise_parameter_sanitizer.permit(:account_update,keys:[:last_name,:first_name,:last_kana_name,:first_kana_name,:email,:postal_code,:address,:phone_number])
     #sign_upの際にnameのデータ操作を許。追加したカラム。
   end
-  
+
 end
