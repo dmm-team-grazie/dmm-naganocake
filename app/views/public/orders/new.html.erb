@@ -1,56 +1,53 @@
   <h2 class="view-title">注文情報入力</h2>
 
   <h3>支払方法</h3>
-  <%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
-    <ul class="field">
-      <li><%= f.radio_button :payment_method, 0, checked: true %>
-        <%= f.label :payment_method, "クレジットカード", {value: 0, style: "display: inline-block;"} %>
-      </li>
-      <li><%= f.radio_button :payment_method, 1 %>
-        <%= f.label :payment_method, "銀行振込", {value: 1, style: "display: inline-block;"} %>
-      </li>
-    </ul>
+    <%= form_with(local: true, url: {action: 'confirm'}) do |f| %>
+      <ul>
+        <li><%= f.radio_button :payment_method, 0, checked: true %>
+          <%= f.label :payment_method, "クレジットカード", {value: 0, style: "display: inline-block;"} %>
+        </li>
+        <li><%= f.radio_button :payment_method, 1 %>
+          <%= f.label :payment_method, "銀行振込", {value: 1, style: "display: inline-block;"} %>
+        </li>
+      </ul>
     
   <h3>お届け先</h3>
-    <ul class="field">
-      <li>
-        <%= f.radio_button :address, 0, checked: true %>
-        <%= f.label :address, "ご自身の住所", {value: 0, style: "display: inline-block;"} %>
-      </li>
+      <ul>
+        <li>
+          <%= f.radio_button :address, 0, checked: true %>
+          <%= f.label :address, "ご自身の住所", {value: 0, style: "display: inline-block;"} %>
+          <%= @current_user.address %>
+        </li>
 
-      <li>
-        <%= f.radio_button :address, 1 %>
-        <%= f.label :address, "登録済住所から選択", {value: 1, style: "display: inline-block;"} %>
-        <select name="blood" style="width: 80%;">
-          <option value="A">000-0000 東京都明石市4343−４４</option>
-          <option value="B">000-0000 東京都明石市4343−４４</option>
-          <option value="O">000-0000 東京都明石市4343−４４</option>
-          <option value="AB">000-0000 東京都明石市4343−４４</option>
-          <option value="AB">000-0000 東京都明石市4343−４４</option>
-        </select>
-      </li>
+        <li>
+          <%= f.radio_button :address, 1 %>
+          <%= f.label :address, "登録済住所から選択", {value: 1, style: "display: inline-block;"} %>
+          <%= form.collection_select(:job_id, @jobs, :id, :name, {prompt: "住所を選択してください", class: "form-control"}) %>
+        </li>
 
-      <li>
-        <%= f.radio_button :address, 2 %>
-        <%= f.label :address, "新しいお届け先", {value: 2, style: "display: inline-block;"} %>
-      </li>
-        <table>
-          <tr>
-            <th class="col-xs-5"><%= f.label "郵便番号（ハイフンなし）" %></th>
-            <th><%= f.text_field :postal_code %></th>
-          </tr>
-          <tr>
-            <th><%= f.label "住所" %></th>
-            <th><%= f.text_field :address %></th>
-          </tr>
-          <tr>
-            <th><%= f.label "宛名" %></th>
-            <th><%= f.text_field :address_name %></th>
-          </tr>
+        <li>
+          <%= f.radio_button :address, 2 %>
+          <%= f.label :address, "新しいお届け先", {value: 2, style: "display: inline-block;"} %>
+          <li>
+          <table>
+            <tr class="form-group">
+              <th class="col-xs-5"><%= f.label "郵便番号（ハイフンなし）" %></th>
+              <th><%= f.text_field :postal_code, class: "form-control" %></th>
+            </tr>
+            <tr class="form-group">
+              <th><%= f.label "住所" %></th>
+              <th><%= f.text_field :address, class: "form-control" %></th>
+            </tr>
+            <tr class="form-group">
+              <th><%= f.label "宛名" %></th>
+              <th><%= f.text_field :address_name, class: "form-control" %></th>
+            </tr>
         </table>
-    </ul>
-
-    <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
-  <% end %>
-
-
+      </li>
+        </li>
+      </ul>
+      <div class="c-inline">
+        <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-lg"%>
+        <!-- public_orders_confirm_path -->
+      </div>
+    <% end %>

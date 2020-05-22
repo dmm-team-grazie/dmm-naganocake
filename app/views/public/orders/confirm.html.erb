@@ -1,7 +1,8 @@
 <div class="row">
-  <h2 class="view-title">注文情報確認</h2>
+  <%= form_with(local: true, url: {action: 'create'}) do |f| %>
+  <h2>注文情報確認</h2>
 
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>商品名</th>
@@ -12,18 +13,27 @@
     </thead>
     <tbody>
       <tr>
-        
+        <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td>
+              <%= attachment_image_tag item, :item_image_id, :fill, 40, 40, fallback: "no-image-mini.jpg", size:'40x40' %>
+              <%= cart_item.item.name %></td>
+            <td><%= taxed_price(cart_item.item.non_taxed_price) %>円</td>
+            <td><%= cart_item.number %>個</td>
+            <td><%= taxed_price(cart_item.item.non_taxed_price) * cart_item.number %>円</td>
+          </tr>
+        <% end %>
       </tr>
     </tbody>
   </table>
 
   <table class="table">
     <tr>
-      <th class="col-xs-5">送料</th><th>aaa</th></tr>
+      <th class="col-xs-5">送料</th><th><%= 800.to_i %>円</th></tr>
     <tr>
-      <th>商品合計</th><th>aaa</th></tr>
+      <th>商品合計</th><th><%= @total_price %>円</th></tr>
     <tr>
-      <th>請求金額</th><th>aaa</th></tr>
+      <th>請求金額</th><th><%= @total_price + 800 %>円</th></tr>
   </table>
 </div>
 
@@ -31,15 +41,17 @@
   <table class="table table-borderless">
     <tr>
       <th class="col-xs-3">支払方法</th>
-      <th><%= @order.payment_method %></th>
+      <th><%= @new_order.payment_method %></th>
     </tr>
     <tr>
       <th class="">お届け先</th>
-      <th><%= @order.postal_code %>
-          <%= @order.address %>
-          <%= @order.address_name %>
+      <th><%= @new_order.postal_code %><%= @new_order.address %>
+          <br><<%= @new_order.address_name %>
       </th>
     </tr>
   </table>
-  <%= f.submit '購入を確定する', class: "btn btn-primary btn-large" %>
+
+
+  <%= f.submit '購入を確定する', class: "btn btn-primary btn-large" %>   
+  <% end %>
 </div><!-- /.row -->
