@@ -13,7 +13,13 @@
 		<td><%= member.id %></td>
 		<td><%= member.last_name %><%= member.first_name %></td>
 		<td><%= member.email %></td>
-		<td>有効</td>
+		<td>
+			<%= if member.is_valid == true %>
+				<span>有効</span>
+			<% else %>
+				<span>無効</span>
+			<% end %>
+		</td>
 	</tr>
 	<% end %>
 </table>

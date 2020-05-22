@@ -14,10 +14,14 @@
 	<% @cart_items.each do |cart_item| %>
 
 	<tr>
-		<td>cart_item.items.name</td>
-		<td>税込価格</td>
-		<td>cart_item.number</td>
-		<td>小計</td>
+		<td><%= cart_item.items.name%></td>
+		<td><%= @price %></td>
+		<td>
+			<%= form_with model: cart_item, local: true do |f| %>
+			<%= f.text_field :number %>
+			<%= f.submit "変更", class: "btn btn-primary" %>
+		</td>
+		<td><%= @price * cart_item.number %></td>
 		<td><%= link_to "削除する", public_cart_items_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
 	</tr>
 
@@ -34,4 +38,7 @@
 		<td></td>
 	</tr>
 
-</table> 
+</table>
+
+<%= link_to "情報入力に進む", "#", class: "button_custom btn btn-success center-block" %>
+
