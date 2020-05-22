@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def taxed_price
+    tax = 1.1
+    return ((self.non_taxed_price * tax).round(2)).ceil
+  end
+  
   protected
   def after_sign_in_path_for(resource)
     case resource
