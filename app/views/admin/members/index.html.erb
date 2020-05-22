@@ -13,7 +13,9 @@
 	<% @members.each do |member| %>
 	<tr>
 		<td><%= member.id %></td>
-		<td><%= member.last_name %><%= member.first_name %></td>
+		<td>
+			<%=link_to member.last_name, admin_member_path(member) %><%=link_to member.first_name, admin_member_path(member) %>	
+		</td>
 		<td><%= member.email %></td>
 		<td>
 			<% if member.is_valid == true %>
