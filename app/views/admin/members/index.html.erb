@@ -1,12 +1,14 @@
 <h2>会員一覧</h2>
 
 <table class="table table-bordered">
+	<thead class = "bg-light">
 	<tr>
 		<th>会員ID</th>
 		<th>氏名</th>
 		<th>メールアドレス</th>
 		<th>ステータス</th>
 	</tr>
+	</thead>
 
 	<% @members.each do |member| %>
 	<tr>
@@ -14,7 +16,7 @@
 		<td><%= member.last_name %><%= member.first_name %></td>
 		<td><%= member.email %></td>
 		<td>
-			<%= if member.is_valid == true %>
+			<% if member.is_valid == true %>
 				<span>有効</span>
 			<% else %>
 				<span>無効</span>
