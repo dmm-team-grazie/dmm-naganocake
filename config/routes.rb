@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :create, :update]
   end
 
-  root 'homes#top'
+  root 'public/homes#top'
 
   namespace :admin do
     get 'top' => 'admins#top'
