@@ -1,6 +1,6 @@
 <h2><%= @member.last_name %><%= @member.first_name %>の会員情報</h2>
 
-<%= form_for(@member) do |f| %>
+<%= form_with model:[:admin, @member],local: true do |f| %>
 
 <div class = "form-row">
 	<label class="col-sm-2"><%= f.label "会員ID" %></label>
@@ -41,7 +41,10 @@
 
 <div class ="form_row">
 	<label class = "col-sm-3"><%= f.label "会員ステータス" %></label>
-	<!-- 会員ステータス追加 -->
+	<%= f.radio_button :is_valid, :true %>
+    <%= f.label :is_valid, "有効", value: true %>
+    <%= f.radio_button :is_valid, :false %>
+    <%= f.label :is_valid, "無効", value: false %>
 </div>
 
 <%= f.submit "変更を保存する" %>
