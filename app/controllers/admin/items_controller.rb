@@ -14,6 +14,7 @@ class Admin::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @price = @item.taxed_price
+    @cart_items = CartItem.new
   end
 
   def create
