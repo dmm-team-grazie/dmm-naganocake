@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   devise_for :members, :path => "public/members"
-  # devise_for :members, :controllers => {:passwords => 'public/members/passwords'}
   devise_for :admins
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
