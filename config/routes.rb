@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :genres, only:[:show]
   end
 
+  get '/about' => 'public/homes#about'
   root 'public/homes#top'
 
   namespace :admin do
