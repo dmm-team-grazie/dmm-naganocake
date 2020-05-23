@@ -1,18 +1,19 @@
 <h2>配送先登録/一覧</h2>
-<div class="row">
-  <%= form_with model: @address,url: {controller: 'public/addresses', action: 'new' },lacal: true do |f| %>
-  <div class="row field">
-    <%= f.label :postal_code, "郵便番号(ハイフンなし)", class:"col-xs-4" %>
-    <%= f.text_field :postal_code, class: "postal_code col-xs-4" %>
+<div class="form">
+  <%= form_with model: @address,url: {controller: 'public/addresses', action: 'create' },lacal: true do |f| %>
+  <div class="form-row field">
+    <%= f.label :postal_code, "郵便番号(ハイフンなし)", class:"col-sm-3" %>
+    <%= f.text_field :postal_code, class: "postal_code col-sm-4" %>
   </div>
   <div class="row field">
-    <%= f.label :address, "住所", class:"col-xs-4" %>
-    <%= f.text_field :address, class: "address col-xs-7" %>
+    <%= f.label :address, "住所", class:"col-sm-3" %>
+    <%= f.text_field :address, class: "address col-sm-6" %>
   </div>
   <div class="row field">
-    <%= f.label :address_name, "宛名", class:"col-xs-4" %>
-    <%= f.text_field :address_name, class: "address_name col-xs-4" %>
-    <%= f.submit "登録する" , class:"btn btn-success btn-sm" %>
+    <%= f.label :address_name, "宛名", class:"col-sm-3" %>
+    <%= f.text_field :address_name, class: "address_name col-sm-4" %>
+    <div class="col-sm-2"></div>
+    <%= f.submit "登録する" , class:"btn btn-success btn-sm col-sm-1" %>
   </div>
   <% end %>
 </div>
@@ -23,21 +24,21 @@
         <th class="col-xs-2">郵便番号</th>
         <th class="col-xs-4">住所</th>
         <th class="col-xs-2">宛名</th>
-        <th class="col-xs-4"></th>
+        <th class="col-xs-2"></th>
       </tr>
     </thead>
     <tbody>
+      <% @addresses.each do |address| %>
       <tr>
-        <% @addresses.each do |address| %>
         <td><%= address.postal_code %></td>
         <td><%= address.address %></td>
         <td><%= address.address_name %></td>
         <td>
-          <%= link_to "編集する", edit_public_address_path, class:"btn btn-primary btn-sm"%>
-          <%= link_to "削除する", public_address_path, method: :delete ,class:"btn btn-danger btn-sm"%>
+          <%= link_to "編集する", edit_public_address_path(address), class:"btn btn-primary btn-sm"%>
+          <%= link_to "削除する", public_address_path(address), method: :delete ,class:"btn btn-danger btn-sm"%>
         </td>
-        <% end %>
       </tr>
+      <% end %>
     </tbody>
   </table>
   <%= paginate @addresses %>

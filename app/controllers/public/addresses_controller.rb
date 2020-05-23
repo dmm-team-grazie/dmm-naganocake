@@ -11,8 +11,9 @@ class Public::AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
+    @address.member_id = current_member.id
   	if @address.save
-  		redirect_to public_address_path, notice: "successfully created address!"#保存された場合の移動先を指定。
+  		redirect_to public_addresses_path, notice: "successfully created address!"#保存された場合の移動先を指定。
   	else
   		@addresses = Address.Item.page(params[:page]).reverse_order.per(3)
   		render :index
@@ -22,7 +23,7 @@ class Public::AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
   	if @address.update(address_params)
-  		redirect_to public_address_path, notice: "successfully updated address!"
+  		redirect_to public_addresses_path, notice: "successfully updated address!"
   	else
   		render :edit
   	end
@@ -31,7 +32,7 @@ class Public::AddressesController < ApplicationController
   def destroy
   	@address = Address.find(params[:id])
   	@address.destroy
-  	redirect_to public_address_path, notice: "successfully delete address!"
+  	redirect_to public_addresses_path, notice: "successfully delete address!"
   end
 
   private

@@ -1,8 +1,8 @@
 <h2>商品編集</h2>
 <div class="row">
-  <%= form_with model: @item,url: {controller: 'admin/items', action: 'edit' }, local: true do |f| %>
+  <%= form_with model: @item,url: {controller: 'admin/items', action: 'update' }, local: true do |f| %>
   <div class="col-xs-4">
-    <%= attachment_image_tag @item, :item_image, :fill, 240, 100, fallback: "no-image.jpg" %>
+    <%= attachment_image_tag @item, :item_image, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %>
     <%= f.attachment_field :item_image, class: "item_image" %>
   </div>
   <div class="col-xs-4">
