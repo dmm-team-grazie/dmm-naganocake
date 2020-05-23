@@ -1,7 +1,7 @@
 <h2>商品詳細</h2>
 <div class="row">
   <div class="col-xs-4">
-    <%= attachment_image_tag @item, :item_image, :fill, 240, 100, fallback: "no-image.jpg", class: "card-img-top" %>
+    <%= attachment_image_tag @item, :item_image, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %>
   </div>
   <div class="col-xs-4">
     <table>
@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <td>税込価格(税抜価格)</td>
-        <td><%= @item.non_taxed_price %> ( @taxed_price )</td>
+        <td><%= @price.to_s(:delimited) %>(<%= @item.non_taxed_price.to_s(:delimited) %>)</td>
       </tr>
       <tr>
         <td>販売ステータス</td>
