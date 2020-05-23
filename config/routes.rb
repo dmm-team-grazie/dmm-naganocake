@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :addresses
     resources :orders
     resources :cart_items, only: [:create, :update]
+    resources :genres, only:[:show]
   end
 
   root 'public/homes#top'
