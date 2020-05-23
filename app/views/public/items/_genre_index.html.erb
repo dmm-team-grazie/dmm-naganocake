@@ -1,6 +1,6 @@
 <h2>ジャンル一覧</h2>
 <div id="list-example" class="list-group">
   <% genres.each do |genre| %>
-    <h4><%= link_to genre.name, genre_path, class: "list-group-item list-group-item-action" %></h4>
+    <h4 class="list-group-item list-group-item-action"> <%= genre.name %></h4>
   <% end %>
 </div>

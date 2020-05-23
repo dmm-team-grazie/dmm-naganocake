@@ -1,18 +1,14 @@
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/assets/cake_top.jpg" class="d-block w-100" alt="cake_top">
-      <%= link_to "新規登録", new_member_registration_path, class:"btn btn-success btn-sm"%>
-      <%= link_to "ログイン", new_member_session_path, class:"btn btn-primary btn-sm"%>
+      <img src="/assets/team_pic.jpg" class="d-block w-100" alt="cake_top">
+      <% unless member_signed_in? %>
+        <%= link_to "新規登録", new_member_registration_path, class:"btn btn-success btn-sm"%>
+        <%= link_to "ログイン", new_member_session_path, class:"btn btn-primary btn-sm"%>
+      <% end %>
     </div>
     <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="...">
+      <img src="/assets/cake_top.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
@@ -50,9 +46,9 @@
     <% @items.first(8).each do |item| %>
       <div class="col mb-3">
         <div class="card">
-          <%= attachment_image_tag item, :item_image, :fill, 160, 90, fallback: "no-image.jpg", class: "card-img-top" %>
+          <%= attachment_image_tag item, :item_image, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %>
           <div class="card-body">
-            <h5 class="card-title"><%= link_to item.name, puclic_item_path(item.id) %></h5>
+            <h5 class="card-title"><%= link_to item.name, public_item_path(item) %></h5>
             <p class="card-text">¥<%= item.non_taxed_price %></p>
           </div>
         </div>

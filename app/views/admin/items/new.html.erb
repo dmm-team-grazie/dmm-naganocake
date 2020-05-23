@@ -1,7 +1,7 @@
 <div class="row">
   <h2>商品新規登録</h2>
 
-  <%= form_with model: @item,url: {controller: 'admin/items', action: 'new' }, local: true do |f| %>
+  <%= form_with model: @item,url: {controller: 'admin/items', action: 'create' }, local: true do |f| %>
     <div class="col-xs-4">
       <%= f.attachment_field :item_image, class: "item_image" %>
     </div>

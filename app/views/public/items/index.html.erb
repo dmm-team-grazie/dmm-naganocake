@@ -9,9 +9,9 @@
       <% @items.each do |item| %>
         <div class="col mb-3">
           <div class="card">
-            <%= attachment_image_tag item, :item_image, :fill, 160, 90, fallback: "no-image.jpg", class: "card-img-top" %>
+            <%= attachment_image_tag item, :item_image,format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %>
             <div class="card-body">
-              <h5 class="card-title"><%= link_to item.name, puclic_item_path(item.id) %></h5>
+              <h5 class="card-title"><%= link_to item.name, public_item_path(item) %></h5>
               <p class="card-text">¥<%= item.non_taxed_price %></p>
             </div>
           </div>

@@ -7,7 +7,7 @@
 
     <div class="row">
       <div class="col-xs-6">
-        <%= attachment_image_tag @item, :item_image, :fill, 240, 100, fallback: "no-image.jpg", class: "card-img-top" %>
+        <%= attachment_image_tag @item, :item_image, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %>
       </div>
       <div class="col-xs-6">
         <h3><%= @item.name %></h3>
