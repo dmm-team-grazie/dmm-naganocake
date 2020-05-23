@@ -1,15 +1,18 @@
 class Public::MembersController < ApplicationController
-	def show
-		
+	def show		
 	end
 
 	def edit
-	end
-
-	def update
+		@member = current_member
 	end
 
 	def leave
+	end
+
+	def update
+		@member = current_member
+		@member.update(member_params)
+		redirect_to public_path
 	end
 
 	private

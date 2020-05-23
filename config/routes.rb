@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
   devise_for :members, :path => "public/members"
+  # devise_for :members, :controllers => {:passwords => 'public/members/passwords'}
   devise_for :admins
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   namespace :public do
     get '' => 'members#show'
     get 'edit' => 'members#edit'
+    patch '' => 'members#update'
     get 'leave' => 'members#leave'
     delete 'cart_items' => 'cart_items#destroy_all'
     delete 'cart_items/:id' => 'cart_items#destroy_each'
     get 'orders/thanks' => 'orders#thanks'
     post 'orders/confirm' => 'orders#confirm'
-    resources :members, only:[:create, :update]
+    resource :members, only:[:create]
     resources :items, except:[:destroy]
     resources :addresses
     resources :orders
