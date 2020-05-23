@@ -1,19 +1,18 @@
 class Public::MembersController < ApplicationController
-	def show
-		
+	def show		
 	end
 
 	def edit
-	end
-
-	def update
-		@member = Member.find(params[:id])
-		@member.update(is_valid: false)
-		reset_session # ログアウトさせる
-		redirect_to root_path
+		@member = current_member
 	end
 
 	def leave
+	end
+
+	def update
+		@member = current_member
+		@member.update
+		redirect_to public_path
 	end
 
 	private
