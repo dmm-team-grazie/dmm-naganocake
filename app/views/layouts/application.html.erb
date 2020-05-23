@@ -11,24 +11,27 @@
 
   <body>
     <!--ヘッダーの記述-->
-     <header class="navbar navbar-inverse" style="background-color: #fffacd;">
+     <header class="navbar" style="background-color: #fffacd;">
         <div class="container">
-        <nav><img src="/assets/naganocake_logo.png"></nav>
+        <nav><%= link_to root_path do %>
+            <img src="/assets/naganocake_logo1.png">
+            <% end %>
+        </nav>
         <nav>
           <ul class="nav justify-content-end">
             <!--if文でサインインとアウト時の表示を変更-->
             <% if member_signed_in? %>
-            <li class="nav-item　mr-4"><P>ようこそ、<%= current_member.first_name %>さん!</P><li>
-            <li class="nav-item　mr-3"><%= link_to "マイページ", public_path(current_member), class: "btn btn-outline-success" %></li>
+            <li class="nav-item mr-5"><P>ようこそ、<%= current_member.first_name %>さん!</P><li>
+            <li class="nav-item mr-3"><%= link_to "マイページ", public_path(current_member), class: "btn btn-outline-success" %></li>
             <li class="nav-item mr-3"><%= link_to "商品一覧", public_items_path, class: "btn btn-outline-success" %></li>
-            <li class="nav-item mr-3"><%= link_to "カート", public_items_path, class: "btn btn-outline-success" %></li>
-            <li class="nav-item"><%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-outline-success" %></li>
+            <li class="nav-item mr-3"><%= link_to "カート", public_cart_items_path, class: "btn btn-outline-success" %></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_member_session_path(current_member), method: :delete, class: "btn btn-outline-success" %></li>
             <% elsif admin_signed_in? %>
-            <li class="nav-item mr-3"><%= link_to "商品一覧", public_items_path, class: "btn btn-outline-success" %></li>
+            <li class="nav-item mr-3"><%= link_to "商品一覧", admin_items_path, class: "btn btn-outline-success" %></li>
             <li class="nav-item mr-3"><%= link_to "会員一覧", admin_members_path, class: "btn btn-outline-success" %></li>
             <li class="nav-item mr-3"><%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-outline-success" %></li>
             <li class="nav-item mr-3"><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-outline-success" %></li>
-            <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-outline-success"%></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path(current_admin), method: :delete, class: "btn btn-outline-success"%></li>
             <% else %>
             <li class="nav-item mr-3"><%= link_to "商品一覧", public_items_path, class: "btn btn-outline-success" %></li>
             <li class="nav-item mr-3"><%= link_to "新規登録", new_member_registration_path, class: "btn btn-outline-success" %></li>
@@ -41,6 +44,7 @@
     <div class="container">
       <%= yield %>
     </div>
+    <!-- フッターの記述 -->
     <footer class="fixed-bottom">
         <div class="row justify-content-center" style="background-color: #fffacd;">
             <p>CopyRight Infratop.inc</p>
