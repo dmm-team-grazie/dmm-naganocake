@@ -16,6 +16,7 @@ class Public::OrdersController < ApplicationController
   def new
     @new_order = Order.new
     @addresses = current_member.address_info
+    # Pluck使う？
   end
 
   def confirm
