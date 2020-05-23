@@ -11,7 +11,7 @@ class Public::MembersController < ApplicationController
 
 	def update
 		@member = current_member
-		@member.update
+		@member.update(member_params)
 		redirect_to public_path
 	end
 

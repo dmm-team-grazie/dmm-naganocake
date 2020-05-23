@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   namespace :public do
     get '' => 'members#show'
     get 'edit' => 'members#edit'
+    patch '' => 'members#update'
     get 'leave' => 'members#leave'
     delete 'cart_items' => 'cart_items#destroy_all'
     delete 'cart_items/:id' => 'cart_items#destroy_each'
     get 'orders/thanks' => 'orders#thanks'
     post 'orders/confirm' => 'orders#confirm'
-    resources :members, only:[:create, :update]
+    resource :members, only:[:create]
     resources :items, except:[:destroy]
     resources :addresses
     resources :orders
