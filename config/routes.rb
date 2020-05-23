@@ -8,15 +8,16 @@ Rails.application.routes.draw do
     get 'edit' => 'members#edit'
     patch '' => 'members#update'
     get 'leave' => 'members#leave'
-    delete 'cart_items' => 'cart_items#destroy_all'
-    delete 'cart_items/:id' => 'cart_items#destroy_each'
+    get 'cart_items' => 'cart_items#index'
+    delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_public_cart_items'
+    delete 'cart_items/:id' => 'cart_items#destroy_each',as: 'destroy_public_cart_item'
     get 'orders/thanks' => 'orders#thanks'
     post 'orders/confirm' => 'orders#confirm'
     resource :members, only:[:create]
     resources :items, except:[:destroy]
     resources :addresses
     resources :orders
-    resources :cart_items, only: [:index, :create, :update]
+    resources :cart_items, only: [:create, :update]
   end
 
   root 'public/homes#top'

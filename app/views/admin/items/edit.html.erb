@@ -5,7 +5,7 @@
     <%= attachment_image_tag @item, :item_image, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %>
     <%= f.attachment_field :item_image, class: "item_image" %>
   </div>
-  <div class="col-xs-4">
+  <div class="col-xs-4 form_table">
     <table>
       <tr>
         <td><%= f.label :name, "商品名" %></td>
