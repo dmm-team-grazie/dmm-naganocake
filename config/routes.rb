@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    devise_for :members, path: 'public/members', controllers:{
+    devise_for :members, path: "public/members", controllers:{
     registrations: 'members/registrations',
     sessions: 'members/sessions',
     passwords: 'members/passwords'
