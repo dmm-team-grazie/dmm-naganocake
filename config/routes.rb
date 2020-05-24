@@ -4,12 +4,14 @@ Rails.application.routes.draw do
     sessions: 'members/sessions',
     passwords: 'members/passwords'
 }
+
   # devise_for :members, :controllers => {:passwords => 'public/members/passwords'}
   devise_for :admins, controllers:{
     registrations: 'admins/registrations',
     sessions: 'admins/sessions',
     passwords: 'admins/passwords'
 }
+
   namespace :public do
     get '' => 'members#show'
     get 'edit' => 'members#edit'
