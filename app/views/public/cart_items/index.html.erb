@@ -40,7 +40,14 @@
 
 	<tr>
 		<th>合計金額</th>
-		<td><%= @subtotal_price %></td>
+		<td>
+		<% @total_price = 0 %>
+		<% @cart_items.each do |cart_item| %>
+		<% item = cart_item.item %>
+		<% @total_price += item.taxed_price * cart_item.number %>
+		<% end %>
+		<%= @total_price %>
+		</td>
 	</tr>
 
 </table>
