@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
-  devise_for :members, :path => "public/members"
+    devise_for :members, path: 'public/members', controllers:{
+    registrations: 'members/registrations',
+    sessions: 'members/sessions',
+    passwords: 'members/passwords'
+}
+
   # devise_for :members, :controllers => {:passwords => 'public/members/passwords'}
-  devise_for :admins
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :admins, controllers:{
+    registrations: 'admins/registrations',
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords'
+}
+
 
   namespace :public do
     get '' => 'members#show'
@@ -19,6 +28,7 @@ Rails.application.routes.draw do
     resources :addresses
     resources :orders
     resources :cart_items, only: [:create, :update]
+    resources :genres, only:[:show]
   end
 
   root 'public/homes#top'
