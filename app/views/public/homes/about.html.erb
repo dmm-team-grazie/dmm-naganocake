@@ -1,0 +1,58 @@
+<h2>基本情報</h2>
+
+<div class = "row">
+	<div style="width: 65%;">
+  	<table class="table table-bordered">
+    	<tr>
+    		<th class="col-xs-1 bg-light">店名</th>
+    		<td>ながのcake</td>
+    	</tr>
+
+    	<tr>
+    		<th class="col-xs-1 bg-light">住所</th>
+    		<td>
+          〒380-8570<br>
+          長野県長野市大字南長野字幅下692-2
+        </td>
+    	</tr>
+
+    	<tr>
+    		<th class="col-xs-1 bg-light">電話番号</th>
+    		<td>026-232-0111</td>
+    	</tr>
+
+      <tr>
+    		<th class="col-xs-1 bg-light">営業時間</th>
+    		<td>10:00~20:00</td>
+    	</tr>
+
+    	<tr>
+    		<th class="col-xs-1 bg-light">定休日</th>
+    		<td>月曜日</td>
+    	</tr>
+  	</table>
+	</div>
+</div>
+<div class="message">
+  <p>バースデーケーキのご予約などもできますので、その際はお電話お願いします。</p>
+</div>
+
+
+<div id='map'></div>
+
+<style>
+#map{
+  height: 400px;
+  width: 600px;
+}
+</style>
+
+<script>
+function initMap(){
+  let map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: 36.651361, lng: 138.181111},
+  zoom: 17
+  });
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNuDrohOBarxfcEROZl8wPh-F-sBxkau8&callback=initMap" async defer></script>

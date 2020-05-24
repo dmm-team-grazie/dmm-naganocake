@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords'
 }
 
-
   namespace :public do
     get '' => 'members#show'
     get 'edit' => 'members#edit'
@@ -30,9 +29,7 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:create, :update]
     resources :genres, only:[:show]
   end
-
   root 'public/homes#top'
-
   namespace :admin do
     get 'top' => 'admins#top'
     get 'items/new' => 'items#new'
@@ -42,5 +39,4 @@ Rails.application.routes.draw do
     resources :genres
     resources :order_details, only: [:update]
   end
-
 end

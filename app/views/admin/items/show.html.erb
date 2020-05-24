@@ -4,7 +4,7 @@
     <%= attachment_image_tag @item, :item_image, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %>
   </div>
   <div class="col-xs-4">
-    <table>
+    <table class="form_table">
       <tr>
         <td>商品名</td>
         <td><%= @item.name %></td>
@@ -18,8 +18,8 @@
         <td><%= @item.genre.name %></td>
       </tr>
       <tr>
-        <td>税込価格(税抜価格)</td>
-        <td><%= @price.to_s(:delimited) %>(<%= @item.non_taxed_price.to_s(:delimited) %>)</td>
+        <td>税込価格 (税抜価格)</td>
+        <td><%= @price.to_s(:delimited) %>円(<%= @item.non_taxed_price.to_s(:delimited) %>円)</td>
       </tr>
       <tr>
         <td>販売ステータス</td>
@@ -32,6 +32,8 @@
       </td>
       </tr>
     </table>
-    <%= link_to "編集", edit_admin_item_path(@item), class: "btn btn-primary" %>
+    <div class="form_table">
+      <%= link_to "編集", edit_admin_item_path(@item), class: "btn btn-primary" %>
+    </div>
   </div>
 </div>

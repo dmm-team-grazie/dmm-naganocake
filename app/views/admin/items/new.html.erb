@@ -24,7 +24,7 @@
       </div>
       <div class="field">
       	<%= f.label :is_valid, "販売ステータス" %>
-      	<%= f.select :is_valid,[["販売中",0],["販売停止中",1]],{include_blank: false, selected: 0},{class: "is_valid"} %>
+      	<%= f.select :is_valid,[["販売中",true],["販売停止中",false]],{include_blank: false, selected: true},{class: "is_valid"} %>
       </div>
     </div>
   <%= f.submit "新規登録" , class:"btn btn-primary btn-sm" %>
