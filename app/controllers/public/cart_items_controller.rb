@@ -10,6 +10,10 @@ class Public::CartItemsController < ApplicationController
 
 	def index
 		@cart_items = CartItem.all
+		@total_price = 0
+    	@cart_items.each do |cart_item|
+      	@total_price += cart_item.item.taxed_price
+    	end	
 	end
 
 	def update
@@ -32,6 +36,6 @@ class Public::CartItemsController < ApplicationController
 
 	private
 	def cart_item_params
-		params.permit(:item_id,:number)
+		params.permit(:item_id,:member_id,:number)
 	end
 end
