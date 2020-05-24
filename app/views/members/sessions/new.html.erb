@@ -12,7 +12,7 @@
     <%= f.password_field :password, autocomplete: "current-password", class: "col-sm-6" %>
 </div><br>
 
-<%= link_to "=>パスワードを変更する",edit_member_password_path %>
+<%= link_to "=>パスワードを忘れた方はこちら", new_password_path(resource_name) %><br />
   <div class="actions">
     <%= f.submit "ログイン", class: "btn btn-primary" %>
   </div>

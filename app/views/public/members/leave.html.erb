@@ -6,6 +6,11 @@
 <p>退会する場合、「退会する」をクリックしてください。</p>
 
 <%= link_to "退会しない", public_path, class: " btn btn-primary" %>
-<%= link_to "退会する",root_path, method: :patch, class: "btn btn-danger" %>
+<!-- # <%= link_to "退会する", public_leave_path, method: :patch, params: { member: 'is_valid' }, class: "btn btn-danger" %> -->
+<!-- # <%= link_to "退会する", public_leave_path, :method => :patch, class: "btn btn-danger" %> -->
 
+<%= form_with model: @member,url: {controller: 'public/members', action: 'update_status' },lacal: true do |f| %>
+	<%= f.hidden_field :is_valid, value: "false" %>
+<%= f.submit "退会する", class: "btn btn-danger" %>
+<% end %>
 </div>
