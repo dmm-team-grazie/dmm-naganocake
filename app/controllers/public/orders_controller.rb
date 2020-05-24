@@ -14,24 +14,31 @@ class Public::OrdersController < ApplicationController
   end
 
   def new
-    @new_order = Order.new
+    @order = Order.new
+    @address_name = current_member.last_name + current_member.first_name
     @addresses = current_member.address_info
+    # @addresses = current_member.address
     # Pluck使う？
   end
 
   def confirm
+    @order = Order.new
     @cart_items = current_member.cart_items
-    @new_order =Order.new
     # 合計金額
       @subtotal_price = 0
       @cart_items.total_price_from_cartitem
+      @cart_items.each do |cart_item|
+      item = cart_item.item
+      @subtotal_price += item.price * cart_item.number
+      @total_price = @subtotal_price
+    end
   end
   def create 
-    @new_order = Order.new
-    if @new_order.save
+    @order = Order.new
+    if @order.save
       redirect_to public_order_thanks_path
     else
-      render :back
+      render :new
     end
   end
   
