@@ -1,12 +1,12 @@
   <h2 class="view-title">注文情報入力</h2>
 
   <h3>支払方法</h3>
-    <%= form_with(local: true, url: {action: 'confirm'}) do |f| %>
+    <%= form_with(model: @order, local: true, url: {action: 'confirm'}) do |f| %>
       <ul>
-        <li><%= f.radio_button :payment_method, 0, checked: true %>
+        <li><%= f.radio_button :payment_method, ["クレジットカード", 0], checked: true %>
           <%= f.label :payment_method, "クレジットカード", {value: 0, style: "display: inline-block;"} %>
         </li>
-        <li><%= f.radio_button :payment_method, 1 %>
+        <li><%= f.radio_button :payment_method, ["振込", 1] %>
           <%= f.label :payment_method, "銀行振込", {value: 1, style: "display: inline-block;"} %>
         </li>
       </ul>
@@ -16,7 +16,7 @@
         <li>
           <%= f.radio_button :address, 0, checked: true %>
           <%= f.label :address, "ご自身の住所", {value: 0, style: "display: inline-block;"} %>
-          <%= current_member.postal_code %><%= current_member.address %><br><%= current_member.address_name %>
+          〒<%= current_member.postal_code %>　住所：<%= current_member.address %>　宛名：<%= @address_name %>
         </li>
 
         <li>
