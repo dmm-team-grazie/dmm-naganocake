@@ -7,16 +7,21 @@ ja:
         making: 製作中
         before_deli: 発送準備中
         delivered: 発送済み
+      payment_method:
+        card: "クレジットカード"
+        bank: "銀行振込"
     order_detail:
       production_status:
         impossible: 着手不可
         waiting: 製作待ち
         halfway: 製作中
         complete: 製作完了
+
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       short: "%m/%d %H:%M"
+
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>

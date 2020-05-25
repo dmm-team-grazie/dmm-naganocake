@@ -5,10 +5,10 @@ class OrderDetail < ApplicationRecord
 
   enum production_status:{
 
-    impossible: 0, 
-    waiting: 1, 
-    ontheway: 2,
-    complete: 3
+    "着手不可": 0, 
+    "製作待ち": 1, 
+    "製作中": 2,
+    "製作完了": 3
   }
 
 

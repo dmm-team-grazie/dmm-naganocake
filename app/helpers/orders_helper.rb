@@ -4,3 +4,4 @@ module OrdersHelper
     (non_taxed_price * tax).round(2).ceil
   end
 end
+
