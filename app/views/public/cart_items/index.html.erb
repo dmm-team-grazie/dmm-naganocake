@@ -1,6 +1,7 @@
-<h2>ショッピングカート</h2>
+<%= stylesheet_link_tag 'cart_items' %>
 
-<%= link_to "カートを空にする", public_destroy_public_cart_items_path, method: :delete, class: "btn btn-danger" %><br><br>
+<h2>ショッピングカート</h2>
+<%= link_to "カートを空にする", public_destroy_public_cart_items_path, method: :delete, class: "btn btn-danger destroy" %><br><br>
 
 <div class = "row">
 <table class ="table table-bordered">
@@ -18,16 +19,16 @@
 	<% @cart_items.each do |cart_item| %>
 
 	<tr>
-		<td><%= attachment_image_tag cart_item.item, :item_image, :fill, 15, 5, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %><%= cart_item.item.name%></td>
-		<td><%= cart_item.item.taxed_price %></td>
-		<td>
+		<td class = "data"><%= attachment_image_tag cart_item.item, :item_image, :fill, 15, 5, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %><%= cart_item.item.name%></td>
+		<td class = "data"><%= cart_item.item.taxed_price %></td>
+		<td class = "data">
 			<%= form_with model: cart_item, url: public_cart_item_path(cart_item), local: true do |f| %>
 			<%= f.text_field :number %>
 			<%= f.submit "変更", class: "btn btn-primary" %>
 			<% end %>
 		</td>
-		<td><%= cart_item.item.taxed_price * cart_item.number %></td>
-		<td><%= link_to "削除する", public_destroy_public_cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
+		<td class = "data"><%= cart_item.item.taxed_price * cart_item.number %></td>
+		<td class = "data"><%= link_to "削除する", public_destroy_public_cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
 	</tr>
 
 	<% end %>
@@ -43,7 +44,7 @@
 
 	<tr>
 		<th class = "total-price bg-light">合計金額</th>
-		<td>
+		<td class = "data">
 		<% @total_price = 0 %>
 		<% @cart_items.each do |cart_item| %>
 		<% item = cart_item.item %>
