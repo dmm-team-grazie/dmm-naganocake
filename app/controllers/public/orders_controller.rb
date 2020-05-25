@@ -6,7 +6,8 @@ class Public::OrdersController < ApplicationController
   def thanks
   end
   def index
-    @orders = Order.page(params[:page]).reverse_order.per(5)
+    @orders = Order.page(params[:page]).reverse_order.per(2)
+    @order_detail = OrderDetail.find(params[:id])
   end
 
   def show 
@@ -23,15 +24,15 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new
-    # @order.payment_method = params[:payment_option].to_i
+    # 支払い情報
     if params[:payment_option].to_i == 0
       @order.payment_method = "card"
     else
       @order.payment_method = "bank"
     end
-
     @cart_items = current_member.cart_items
     @order.member_id = current_member.id
+
     # 入力情報表示
     # 文字列に変換：paramaterには文字列にくるから比較対象も文字列にする
       if params[:address_option] == 0.to_s
@@ -65,22 +66,25 @@ class Public::OrdersController < ApplicationController
       @payment = @total_price.to_i + @postage
   end
 
-
-
   def create 
+    # オーダー作成
     @order = Order.new(order_params)
     @order.member_id = current_member.id
     @order.save!
+    # オーダー詳細作成
     current_member.cart_items.each do |cart_item|
-      @order_detail = OrderDetail.new(item_id: cart_item.item.id, order_id: @order.id , number: cart_item.number, price: cart_item.item.taxed_price)
+      @order_detail = OrderDetail.new(item_id: cart_item.item.id, 
+                                      order_id: @order.id , number: cart_item.number, 
+                                      price: cart_item.item.taxed_price)
       # @order_detail.number = cart_item.number
       # @order_detail.price = cart_item.item.taxed_price
       @order_detail.save!
     end
-    current_member.cart_items.delete_all
-    # 今回は小要素なのでdestroy_allでも可
+    current_member.cart_items.delete_all # カート内商品削除。今回は小要素なのでdestroy_allでも可
     redirect_to public_orders_thanks_path
   end
+
+
 
   private
   # 配送先指定を反映

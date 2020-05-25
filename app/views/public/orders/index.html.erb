@@ -15,8 +15,8 @@
       <% @orders.each do |order| %>
         <tr>
           <td><%= order.created_at %></td>
-          <td><%= order.postal_code %><%= order.address %><%= order.address_name %></td>
-          <td><%= order.item.name %></td>
+          <td>〒<%= order.postal_code %>　住所：<%= order.address %><br>宛名：<%= order.address_name %></td>
+          <td><%= @order_detail.number %></td>
           <td><%= order.payment %></td>
           <td><%= order.order_status %></td>
           <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
