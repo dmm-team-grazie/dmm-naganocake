@@ -1,5 +1,11 @@
 <h2><%= @member.last_name %><%= @member.first_name %>様の会員情報</h2>
 
+<% if flash[:notice] %>
+<div class="flash">
+	<%= flash[:notice] %>
+</div>
+<% end %>
+
 <div class = "row">
 <div style="width: 50%;">
 <table class="table table-borderless">

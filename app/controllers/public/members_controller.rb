@@ -13,13 +13,13 @@ class Public::MembersController < ApplicationController
 	def update
 		@member = current_member
 		@member.update(member_params)
-		redirect_to public_path
+		redirect_to public_path, notice: "successfully updated member's information!"
 	end
 
 	def update_status
 		@member = current_member
 		@member.update(member_params)
-		redirect_to root_path
+		redirect_to root_path, notice: "successfully deleted your account"
 	end
 
 	private
