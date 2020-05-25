@@ -1,6 +1,8 @@
   <h2 class="view-title">注文情報入力</h2>
 
   <h3>支払方法</h3>
+
+  <!-- モデルは利用せず選択肢にオリジナルのカラムを作成・送信しコントローラーで操作 -->
     <%= form_with(local: true, url: public_orders_confirm_path) do |f| %>
       <ul>
         <li><%= f.radio_button :payment_option, 0, checked: true %>

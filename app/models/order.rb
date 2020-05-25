@@ -4,6 +4,8 @@ class Order < ApplicationRecord
   has_many :items, through: :order_details
   belongs_to :member
 
+
+
   enum order_status:{
     "入金待ち": 0,
     "入金確認中": 1,
@@ -13,17 +15,19 @@ class Order < ApplicationRecord
   }
 
   enum payment_method: {
-    "クレジットカード": 0,
-    "銀行振込": 1
+    card: 0,
+    bank: 1
+    # "クレジットカード": 0,
+    # "銀行振込": 1
   }
 
 
 
   def total_price_from_cartitem
     self.each do |cart_item|
-      item = cart_item.item
-      @subtotal_price += item.price * cart_item.number
-      @total_price = @subtotal_price
+      @item_price = cart_item.item.taxed_price
+      @subtotal_price = @item_price * cart_item.number
+      @total_price += @subtotal_price
     end
   end
 
