@@ -73,3 +73,5 @@ gem 'kaminari','~> 1.1.1'
 
 gem 'enum_help'
 gem 'rails-i18n'
+
+gem 'ransack'
