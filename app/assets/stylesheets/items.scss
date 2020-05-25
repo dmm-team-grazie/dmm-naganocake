@@ -2,13 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.form_table{
-  margin-bottom: 100px;
-}
 
 // admin
+  // index
+  .plus_btn{
+    float: right;
+    position: relative;
+    top: -50px;
+    right: 20px;
+  }
 
-
+  
 
 
 
@@ -18,7 +22,6 @@
   .link_text{
     color: #322D00;
     text-decoration: none;
-
   }
 
   .list-group-item{
@@ -34,4 +37,10 @@
   // index
   .card-body{
     background-color: #ffffe0;
+  }
+
+
+  // show
+  .text_area{
+    margin-top: 30px;
   }

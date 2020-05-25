@@ -1,4 +1,16 @@
-<h2>配送先編集</h2>
+<%= stylesheet_link_tag 'addresses' %>
+
+<h2 class="view-title">配送先編集</h2>
+<% if @address.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @address.errors.count %>errors prohibited this obj from being saved:</h2>
+    <ul>
+      <% @address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 <div class="form">
   <%= form_with model: @address,url: {controller: 'public/addresses', action: 'update' }, lacal: true do |f| %>
   <div class="form-row field">

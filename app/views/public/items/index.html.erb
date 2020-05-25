@@ -7,15 +7,15 @@
   </div>
 
   <div class="col-sm-9">
-    <h2>商品一覧  (全<%= @items_count %>件)</h2>
+    <h2 class="view-title">商品一覧  (全<%= @items_count %>件)</h2>
     <div class="row row-cols-1 row-cols-md-3">
       <% @items.each do |item| %>
         <% if item.genre.is_valid == true %>
           <div class="col mb-3">
             <div class="card h-100">
-              <%= attachment_image_tag item, :item_image,format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %>
+              <%= attachment_image_tag item, :item_image,format:'jpg', fallback: "/assets/no-image.jpg", class: "card-img-top" %>
               <div class="card-body">
-                <h5 class="card-title"><%= link_to item.name, public_item_path(item) %></h5>
+                <h5 class="card-title"><%= link_to item.name, public_item_path(item), class:"link_text" %></h5>
                 <p class="card-text">¥<%= item.non_taxed_price.to_s(:delimited) %></p>
               </div>
             </div>

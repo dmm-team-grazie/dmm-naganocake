@@ -7,14 +7,14 @@
   </div>
   <div class="col-sm-9">
     <div class="item_image">
-      <%= attachment_image_tag @item, :item_image, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %>
+      <%= attachment_image_tag @item, :item_image, format:'jpg', fallback: "/assets/no-image.jpg", class: "card-img-top" %>
     </div>
     <div class="text_area">
       <h3><%= @item.name %></h3>
       <p><%= @item.introduction %></p>
       <h5><%= @price.to_s(:delimited) %>円　(税込み)</h5>
     </div>
-    <div class="form_table">
+    <div class="bottom-space">
       <%= form_with model: @cart_item,url: {controller: 'public/cart_items', action: 'create' }, local: true  do |f| %>
         <%= f.hidden_field :item_id, :value => @item.id %>
         <%= f.select :number, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9]],{include_blank: false, selected: 1} %>

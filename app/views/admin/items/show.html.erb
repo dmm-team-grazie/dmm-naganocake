@@ -1,13 +1,13 @@
 <%= stylesheet_link_tag 'items' %>
 
 
-<h2>商品詳細</h2>
+<h2 class="view-title">商品詳細</h2>
 <div class="row">
   <div class="col-xs-4">
-    <%= attachment_image_tag @item, :item_image, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %>
+    <%= attachment_image_tag @item, :item_image, format:'jpg', fallback: "/assets/no-image.jpg", class: "card-img-top" %>
   </div>
   <div class="col-xs-4">
-    <table class="form_table">
+    <table class="bottom-space">
       <tr>
         <td>商品名</td>
         <td><%= @item.name %></td>
@@ -35,7 +35,7 @@
       </td>
       </tr>
     </table>
-    <div class="form_table">
+    <div class="bottom-space">
       <%= link_to "編集", edit_admin_item_path(@item), class: "btn btn-primary" %>
     </div>
   </div>
