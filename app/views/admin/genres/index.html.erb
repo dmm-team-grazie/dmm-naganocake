@@ -7,6 +7,13 @@
 
 
 <%= form_with model:[:admin, @genre],local: true do |f| %>
+      <% if @genre.errors %>
+      <ul>
+      <% @genre.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+      </ul>
+      <% end %>
 <div class="form-inline mt-5">
 <div class="form-group mx-2">
 <label><font size="1">ジャンル</font></label>
