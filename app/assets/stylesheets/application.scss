@@ -18,3 +18,26 @@
 .view-title {
   margin: 50px 0 50px 10%;
 }
+
+.navbar,.justify-content-center{
+  background-image: url("/assets/wood.jpg");
+}
+
+body{
+  background-color: #fffacd;
+}
+
+.bottom-space{
+  margin-bottom: 100px;
+}
+
+
+.btn-nav{
+  border: solid 2px #fffacd;
+  color: #322D00;
+}
+
+
+.btn-nav:hover{
+  background-color: #fffacd;
+}
