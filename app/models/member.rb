@@ -10,8 +10,11 @@ class Member < ApplicationRecord
   has_many :addresses, dependent: :destroy
   has_many :orders, dependent: :destroy
 
+  # 会員ステータスがtrueでないとログインできない
   def active_for_authentication?
     super && (self.is_valid == true)
   end
 
+  # 会員一覧をIDの古い順番で表示
+  default_scope -> { order(created_at: :desc) }
 end

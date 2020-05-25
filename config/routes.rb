@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get '' => 'members#show'
     get 'edit' => 'members#edit'
     patch '' => 'members#update'
+    patch 'leave' => 'members#update_status'
     get 'leave' => 'members#leave'
     get 'cart_items' => 'cart_items#index'
     delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_public_cart_items'
