@@ -5,3 +5,33 @@
 .form_table{
   margin-bottom: 100px;
 }
+
+// admin
+
+
+
+
+
+
+// public
+  // _genre_index
+  .link_text{
+    color: #322D00;
+    text-decoration: none;
+
+  }
+
+  .list-group-item{
+    background-color: #ffffe0;
+    border: solid 1px #322D00;
+  }
+
+  .list-group-item:hover{
+    background-color: #f4a460;
+  }
+
+
+  // index
+  .card-body{
+    background-color: #ffffe0;
+  }
