@@ -10,11 +10,11 @@
       </tr>
       <tr>
         <th>配送先</th>
-        <th><%= order.postal_code %><%= order.address %><br><%= order.address_name %></th>
+        <th><%= @order.postal_code %><%= @order.address %><br><%= @order.address_name %></th>
       </tr>
       <tr>
         <th>支払方法</th>
-        <th><%= order.postal_code %><%= order.address %><br><%= order.address_name %></th>
+        <th><%= @order.payment_method %></th>
       </tr>
       <tr>
         <th>注文ステータス</th>
@@ -44,16 +44,16 @@
           </tr>
         </thead>
         <tbody>
-          <% @orders.each do |order| %>
+          <% @order.order_details.each do |order_detail| %>
             <tr>
-              <td><%= order.items.name %></td>
-              <td><%= order.items.price %></td>
-              <td><%= order.order_detail.number %></td>
-              <td><%= order.item.price * order.order_detail.number %></td>
+              <td><%= order_detail.item.name %></td>
+              <td><%= order_detail.item.taxed_price %></td>
+              <td><%= order_detail.number %></td>
+              <td><%= order_detail.item.taxed_price * order_detail.number %></td>
               <td>
                 <%= form_with(model: @order_detail, local: true) do |f| %>
-                  <%= form.select :production_status, 
-                      OrderDetail.production_statuses.keys, 
+                  <%= f.select :production_status,
+                      OrderDetail.production_statuses.keys,
                       :selected=>OrderDetail.production_statuses[@order_detail.production_status] %>
                   <%= f.submit "更新", class: "btn btn-primary" %>
                 <% end %>

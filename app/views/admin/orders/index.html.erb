@@ -13,13 +13,22 @@
     <tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td><%= order.created_at %></td>
+          <td><%= link_to order.created_at, admin_order_path(order.id) %><td>
           <td><%= order.address_name %></td>
-          <td><%= order.number %></td>
+
+          <td>
+            <!-- 注文商品の総数計算 -->
+            <% @total_item_number = 0 %>
+            <% order.order_details.each do |order_detail| %>
+              <% @total_item_number += order_detail.number %>
+            <% end %>
+            <%= @total_item_number %>
+          </td>
+
           <td><%= order.order_status %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
   <%= paginate @orders %>
-</div><!-- /.row --> 
+</div><!-- /.row -->

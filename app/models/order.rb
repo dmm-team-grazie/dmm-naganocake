@@ -22,20 +22,4 @@ class Order < ApplicationRecord
   }
 
 
-
-  def total_price_from_cartitem
-    self.each do |cart_item|
-      @item_price = cart_item.item.taxed_price
-      @subtotal_price = @item_price * cart_item.number
-      @total_price += @subtotal_price
-    end
-  end
-
-  def total_price_from_order
-    self.each do |order|
-      item = order.order_detail.item
-      @subtotal_price += item.price * order.ordet_detail.number
-      @total_price = @subtotal_price
-    end
-  end
 end
