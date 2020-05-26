@@ -1,6 +1,6 @@
 class Admin::OrdersController < ApplicationController
   def index
-    @orders = Order.page(params[:page]).reverse_order.per(2)
+    @orders = Order.page(params[:page]).reverse_order.per(10)
   end
   def show
     @order = Order.find(params[:id])
@@ -17,6 +17,7 @@ class Admin::OrdersController < ApplicationController
   def update
     # 注文ステータス
     @order = Order.find(params[:id])
+
     if defined? order_params[:order_status]
       if @order.order_status != order_params[:order_status]
         @order.update(order_status: order_params[:order_status])
@@ -27,23 +28,50 @@ class Admin::OrdersController < ApplicationController
         end
       end
     end
-    
-    # if defined? order_detail_params[:production_status]
-    #   if order_detail.production_status != order_detail_params[:production_status]
+
+    if defined? order_detail_params[:production_status] # 入力されたレコードがあるか
+      order_detail = OrderDetail.find(params[:order_detail_id])
+      if order_detail.production_status != order_detail_params[:production_status] # 元のレコードとは違うか
+        order_detail.update(production_status: order_detail_params[:production_status])
+        if order_detail.production_status == "doing" # 更新後のレコードが製作中なら注文も製作中
+          @order.update(order_status: 2)
+        end
+      end
+    end
+
+
+    if @order.order_details.count == @order.order_details.where( production_status: 3).count
+      @order.update(order_status: 3)
+    end
+
+    redirect_to admin_order_path(@order)
+  end
+
+
+
+
+    # if defined? order_detail_params[:production_status] # 入力されたレコードがあるか
+    #   if order_detail.production_status != order_detail_params[:production_status] # 元のレコードとは違うか
     #     order_detail.update(production_status: order_detail_params[:production_status])
-    #     if order_detail.production_status == "halfway"
+    #     if order_detail.production_status == "doing" # 更新後のレコードが製作中なら注文も製作中
     #       @order.update(order_status: 2)
     #     end
     #   end
     # end
 
-    # 数と数を合わせる
-    # == 
-    # update
+
+    # ベン
+    # if defined? order_params[:order_status]
+    #   if @order.order_status != order_params[:order_status] && @order.order_status == "checking"
+    #     @order.update(order_status: order_params[:order_status])
+    #     @order.order_details.each do |order_detail|
+    #       order_detail.update(production_status: 1)
+    #     end
+    #   end
+    # end
 
 
-    redirect_to admin_order_path(@order)
-  end
+
 
 
 

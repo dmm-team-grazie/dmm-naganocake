@@ -1,23 +1,23 @@
 <%= stylesheet_link_tag 'orders' %>
-<div class="most-outline" style="position: relative; height: 800px;">
+<div class="most-outline bottom_space" style="position: relative; min-height: 800px;">
   <h2 class="view-title">注文履歴詳細</h2>
   <div class="row">
 
     <table class="table table-borderless" style="margin-right: 10%;">
       <tr>
-        <th class="col-xs-2">購入者</th>
+        <th class="col-xs-1">購入者</th>
         <th class="col-xs-9"><%= @order.address_name %></th>
       </tr>
       <tr>
-        <th>配送先</th>
+        <th class="">配送先</th>
         <th><%= @order.postal_code %><%= @order.address %><br><%= @order.address_name %></th>
       </tr>
       <tr>
-        <th>支払方法</th>
+        <th class="">支払方法</th>
         <th><%= @order.payment_method_i18n %></th>
       </tr>
       <tr>
-        <th>注文ステータス</th>
+        <th class="">注文ステータス</th>
         <th>
           <%= form_with(model: @order, local: true, url: admin_order_path, method: :patch) do |f| %>
             <%= f.select :order_status,
@@ -30,10 +30,10 @@
     </table>
   </div>
 
-  <div class="row">
+  <div class="row ">
     <div class="col-md-9" style="position: absolute; bottom: 80px;">
       <table class="table table-borderless">
-        <thead class="bg-light">
+        <thead class="table_color">
           <tr>
             <th class="col-xs-3">商品名</th>
             <th class="col-xs-2">単価（税込）</th>
@@ -55,7 +55,9 @@
                   <%= f.select :production_status,
                       OrderDetail.production_statuses.keys.map {|k| [I18n.t("enums.order_detail.production_status.#{k}"), k]},
                       :selected=> order_detail.production_status, prompt: "選択してください" %>
+                  <%= hidden_field_tag :order_detail_id, order_detail.id%>
                   <%= f.submit "更新", class: "btn btn-primary" %>
+                  <%#= f.hidden_field :order_detail_id, value: order_detail_id %>
                 <% end %>
               </td>
             </tr>
