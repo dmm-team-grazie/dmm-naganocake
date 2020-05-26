@@ -1,39 +1,46 @@
-<div class="row mt-5">
-  <div class="col-sm-5">
-  <h2 class="text-center">ジャンル一覧・追加</h2>
-  </div>
-  <div class="col-sm-7"></div>
+<div class="row mt-5 ml-5">
+  <h2 class="text-center px-4 bg-success">ジャンル一覧・追加</h2>
+  <% if flash[:notice] %>
+  <p class="text-success"><%= flash[:notice] %></p>
+  <% end %>
 </div>
 
+<div class="row">
+  <% if flash[:notice] %>
+  <p class="text-success"><%= flash[:notice] %></p>
+  <% end %>
+ </div>
 
 <%= form_with model:[:admin, @genre],local: true do |f| %>
-      <% if @genre.errors %>
+   <% if @genre.errors %>
+    <div class="alert">
       <ul>
-      <% @genre.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-      <% end %>
-      </ul>
-      <% end %>
-<div class="form-inline mt-5">
-<div class="form-group mx-2">
-<label><font size="1">ジャンル</font></label>
-</div>
-<div class="form-group">
-<%= f.text_field :name %>
-</div>
-<div class="form-group mx-2">
-  <div class="mx-1"><%= f.radio_button :is_valid, :true %></div>
-  <%= f.label :is_valid, "有効", value: true %>
-</div>
-<div class="form-group mx-2">
-  <div class="mx-1"><%= f.radio_button :is_valid, :false %></div>
-  <%= f.label :is_valid, "無効", value: false %>
-</div>
-<div class="form-group">
-<%= f.submit "追加", class: "btn btn-primary" %>
-</div>
-</div>
- <% end %>
+        <% @genre.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+       </ul>
+    </div>
+  <% end %>
+  <div class="form-inline">
+    <div class="form-group mx-2">
+    <label><font size="1">ジャンル</font></label>
+    </div>
+    <div class="form-group">
+    <%= f.text_field :name %>
+    </div>
+    <div class="form-group mx-2">
+      <div class="mx-1"><%= f.radio_button :is_valid, :true %></div>
+      <%= f.label :is_valid, "有効", value: true %>
+    </div>
+    <div class="form-group mx-2">
+      <div class="mx-1"><%= f.radio_button :is_valid, :false %></div>
+      <%= f.label :is_valid, "無効", value: false %>
+    </div>
+    <div class="form-group">
+    <%= f.submit "追加", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
 
 
 <div class="row mt-5">
