@@ -18,10 +18,11 @@
           <tr>
             <td>
               <%= attachment_image_tag cart_item.item, :item_image, :fill, 40, 40, fallback: "no-image-mini.jpg", size:'40x40' %>
-              <%= @order_detail.item.name %></td>
-            <td><%= @item_price %>円</td>
+              <%= cart_item.item.name %>
+            </td>
+            <td><%= cart_item.item.taxed_price %>円</td>
             <td><%= cart_item.number %>個</td>
-            <td><%= @subtotal_price %>円</td>
+            <td><%= cart_item.item.taxed_price * cart_item.number %>円</td>
           </tr>
         <% end %>
       </tr>
@@ -44,7 +45,7 @@
   <table class="table table-borderless">
     <tr>
       <th class="col-xs-3">支払方法</th>
-      <th class="col-xs-3"><%= @order.payment_method %></th>
+      <th class="col-xs-3"><%= t @order.payment_method_i18n %></th>
       <%= f.hidden_field :payment_method%>
     </tr>
     <tr>

@@ -1,3 +1,4 @@
+
 ja:
   enums:
     order:
@@ -20,7 +21,7 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
-      short: "%m/%d %H:%M"
+      short: "%Y/%m/%d"
 
   views:
     pagination:
@@ -29,3 +30,16 @@ ja:
       previous: <i class="fas fa-angle-left"></i>
       next: <i class="fas fa-angle-right"></i>
       truncate: "..."
+
+  activerecord:
+    attributes:
+      member:
+        first_name: 名
+        last_name: 姓
+        first_kana_name: メイ
+        last_kana_name: メイ
+        postal_code: 郵便番号
+        address: 住所
+        phone_number: 電話番号
+        email: メールアドレス
+        password: パスワード
