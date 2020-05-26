@@ -7,16 +7,20 @@ class Public::OrdersController < ApplicationController
   end
   def index
     @orders = Order.page(params[:page]).reverse_order.per(2)
-    @order_detail = OrderDetail.find(params[:id])
   end
 
-  def show 
-    @order_detail = OrderDetail.find(params[:id])
-    @orders = current_member.orders
-    # 合計金額
-      @subtotal_price = 0
-      @orders.total_price_frm_order
+  def show
+    @order = Order.find(params[:id])
+    # 金額計算
+      @postage = 800.to_i
+      @total_price = 0
+      @order.order_details.each do |order_detail|
+        subtotal_price = order_detail.item.taxed_price * order_detail.number
+        @total_price += subtotal_price
+      end
+      @payment = @total_price.to_i + @postage
   end
+
 
   def new
     @address_name = current_member.last_name + current_member.first_name
@@ -37,7 +41,7 @@ class Public::OrdersController < ApplicationController
     # 文字列に変換：paramaterには文字列にくるから比較対象も文字列にする
       if params[:address_option] == 0.to_s
         # memberDBから習得
-        @order.postal_code
+        # @order.postal_code
         @order.postal_code = current_member.postal_code
         @order.address = current_member.address
         @order.address_name = current_member.last_name + current_member.first_name
@@ -57,11 +61,9 @@ class Public::OrdersController < ApplicationController
     # 金額計算
       @postage = 800.to_i
       @total_price = 0
-      # @cart_items.total_price_from_cartitem
       @cart_items.each do |cart_item|
-        @item_price = cart_item.item.taxed_price
-        @subtotal_price = @item_price * cart_item.number
-        @total_price += @subtotal_price
+        subtotal_price = cart_item.item.taxed_price * cart_item.number
+        @total_price += subtotal_price
       end
       @payment = @total_price.to_i + @postage
   end
@@ -84,17 +86,26 @@ class Public::OrdersController < ApplicationController
     redirect_to public_orders_thanks_path
   end
 
+  
 
 
   private
   # 配送先指定を反映
-  def set_addresses 
+  def set_addresses
     @addresses = Address.where(member_id: current_member.id)
   end
   
   def order_params
     params.require(:order).permit(:postage,  :payment, :payment_method, :postal_code, :address, :address_name)
   end
+
+  # <%= form_with(model: @order, local: true, url: {action: 'new'}) do |f| %>
+  #   <%= f.hidden_field :payment_method %>
+  #   <%= f.hidden_field :postal_code %>
+  #   <%= f.hidden_field :address %>
+  #   <%= f.hidden_field :address_name %>
+  #   <%= f.submit '入力画面に戻る', class: "btn btn-primary btn-lg" %>
+  # <% end %>
 
 
 end
