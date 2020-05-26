@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
   #   return ((self.non_taxed_price * tax).round(2)).ceil
   # end
 
+  before_action :set_search
+
+  def set_search
+    @search = Item.ransack(params[:q]) #ransackメソッド推奨
+    @search_items = @search.result.page(params[:page])
+  end
+
   protected
   def after_sign_in_path_for(resource)
     case resource
