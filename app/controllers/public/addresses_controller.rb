@@ -15,7 +15,7 @@ class Public::AddressesController < ApplicationController
   	if @address.save
   		redirect_to public_addresses_path, notice: "successfully created address!"#保存された場合の移動先を指定。
   	else
-  		@addresses = Address.Item.page(params[:page]).reverse_order.per(3)
+  		@addresses = Address.page(params[:page]).reverse_order.per(3)
   		render :index
   	end
   end
