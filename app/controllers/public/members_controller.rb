@@ -13,7 +13,7 @@ class Public::MembersController < ApplicationController
 	def update
 		@member = current_member
 		@member.update(member_params)
-		redirect_to public_path, notice: "successfully updated member's information!"
+		redirect_to public_path, notice: "successfully updated your information!"
 	end
 
 	def update_status
