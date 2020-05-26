@@ -1,5 +1,5 @@
 class Public::MembersController < ApplicationController
-	before_action :authenticate_user!
+	before_action :authenticate_member!
 	
 	def show		
 	end
