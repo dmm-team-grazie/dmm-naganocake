@@ -14,7 +14,7 @@ class Admin::MembersController < ApplicationController
 	def update
 		@member = Member.find(params[:id])
 		@member.update(member_params)
-		redirect_to admin_member_path(@member)
+		redirect_to admin_member_path(@member), notice: "successfully updated member's information!"
 	end
 
 	private

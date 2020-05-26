@@ -10,6 +10,16 @@ class Member < ApplicationRecord
   has_many :addresses, dependent: :destroy
   has_many :orders, dependent: :destroy
 
+  # 以下が空白の場合、新規登録できない
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :first_kana_name, presence: true
+  validates :last_kana_name, presence: true
+  validates :postal_code, presence: true
+  validates :address, presence: true
+  validates :phone_number, presence: true
+  validates :email, presence: true
+
   # 会員ステータスがtrueでないとログインできない
   def active_for_authentication?
     super && (self.is_valid == true)

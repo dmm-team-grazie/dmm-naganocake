@@ -1,16 +1,23 @@
-<h2>ショッピングカート</h2>
+<%= stylesheet_link_tag 'cart_items' %>
 
-<%= link_to "カートを空にする", public_destroy_public_cart_items_path, method: :delete, class: "btn btn-danger" %><br><br>
+<h2>ショッピングカート</h2>
+<%= link_to "カートを空にする", public_destroy_public_cart_items_path, method: :delete, class: "btn btn-danger destroy" %><br><br>
+
+<% if flash[:notice] %>
+<div class="flash">
+	<%= flash[:notice] %>
+</div>
+<% end %>
 
 <div class = "row">
-<table class ="table table-bordered">
-	<thead class = "bg-light">
+<table class ="table table-bordered bg-light">
+	<thead class>
 	<tr>
-		<th class = "col-xs-4">商品名</th>
-		<th class = "col-xs-2">単価(税込)</th>
-		<th class = "col-xs-2">数量</th>
-		<th class = "col-xs-2">小計</th>
-		<th class = "col-xs-2"></th>
+		<th>商品名</th>
+		<th>単価(税込)</th>
+		<th>数量</th>
+		<th>小計</th>
+		<th></th>
 	</tr>
 	</thead>
 
@@ -18,16 +25,16 @@
 	<% @cart_items.each do |cart_item| %>
 
 	<tr>
-		<td><%= attachment_image_tag cart_item.item, :item_image, :fill, 15, 5, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %><%= cart_item.item.name%></td>
-		<td><%= cart_item.item.taxed_price %></td>
-		<td>
+		<td style="width:25%"><%= attachment_image_tag cart_item.item, :item_image, :fill, 10, 3, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %><%= cart_item.item.name%></td>
+		<td style="width:15%"><%= cart_item.item.taxed_price.to_s(:delimited) %>円</td>
+		<td style="width:25%">
 			<%= form_with model: cart_item, url: public_cart_item_path(cart_item), local: true do |f| %>
 			<%= f.text_field :number %>
 			<%= f.submit "変更", class: "btn btn-primary" %>
 			<% end %>
 		</td>
-		<td><%= cart_item.item.taxed_price * cart_item.number %></td>
-		<td><%= link_to "削除する", public_destroy_public_cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
+		<td style="width:15%"><%= (cart_item.item.taxed_price * cart_item.number).to_s(:delimited) %>円</td>
+		<td style="width:15%"><%= link_to "削除する", public_destroy_public_cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
 	</tr>
 
 	<% end %>
@@ -39,17 +46,17 @@
 <%= link_to "買い物を続ける", root_path, class: "btn btn-primary" %><br><br>
 
 <div class = "row-cart">
-<table class ="table table-bordered">
+<table class ="table table-bordered bg-light">
 
 	<tr>
-		<th class = "total-price bg-light">合計金額</th>
+		<th class = "total-price">合計金額</th>
 		<td>
 		<% @total_price = 0 %>
 		<% @cart_items.each do |cart_item| %>
 		<% item = cart_item.item %>
 		<% @total_price += item.taxed_price * cart_item.number %>
 		<% end %>
-		<%= @total_price %>
+		<%= @total_price.to_s(:delimited) %>円
 		</td>
 	</tr>
 
