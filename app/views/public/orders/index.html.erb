@@ -15,15 +15,15 @@
     <tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td><%= order.created_at %></td>
+          <td><%= l order.created_at, format: :short %></td>
           <td>〒<%= order.postal_code %>　住所：<%= order.address %><br>宛名：<%= order.address_name %></td>
           <td>
-            <% order.order_details.each do |details| %>
-              <li><%= Item.find_by(id: details.item_id).name %></li>
+            <% order.order_details.each do |order_detail| %>
+              <li><%= Item.find_by(id: order_detail.item_id).name %></li>
             <% end %>
           </td>
           <td><%= order.payment %>円</td>
-          <td><%= order.order_status %></td>
+          <td><%= t order.order_status_i18n %></td>
           <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
         </tr>
       <% end %>

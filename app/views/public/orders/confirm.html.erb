@@ -45,7 +45,7 @@
   <table class="table table-borderless">
     <tr>
       <th class="col-xs-3">支払方法</th>
-      <th class="col-xs-3"><%= @order.payment_method %></th>
+      <th class="col-xs-3"><%= t @order.payment_method_i18n %></th>
       <%= f.hidden_field :payment_method%>
     </tr>
     <tr>

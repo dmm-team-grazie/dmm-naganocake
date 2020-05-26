@@ -6,7 +6,7 @@
     <table class="table table-bordered">
       <tr>
         <th class="col-xs-3 bg-light">注文日</th>
-        <th><%= @order.created_at %></th>
+        <th><%= l @order.created_at, format: :short %></th>
       </tr>
       <tr>
         <th class="col-xs-3 bg-light">配送先</th>
@@ -14,11 +14,11 @@
       </tr>
       <tr>
         <th class="col-xs-3 bg-light">支払い方法</th>
-        <th><%= @order.payment_method %></th>
+        <th><%= t @order.payment_method_i18n %></th>
       </tr>
       <tr>
         <th class="col-xs-3 bg-light">ステータス</th>
-        <th><%= @order.order_status %></th>
+        <th><%= t @order.order_status_i18n %></th>
       </tr>
     </table>
   </div>

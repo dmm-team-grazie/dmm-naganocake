@@ -14,15 +14,15 @@
       </tr>
       <tr>
         <th>支払方法</th>
-        <th><%= @order.payment_method %></th>
+        <th><%= @order.payment_method_i18n %></th>
       </tr>
       <tr>
         <th>注文ステータス</th>
         <th>
-          <%= form_with(model: @order, local: true) do |f| %>
-            <%= f.select :order_status, 
-                Order.order_statuses.keys, 
-                :selected=>Order.order_statuses[order.order_status], prompt: "選択してください" %>
+          <%= form_with(model: @order, local: true, url: admin_order_path, method: :patch) do |f| %>
+            <%= f.select :order_status,
+                Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]},
+                :selected=> @order.order_status, prompt: "選択してください" %>
             <%= f.submit "更新", class: "btn btn-primary" %>
           <% end %>
         </th>
@@ -51,10 +51,10 @@
               <td><%= order_detail.number %></td>
               <td><%= order_detail.item.taxed_price * order_detail.number %></td>
               <td>
-                <%= form_with(model: @order_detail, local: true) do |f| %>
+                <%= form_with(model: order_detail, local: true, url: admin_order_path, method: :patch) do |f| %>
                   <%= f.select :production_status,
-                      OrderDetail.production_statuses.keys,
-                      :selected=>OrderDetail.production_statuses[@order_detail.production_status] %>
+                      OrderDetail.production_statuses.keys.map {|k| [I18n.t("enums.order_detail.production_status.#{k}"), k]},
+                      :selected=> order_detail.production_status, prompt: "選択してください" %>
                   <%= f.submit "更新", class: "btn btn-primary" %>
                 <% end %>
               </td>

@@ -86,6 +86,7 @@ class Public::OrdersController < ApplicationController
     redirect_to public_orders_thanks_path
   end
 
+  
 
 
   private
