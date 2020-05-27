@@ -32,11 +32,11 @@
       </tr>
       <tr>
         <th class="col-xs-6 table_color">商品合計</th>
-        <th><%= @total_price.to_i %>円</th>
+        <th><%= @total_price.to_s(:delimited) %>円</th>
       </tr>
       <tr>
         <th class="col-xs-6 table_color">ご請求額</th>
-        <th><%= @payment %>円</th>
+        <th><%= @payment.to_s(:delimited) %>円</th>
       </tr>
     </table>
   </div>
@@ -58,9 +58,9 @@
       <% @order.order_details.each do |order_detail| %>
         <tr>
           <td><%= order_detail.item.name %></td>
-          <td><%= order_detail.item.taxed_price %>円</td>
+          <td><%= order_detail.item.taxed_price.to_s(:delimited) %>円</td>
           <td><%= order_detail.number %>個</td>
-          <td><%= order_detail.item.taxed_price * order_detail.number %>円</td>
+          <td><%= (order_detail.item.taxed_price * order_detail.number).to_s(:delimited) %>円</td>
         </tr>
       <% end %>
     </tbody>

@@ -20,9 +20,9 @@
               <%= attachment_image_tag cart_item.item, :item_image, :fill, 40, 40, fallback: "no-image-mini.jpg", size:'40x40' %>
               <%= cart_item.item.name %>
             </td>
-            <td><%= cart_item.item.taxed_price %>円</td>
+            <td><%= cart_item.item.taxed_price.to_s(:delimited) %>円</td>
             <td><%= cart_item.number %>個</td>
-            <td><%= cart_item.item.taxed_price * cart_item.number %>円</td>
+            <td><%= (cart_item.item.taxed_price * cart_item.number).to_s(:delimited) %>円</td>
           </tr>
         <% end %>
       </tr>
@@ -34,9 +34,9 @@
       <th class="col-xs-5 table_color">送料</th><th><%= @postage %>円</th></tr>
       <%= f.hidden_field :postage, :value => @postage %>
     <tr>
-      <th class="table_color">商品合計</th><th><%= @total_price.to_i %>円</th></tr>
+      <th class="table_color">商品合計</th><th><%= @total_price.to_s(:delimited) %>円</th></tr>
     <tr>
-      <th class="table_color">請求金額</th><th><%= @payment %>円</th></tr>
+      <th class="table_color">請求金額</th><th><%= @payment.to_s(:delimited) %>円</th></tr>
       <%= f.hidden_field :payment, :value => @payment %>
   </table>
 </div>
