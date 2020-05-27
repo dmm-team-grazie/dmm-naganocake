@@ -3,22 +3,23 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-Things you may want to cover:
+Name
+============
 
-* Ruby version
+## Description
 
-* System dependencies
+## Demo
 
-* Configuration
+## Requirement
 
-* Database creation
+## Usage
 
-* Database initialization
+## Install
 
-* How to run the test suite
+## Licence
 
-* Services (job queues, cache servers, search engines, etc.)
+[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
 
-* Deployment instructions
+## Author
 
-* ...
+[tcnksm](https://github.com/tcnksm)
