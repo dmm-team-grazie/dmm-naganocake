@@ -53,16 +53,19 @@
       <th>
           〒<%= @order.postal_code %>　住所：<%= @order.address %><br>宛名：<%= @order.address_name %>
           <%= f.hidden_field :postal_code %><%= f.hidden_field :address %><%= f.hidden_field :address_name %>
+          <%= hidden_field_tag :postal_code, @order.postal_code %>
+          <%= hidden_field_tag :address, @order.address %>
+          <%= hidden_field_tag :address_name, @order.address_name %>
       </th>
     </tr>
   </table>
 
   <div class="c-block">
-    <%= f.submit '購入を確定する', class: "btn btn-success btn-lg" %>   
+    <%= f.submit '購入を確定する', class: "btn btn-success btn-lg" %>
   </div>
   <% end %>
 
 
 
-  
+
 </div><!-- /.row -->
