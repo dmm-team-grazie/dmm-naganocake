@@ -21,7 +21,8 @@ class Public::MembersController < ApplicationController
 	def update_status
 		@member = current_member
 		@member.update(member_params)
-		redirect_to root_path, notice: "successfully deleted your account"
+		reset_session
+		redirect_to root_path
 	end
 
 	private
