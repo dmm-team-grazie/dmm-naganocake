@@ -4,7 +4,7 @@
   <%= form_with(model: @order, local: true, url: {action: 'create'}) do |f| %>
 
   <table class="table">
-    <thead>
+    <thead class="table_color">
       <tr>
         <th>商品名</th>
         <th>単価（税込）</th>
@@ -31,17 +31,17 @@
 
   <table class="table">
     <tr>
-      <th class="col-xs-5">送料</th><th><%= @postage %>円</th></tr>
+      <th class="col-xs-5 table_color">送料</th><th><%= @postage %>円</th></tr>
       <%= f.hidden_field :postage, :value => @postage %>
     <tr>
-      <th>商品合計</th><th><%= @total_price.to_i %>円</th></tr>
+      <th class="table_color">商品合計</th><th><%= @total_price.to_i %>円</th></tr>
     <tr>
-      <th>請求金額</th><th><%= @payment %>円</th></tr>
+      <th class="table_color">請求金額</th><th><%= @payment %>円</th></tr>
       <%= f.hidden_field :payment, :value => @payment %>
   </table>
 </div>
 
-<div class="row">
+<div class="row bottom_space">
   <table class="table table-borderless">
     <tr>
       <th class="col-xs-3">支払方法</th>
