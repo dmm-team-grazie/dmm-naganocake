@@ -22,7 +22,7 @@
               <li><%= Item.find_by(id: order_detail.item_id).name %></li>
             <% end %>
           </td>
-          <td><%= order.payment %>円</td>
+          <td><%= order.payment.to_s(:delimited) %>円</td>
           <td><%= t order.order_status_i18n %></td>
           <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
         </tr>
