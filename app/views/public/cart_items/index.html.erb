@@ -25,7 +25,7 @@
 	<% @cart_items.each do |cart_item| %>
 
 	<tr>
-		<td style="width:25%"><%= attachment_image_tag cart_item.item, :item_image, :fill, 10, 3, format:'jpg', fallback: "no-image.jpg", class: "card-img-top" %><%= cart_item.item.name%></td>
+		<td style="width:25%"><%= attachment_image_tag cart_item.item, :item_image, :fill, 40, 40, fallback: "no-image-mini.jpg", size:'40x40' %><%= cart_item.item.name%></td>
 		<td style="width:15%"><%= cart_item.item.taxed_price.to_s(:delimited) %>円</td>
 		<td style="width:25%">
 			<%= form_with model: cart_item, url: public_cart_item_path(cart_item), local: true do |f| %>
