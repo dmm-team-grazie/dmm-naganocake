@@ -15,7 +15,7 @@
     <tbody>
       <% @orders.each do |order| %>
         <tr>
-          <td><%= link_to l(order.created_at), admin_order_path(order.id) %></td>
+          <td><%= link_to l(order.created_at), public_order_path(order.id) %></td>
           <td><%= order.address_name %></td>
             <!-- 注文商品の総数計算 -->
             <% @total_item_number = 0 %>
