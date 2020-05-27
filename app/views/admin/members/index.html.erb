@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'members' %>
 
-<h2>会員一覧</h2>
+<h2 class="view-title">会員一覧</h2>
 
 <table class="table table-bordered bg-light">
 	<thead>
@@ -23,7 +23,7 @@
 			<% if member.is_valid == true %>
 				<span>有効</span>
 			<% else %>
-				<span>無効</span>
+				<span>退会済</span>
 			<% end %>
 		</td>
 	</tr>
