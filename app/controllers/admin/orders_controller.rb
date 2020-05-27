@@ -40,7 +40,9 @@ class Admin::OrdersController < ApplicationController
     end
 
 
-    if @order.order_details.count == @order.order_details.where( production_status: 3).count
+    if @order.order_status == "delivered" && @order.order_details.count == @order.order_details.where( production_status: 3).count
+      @order.update(order_status: 4)
+    elsif @order.order_details.count == @order.order_details.where( production_status: 3).count
       @order.update(order_status: 3)
     end
 
@@ -84,7 +86,7 @@ class Admin::OrdersController < ApplicationController
     #   redirect_to admin_order_path
     # else
     # end
- 
+
 
   private
 
