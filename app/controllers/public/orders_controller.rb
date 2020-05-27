@@ -68,15 +68,15 @@ class Public::OrdersController < ApplicationController
       @payment = @total_price.to_i + @postage
   end
 
-  def create 
+  def create
     # オーダー作成
     @order = Order.new(order_params)
     @order.member_id = current_member.id
     @order.save!
     # オーダー詳細作成
     current_member.cart_items.each do |cart_item|
-      @order_detail = OrderDetail.new(item_id: cart_item.item.id, 
-                                      order_id: @order.id , number: cart_item.number, 
+      @order_detail = OrderDetail.new(item_id: cart_item.item.id,
+                                      order_id: @order.id , number: cart_item.number,
                                       price: cart_item.item.taxed_price)
       # @order_detail.number = cart_item.number
       # @order_detail.price = cart_item.item.taxed_price
@@ -86,7 +86,13 @@ class Public::OrdersController < ApplicationController
     redirect_to public_orders_thanks_path
   end
 
-  
+
+  def member
+    @member = current_member
+    @orders = @member.orders.page(params[:page]).reverse_order.per(10)
+  end
+
+
 
 
   private
@@ -94,7 +100,7 @@ class Public::OrdersController < ApplicationController
   def set_addresses
     @addresses = Address.where(member_id: current_member.id)
   end
-  
+
   def order_params
     params.require(:order).permit(:postage,  :payment, :payment_method, :postal_code, :address, :address_name)
   end

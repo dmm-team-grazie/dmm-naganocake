@@ -3,6 +3,5 @@
 </div>
 
 <div class="row mt-5">
-  <h5>本日の注文件数
-  <%= @orders.count %>件</h5>
+  <h5>本日の注文件数<%= link_to @orders.count, admin_orders_today_path %>件</h5>
 </div>

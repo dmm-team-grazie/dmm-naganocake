@@ -50,6 +50,15 @@ class Admin::OrdersController < ApplicationController
   end
 
 
+  def member
+    @member = Member.find(params[:id])
+    @orders = @member.orders.page(params[:page]).reverse_order.per(10)
+  end
+
+  def today
+    @orders = Order.where(created_at: Time.zone.now.all_day).page(params[:page]).reverse_order.per(10)
+  end
+
 
 
     # if defined? order_detail_params[:production_status] # 入力されたレコードがあるか
