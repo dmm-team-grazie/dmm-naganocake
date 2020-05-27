@@ -1,7 +1,8 @@
 class Public::MembersController < ApplicationController
 	before_action :authenticate_member!
-	
-	def show		
+
+	def show
+		@member = current_member
 	end
 
 	def edit
