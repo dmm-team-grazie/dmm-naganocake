@@ -10,7 +10,7 @@
 
 ***デモ***
 
-![デモ](https://image-url.gif)
+file:///Users/yusukekitamura/Desktop/work/vagrant/dmm-naganocake/app/assets/videos/nagaoCake.mp4
 
 ## 機能()
 
