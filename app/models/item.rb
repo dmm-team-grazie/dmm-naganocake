@@ -12,6 +12,7 @@ class Item < ApplicationRecord
 
   validates :name, presence: true
   validates :non_taxed_price, presence: true
+  validates :introduction, presence: true
 
   def taxed_price
     tax = 1.1
