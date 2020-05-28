@@ -29,11 +29,11 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new
     # 支払い情報
-    if params[:payment_option].to_i == 0
-      @order.payment_method = "card"
-    else
-      @order.payment_method = "bank"
-    end
+      if params[:payment_option].to_i == 0
+        @order.payment_method = "card"
+      else
+        @order.payment_method = "bank"
+      end
     @cart_items = current_member.cart_items
     @order.member_id = current_member.id
 
@@ -70,31 +70,31 @@ class Public::OrdersController < ApplicationController
 
   def create
     # オーダー作成
-    @order = Order.new(order_params)
-    @order.member_id = current_member.id
-    @order.save!
+      @order = Order.new(order_params)
+      @order.member_id = current_member.id
+      @order.save!
 
-    @new_postal_code = params[:postal_code]
-    @new_address = params[:address]
-    @new_address_name = params[:address_name]
-    @address = Address.where(postal_code: @new_postal_code, member_id: current_member, address: @new_address, address_name: @new_address_name)
-    if @address.blank?
-      @address = Address.new
-      @address.postal_code = @new_postal_code
-      @address.address = @new_address
-      @address.address_name = @new_address_name
-      @address.member_id = current_member.id
-      @address.save!
-    end
+      @new_postal_code = params[:postal_code]
+      @new_address = params[:address]
+      @new_address_name = params[:address_name]
+      @address = Address.where(postal_code: @new_postal_code, member_id: current_member, address: @new_address, address_name: @new_address_name)
+      if @address.blank?
+        @address = Address.new
+        @address.postal_code = @new_postal_code
+        @address.address = @new_address
+        @address.address_name = @new_address_name
+        @address.member_id = current_member.id
+        @address.save!
+      end
     # オーダー詳細作成
-    current_member.cart_items.each do |cart_item|
-      @order_detail = OrderDetail.new(item_id: cart_item.item.id,
-                                      order_id: @order.id , number: cart_item.number,
-                                      price: cart_item.item.taxed_price)
-      # @order_detail.number = cart_item.number
-      # @order_detail.price = cart_item.item.taxed_price
-      @order_detail.save!
-    end
+      current_member.cart_items.each do |cart_item|
+        @order_detail = OrderDetail.new(item_id: cart_item.item.id,
+                                        order_id: @order.id , number: cart_item.number,
+                                        price: cart_item.item.taxed_price)
+        # @order_detail.number = cart_item.number
+        # @order_detail.price = cart_item.item.taxed_price
+        @order_detail.save!
+      end
     current_member.cart_items.delete_all # カート内商品削除。今回は小要素なのでdestroy_allでも可
     redirect_to public_orders_thanks_path
   end
@@ -102,13 +102,13 @@ class Public::OrdersController < ApplicationController
 
   def member
     @member = current_member
-    @orders = @member.orders.page(params[:page]).reverse_order.per(10)
+    @orders = @member.orders.page(params[:page]).reverse_order.per(6)
   end
 
 
 
 
-  private
+private
   # 配送先指定を反映
   def set_addresses
     @addresses = Address.where(member_id: current_member.id)
