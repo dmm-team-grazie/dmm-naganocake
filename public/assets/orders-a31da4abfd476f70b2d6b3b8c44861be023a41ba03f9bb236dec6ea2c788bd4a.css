@@ -1,0 +1,74 @@
+@charset "UTF-8";
+/*common*/
+/* line 7, app/assets/stylesheets/orders.scss */
+h2 {
+  display: inline-block;
+  background-color: orange;
+  padding: 1px 30px;
+  margin: 50px 10%;
+}
+
+/* line 14, app/assets/stylesheets/orders.scss */
+h3 {
+  font-weight: 600;
+}
+
+/* line 18, app/assets/stylesheets/orders.scss */
+li {
+  list-style: none;
+}
+
+/* line 21, app/assets/stylesheets/orders.scss */
+.c-inline {
+  text-align: center;
+}
+
+/* line 24, app/assets/stylesheets/orders.scss */
+.c-block {
+  margin: 0 auto;
+}
+
+/*common*/
+/*thanks*/
+/* line 30, app/assets/stylesheets/orders.scss */
+.thanks-outer {
+  position: relative;
+  height: 600px;
+}
+
+/* line 34, app/assets/stylesheets/orders.scss */
+.thanks-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+/*thanks*/
+/*pagination*/
+/*ページネーション自体のデザイン*/
+/* line 44, app/assets/stylesheets/orders.scss */
+.pagination > li > a {
+  border: none;
+  /*枠線をなくす*/
+  color: #696969;
+  /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+/* line 50, app/assets/stylesheets/orders.scss */
+.pagination > .active > a {
+  background: #93c9ff;
+  /*背景の色を変える*/
+  border-radius: 15px;
+  /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+/* line 56, app/assets/stylesheets/orders.scss */
+.pagination > li > a:hover {
+  border-radius: 15px;
+  /*角を丸くする*/
+}
+
+/*pagination*/
