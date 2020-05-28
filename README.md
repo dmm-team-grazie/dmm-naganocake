@@ -54,6 +54,6 @@ $ rails s -b 0.0.0.0</br>
 チーム グラッチェメンバー</br>
 
 ・ベンー(https://github.com/Ben-1327)</br>
-・ムー</br>
+・ムー</br>(https://github.com/yusuke-kitamura)
 ・ペリー</br>
 ・おだっち(https://github.com/odayutaka)</br>
