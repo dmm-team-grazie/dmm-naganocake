@@ -40,13 +40,24 @@ class Admin::OrdersController < ApplicationController
     end
 
 
-    if @order.order_details.count == @order.order_details.where( production_status: 3).count
+    if @order.order_status == "delivered" && @order.order_details.count == @order.order_details.where( production_status: 3).count
+      @order.update(order_status: 4)
+    elsif @order.order_details.count == @order.order_details.where( production_status: 3).count
       @order.update(order_status: 3)
     end
 
     redirect_to admin_order_path(@order)
   end
 
+
+  def member
+    @member = Member.find(params[:id])
+    @orders = @member.orders.page(params[:page]).reverse_order.per(10)
+  end
+
+  def today
+    @orders = Order.where(created_at: Time.zone.now.all_day).page(params[:page]).reverse_order.per(10)
+  end
 
 
 
@@ -84,7 +95,7 @@ class Admin::OrdersController < ApplicationController
     #   redirect_to admin_order_path
     # else
     # end
- 
+
 
   private
 

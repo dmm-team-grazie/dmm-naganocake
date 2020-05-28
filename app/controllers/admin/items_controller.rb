@@ -20,7 +20,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
   	if @item.save
-  		redirect_to admin_items_path, notice: "successfully created item!"#保存された場合の移動先を指定。
+  		redirect_to admin_items_path, notice: "商品の作成に成功しました!"#保存された場合の移動先を指定。
   	else
   		render :new
   	end
@@ -29,7 +29,7 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
   	if @item.update(item_params)
-  		redirect_to admin_items_path, notice: "successfully updated item!"
+  		redirect_to admin_items_path, notice: "商品の更新に成功しました!"
   	else
   		render :edit
   	end

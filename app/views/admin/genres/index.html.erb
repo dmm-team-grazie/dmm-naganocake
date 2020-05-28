@@ -1,16 +1,14 @@
-<div class="row mt-5 ml-5">
-  <h2 class="text-center px-4 bg-success">ジャンル一覧・追加</h2>
+<div class="row">
+  <h2 class="text-center view-title">ジャンル一覧・追加</h2>
 </div>
 
 <%= form_with model:[:admin, @genre],local: true do |f| %>
    <% if @genre.errors %>
-    <div class="alert">
       <ul>
         <% @genre.errors.full_messages.each do |message| %>
         <li><%= message %></li>
         <% end %>
        </ul>
-    </div>
   <% end %>
   <div class="form-inline">
     <div class="form-group mx-2">

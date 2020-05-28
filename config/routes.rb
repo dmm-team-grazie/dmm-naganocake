@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     delete 'cart_items/:id' => 'cart_items#destroy_each',as: 'destroy_public_cart_item'
     get 'orders/thanks' => 'orders#thanks'
     post 'orders/confirm' => 'orders#confirm'
+    get 'orders/member' => 'orders#member'
     resource :members, only:[:create]
     resources :items, except:[:destroy]
     resources :addresses
@@ -34,6 +35,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'top' => 'admins#top'
     get 'items/new' => 'items#new'
+    get 'members/:id/order' => 'orders#member', as: 'member_order'
+    get 'orders/today' => 'orders#today'
     resources :items, except:[:new]
     resources :members
     resources :orders
