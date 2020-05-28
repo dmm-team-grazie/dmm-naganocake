@@ -56,4 +56,4 @@ $ rails s -b 0.0.0.0</br>
 ・ベンー(https://github.com/Ben-1327)</br>
 ・ムー</br>
 ・ペリー</br>
-・おだっち</br>
+・おだっち(https://github.com/odayutaka)</br>
