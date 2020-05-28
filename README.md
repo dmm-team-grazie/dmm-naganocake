@@ -1,24 +1,60 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイトの名前
 
-Things you may want to cover:
+ながのCAKE ECサイト
 
-* Ruby version
+## サイトの説明
 
-* System dependencies
+長野県にある小さな洋菓子店「ながのCAKE」の商品を通販するためのECサイト
 
-* Configuration
+***デモ***
 
-* Database creation
+![デモ](https://image-url.gif)
 
-* Database initialization
+## 機能()
 
-* How to run the test suite
+1.商品やユーザー情報、注文履歴が容易に閲覧・編集ができる。(顧客情報が一括管理できる)
+2.会員が購入した商品を、注文者の住所以外にも発送できる。(友人や家族などのプレゼントとして送ることができる)
+3.注文の制作ステータスを更新した際には連動して注文ステータスが更新される。(発送関係のミスをなくすことができる)
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## 必要要件
 
-* ...
+・Vagrant環境
+・Google Chrome
+
+## 使い方
+
+・会員側
+1.顧客は会員登録、ログイン、ログアウト、退会ができる(サイトの観覧はログインなしで行える)。
+2.ログインした後は商品をカートに入れ、一度に複数種類、複数商品の購入ができる。また、カート内商品は個数変更、削除ができる。
+3.会員はマイページからユーザ情報の観覧・編集、注文履歴の観覧、配送先の閲覧・編集ができる。
+
+・店側
+1.管理者用メールアドレスとパスワードでログインができる。
+2.商品の新規追加、編集、販売停止(売切表示)が行える。
+3.会員登録されているユーザー情報の閲覧・編集、退会処理が行える。
+4.ユーザーの注文履歴が一覧・詳細表示ができ、注文ステータス、制作ステータスの更新ができる。
+5.商品ジャンルには「有効」「無効」を設定でき、無効に設定したジャンルは、ジャンル一覧に表示されない。
+
+## インストール
+
+$ git clone https://github.com/dmm-team-grazie/dmm-naganocake.git
+$ cd dmm-naganocake
+$ rails s -b 0.0.0.0
+$ ~do anything~
+
+
+## その他
+本サイトのトップページはオリジナリティー溢れる仕様となっています。
+
+
+## 作者
+
+チーム グラッチェメンバー
+
+・ベンー
+・ムー
+・ペリー
+・おだっち
