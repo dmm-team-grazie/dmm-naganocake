@@ -1,0 +1,9 @@
+<%= stylesheet_link_tag 'items' %>
+
+
+<h2 class="view-title">ジャンル一覧</h2>
+<div id="list-example" class="list-group">
+  <% genres.each do |genre| %>
+    <h4 class="list-group-item "> <%= link_to genre.name, public_genre_path(genre), class: "link_text" %></h4>
+  <% end %>
+</div>

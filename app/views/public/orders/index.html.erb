@@ -1,0 +1,33 @@
+<%= stylesheet_link_tag 'orders' %>
+<h2 class="view-title">注文履歴一覧</h2>
+<div class="row bottom_space">
+  <table class="table table-bordered">
+    <thead class="table-active table_color">
+      <tr>
+        <th class="col-xs-1">注文日</th>
+        <th class="col-xs-3">配送先</th>
+        <th class="col-xs-1">注文商品</th>
+        <th class="col-xs-1">支払金額</th>
+        <th class="col-xs-1">ステータス</th>
+        <th class="col-xs-1">注文詳細</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= l order.created_at, format: :short %></td>
+          <td>〒<%= order.postal_code %>　住所：<%= order.address %><br>宛名：<%= order.address_name %></td>
+          <td>
+            <% order.order_details.each do |order_detail| %>
+              <li><%= Item.find_by(id: order_detail.item_id).name %></li>
+            <% end %>
+          </td>
+          <td><%= order.payment.to_s(:delimited) %>円</td>
+          <td><%= t order.order_status_i18n %></td>
+          <td><%= link_to "表示する", public_order_path(order.id), class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @orders %>
+</div><!-- /.row -->

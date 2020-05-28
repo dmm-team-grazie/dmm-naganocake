@@ -1,0 +1,62 @@
+<%= stylesheet_link_tag 'addresses' %>
+
+<h2 class="view-title">配送先登録/一覧</h2>
+
+<div class="row">
+  <% if @address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @address.errors.count %>件のエラーがありました</h2>
+      <ul>
+        <% @address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div class="form">
+  <%= form_with model: @address,url: {controller: 'public/addresses', action: 'create' },local: true do |f| %>
+  <div class="row field">
+    <%= f.label :postal_code, "郵便番号(ハイフンなし)", class:"col-sm-3" %>
+    <%= f.text_field :postal_code, class: "postal_code col-sm-4" %>
+  </div>
+  <div class="row field">
+    <%= f.label :address, "住所", class:"col-sm-3" %>
+    <%= f.text_field :address, class: "address col-sm-6" %>
+  </div>
+  <div class="row field">
+    <%= f.label :address_name, "宛名", class:"col-sm-3" %>
+    <%= f.text_field :address_name, class: "address_name col-sm-4" %>
+    <div class="col-sm-2"></div>
+    <%= f.submit "登録する" , class:"btn btn-success btn-sm col-sm-1" %>
+  </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="col-xs-2">郵便番号</th>
+        <th class="col-xs-4">住所</th>
+        <th class="col-xs-2">宛名</th>
+        <th class="col-xs-2"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @addresses.each do |address| %>
+      <tr>
+        <td><%= address.postal_code %></td>
+        <td><%= address.address %></td>
+        <td><%= address.address_name %></td>
+        <td>
+          <%= link_to "編集する", edit_public_address_path(address), class:"btn btn-primary btn-sm"%>
+          <%= link_to "削除する", public_address_path(address), method: :delete ,class:"btn btn-danger btn-sm"%>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @addresses %>
+</div>

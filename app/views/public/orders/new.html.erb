@@ -1,0 +1,56 @@
+<div class="bottom_space">
+  <%= stylesheet_link_tag 'orders' %>
+  <h2 class="view-title">注文情報入力</h2>
+
+  <h3>支払方法</h3>
+
+  <!-- モデルは利用せず選択肢にオリジナルのカラムを作成・送信しコントローラーで操作 -->
+    <%= form_with(local: true, url: public_orders_confirm_path) do |f| %>
+      <ul>
+        <li><%= f.radio_button :payment_option, 0, checked: true %>
+          <%= f.label :payment_option, "クレジットカード" %>
+        </li>
+        <li><%= f.radio_button :payment_option, 1 %>
+          <%= f.label :payment_option, "銀行振込" %>
+        </li>
+      </ul>
+  <h3>お届け先</h3>
+      <ul>
+        <li>
+          <%= f.radio_button :address_option, 0, checked: true %>
+          <%= f.label "ご自身の住所" %>
+          〒<%= current_member.postal_code %>　住所：<%= current_member.address %>　宛名：<%= @address_name %>
+        </li>
+
+        <li>
+          <%= f.radio_button :address_option, 1 %>
+          <%= f.label "登録済住所から選択" %>
+          <%= f.collection_select(:address_collection, @addresses, :id, :address_info, {prompt: "住所を選択してください", class: "form-control"}) %>
+        </li>
+
+        <li>
+          <%= f.radio_button :address_option, 2 %>
+          <%= f.label "新しいお届け先" %>
+          <li>
+          <table>
+            <tr class="form-group">
+              <th class="col-xs-5"><%= f.label "郵便番号（ハイフンなし）" %></th>
+              <th><%= f.text_field :new_postal_code, class: "form-control" %></th>
+            </tr>
+            <tr class="form-group">
+              <th><%= f.label "住所" %></th>
+              <th><%= f.text_field :new_address, class: "form-control" %></th>
+            </tr>
+            <tr class="form-group">
+              <th><%= f.label "宛名" %></th>
+              <th><%= f.text_field :new_address_name, class: "form-control" %></th>
+            </tr>
+        </table>
+      </li>
+        </li>
+      </ul>
+      <div class="c-inline">
+        <%= f.submit "確認画面へ進む", class: "btn btn-primary btn-lg"%>
+      </div>
+    <% end %>
+  </div>

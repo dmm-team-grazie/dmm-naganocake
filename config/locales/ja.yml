@@ -1,0 +1,54 @@
+
+ja:
+  enums:
+    order:
+      order_status:
+        waiting: 入金待ち
+        checking: 入金確認中
+        making: 製作中
+        preparing: 発送準備中
+        delivered: 発送済み
+      payment_method:
+        card: "クレジットカード"
+        bank: "銀行振込"
+    order_detail:
+      production_status:
+        impossible: 着手不可
+        waiting: 製作待ち
+        doing: 製作中
+        complete: 製作完了
+
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%Y/%m/%d"
+
+  views:
+    pagination:
+      first: <i class="fa fa-birthday-cake"> 最初</i>
+      last: <i class="fa fa-birthday-cake"> 最後</i>
+      previous: "前"
+      next: "後"
+      truncate: "..."
+  activerecord:
+    attributes:
+      member:
+        first_name: 名
+        last_name: 姓
+        first_kana_name: メイ
+        last_kana_name: メイ
+        postal_code: 郵便番号
+        address: 住所
+        phone_number: 電話番号
+        email: メールアドレス
+        password: パスワード
+      item:
+        name: 商品名
+        non_taxed_price: 税抜価格
+        introduction: 商品説明
+      genre:
+        name: ジャンル
+      address:
+        address: 郵便番号
+        address_name: 宛名
+        postal_code: 郵便番号

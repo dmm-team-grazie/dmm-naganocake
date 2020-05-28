@@ -1,0 +1,30 @@
+<%= stylesheet_link_tag 'orders' %>
+<h2 class="view-title">注文履歴一覧</h2>
+<div class="row bottom_space">
+  <table class="table table-border">
+    <thead class="table_color">
+      <tr>
+        <th class="col-xs-3">購入日時</th>
+        <th class="col-xs-3">購入者</th>
+        <th class="col-xs-3">注文個数</th>
+        <th class="col-xs-3">注文ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td><%= link_to l(order.created_at), admin_order_path(order.id) %></td>
+          <td><%= order.address_name %></td>
+            <!-- 注文商品の総数計算 -->
+            <% @total_item_number = 0 %>
+            <% order.order_details.each do |order_detail| %>
+              <% @total_item_number += order_detail.number %>
+            <% end %>
+          <td><%= @total_item_number %></td>
+          <td><%= order.order_status_i18n %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @orders %>
+</div><!-- /.row -->

@@ -1,0 +1,32 @@
+<div class="row m-5">
+  <h2 class="text-center view-title">ジャンル編集</h2>
+</div>
+
+<%= form_with model:[:admin, @genre],local: true do |f| %>
+	<% if @genre.errors %>
+    <ul>
+    <% @genre.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+    </ul>
+  <% end %>
+<div class="form-inline">
+<div class="form-group mx-2">
+<label><font size="1">ジャンル</font></label>
+</div>
+<div class="form-group">
+<%= f.text_field :name %>
+</div>
+<div class="form-group mx-2">
+  <div class="mx-1"><%= f.radio_button :is_valid, :true %></div>
+  <%= f.label :is_valid, "有効", value: true %>
+</div>
+<div class="form-group mx-2">
+  <div class="mx-1"><%= f.radio_button :is_valid, :false %></div>
+  <%= f.label :is_valid, "無効", value: false %>
+</div>
+<div class="form-group">
+<%= f.submit "変更を保存する", class: "btn btn-primary" %>
+</div>
+</div>
+<% end %>

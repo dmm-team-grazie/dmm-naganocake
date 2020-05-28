@@ -1,0 +1,46 @@
+// Place all the styles related to the public::Items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// admin
+  // index
+  .plus_btn{
+    float: right;
+    position: relative;
+    top: -50px;
+    right: 20px;
+  }
+
+
+
+
+
+
+// public
+  // _genre_index
+  .link_text{
+    color: #322D00;
+    text-decoration: none;
+  }
+
+  .list-group-item{
+    background-color: #ffffe0;
+    border: solid 1px #322D00;
+  }
+
+  .list-group-item:hover{
+    background-color: #f4a460;
+  }
+
+
+  // index
+  .card-body{
+    background-color: #ffffe0;
+  }
+
+
+  // show
+  .text_area{
+    margin-top: 30px;
+  }

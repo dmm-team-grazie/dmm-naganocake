@@ -4,12 +4,62 @@
     <title>DmmNaganocake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/61abcfe439.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <!--ヘッダーの記述-->
+     <header class="navbar">
+        <div class="container">
+        <nav><%= link_to root_path do %>
+            <img src="/assets/logo_new.png">
+            <% end %>
+        </nav>
+        <nav>
+
+            <% if member_signed_in? %>
+            <ul class="nav p-4">
+            <li class="nav-item mr-5"><P>ようこそ、<%= current_member.first_name %>さん!</P><li>
+            <li class="nav-item mr-3"><%= link_to "マイページ", public_path, class: "btn btn-nav" %></li>
+            <li class="nav-item mr-3"><%= link_to "商品一覧", public_items_path, class: "btn btn-nav" %></li>
+            <li class="nav-item mr-3"><%= link_to "カート", public_cart_items_path, class: "btn btn-nav" %></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_member_session_path, method: :delete, class: "btn btn-nav" %></li>
+            </ul>
+            <% elsif admin_signed_in? %>
+            <ul class="nav">
+            <li class="nav-item mr-3"><%= link_to "商品一覧", admin_items_path, class: "btn btn-nav" %></li>
+            <li class="nav-item mr-3"><%= link_to "会員一覧", admin_members_path, class: "btn btn-nav" %></li>
+            <li class="nav-item mr-3"><%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-nav" %></li>
+            <li class="nav-item mr-3"><%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-nav" %></li>
+            <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "btn btn-nav"%></li>
+             </ul>
+            <div class="form-inline mt-3 justify-content-end">
+            <%= search_form_for @search, url: admin_items_path do |f| %>
+            <%= f.text_field :name_cont ,placeholder: 'Search' %>
+            <button type="submit" class="btn btn-nav my-2 my-sm-0"><i class="fas fa-search"></i></button>
+            </div>
+            <% end %>
+            <% else %>
+            <ul class="nav p-4">
+            <li class="nav-item mr-3"><%= link_to "商品一覧", public_items_path, class: "btn btn-nav" %></li>
+            <li class="nav-item mr-3"><%= link_to "新規登録", new_member_registration_path, class: "btn btn-nav" %></li>
+            <li class="nav-item mr-3"><%= link_to "ログイン", new_member_session_path, class: "btn btn-nav" %></li>
+            </ul>
+            <% end %>
+        </nav>
+      </div>
+    </header>
+    <div class="container">
+      <p id="notice"><%= notice %></p>
+      <%= yield %>
+    </div>
+
+    <footer class="fixed-bottom">
+        <div class="row footer justify-content-center" style="background-color: #fffacd;">
+            <p>CopyRight Infratop.inc</p>
+        </div>
+    </footer>
   </body>
 </html>

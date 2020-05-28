@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag 'items' %>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="view-title">商品一覧</h2>
+    <a href="/admin/items/new", class="plus_btn">
+      <svg class="bi bi-plus-circle" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z" clip-rule="evenodd"/>
+        <path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z" clip-rule="evenodd"/>
+        <path fill-rule="evenodd" d="M8 15A7 7 0 108 1a7 7 0 000 14zm0 1A8 8 0 108 0a8 8 0 000 16z" clip-rule="evenodd"/>
+      </svg>
+    </a>
+
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th class="col-xs-2">商品ID</th>
+          <th class="col-xs-3">商品名</th>
+          <th class="col-xs-2">税抜価格</th>
+          <th class="col-xs-3">ジャンル</th>
+          <th class="col-xs-2">ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @search_items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item.id), class:"link_text" %></td>
+          <td><%= item.non_taxed_price.to_s(:delimited) %></td>
+          <td><%= item.genre.name%></td>
+          <td>
+            <% if item.is_valid == true %>
+              <span>販売中</span>
+            <% else %>
+              <span>販売停止中</span>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @items %>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<%= stylesheet_link_tag 'addresses' %>
+
+<h2 class="view-title">配送先編集</h2>
+<div class="row">
+  <% if @address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @address.errors.count %>件のエラーがありました</h2>
+      <ul>
+        <% @address.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div class="form">
+  <%= form_with model: @address,url: {controller: 'public/addresses', action: 'update' }, local: true do |f| %>
+  <div class="form-row field">
+    <%= f.label :postal_code, "郵便番号(ハイフンなし)", class:"col-sm-4" %>
+    <%= f.text_field :postal_code, class: "postal_code col-sm-4" %>
+  </div>
+  <div class="form-row field">
+    <%= f.label :address, "住所", class:"col-sm-4" %>
+    <%= f.text_field :address, class: "address col-sm-6" %>
+  </div>
+  <div class="form-row field">
+    <%= f.label :address_name, "宛名", class:"col-sm-4" %>
+    <%= f.text_field :address_name, class: "address_name col-sm-4" %>
+    <div class="col-sm-2"></div>
+    <%= f.submit "編集する" , class:"btn btn-primary btn-sm" %>
+  </div>
+  <% end %>
+</div>
