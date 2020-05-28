@@ -3,7 +3,7 @@
 <h2 class="view-title">商品編集</h2>
 <% if @item.errors.any? %>
   <div id="error_explanation">
-    <h2><%= @item.errors.count %>errors prohibited this obj from being saved:</h2>
+    <h2><%= @item.errors.count %>件のエラーがありました</h2>
     <ul>
       <% @item.errors.full_messages.each do |message| %>
         <li><%= message %></li>
