@@ -10,7 +10,7 @@
 
 ***デモ***
 
-file:///Users/yusukekitamura/Desktop/work/vagrant/dmm-naganocake/app/assets/videos/nagaoCake.mp4
+https://xfs.jp/XEgdtI
 
 ## 機能()
 
