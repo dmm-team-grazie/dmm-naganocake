@@ -1,8 +1,6 @@
 <%= stylesheet_link_tag 'orders' %>
 <h2 class="view-title">注文履歴一覧</h2>
 <div class="row bottom_space">
-  <%= paginate @orders %>
-  
   <table class="table table-border">
     <thead class="table_color">
       <tr>
@@ -24,10 +22,9 @@
             <% end %>
           <td><%= @total_item_number %></td>
           <td><%= order.order_status_i18n %></td>
-
-          <td></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <%= paginate @orders %>
 </div><!-- /.row -->

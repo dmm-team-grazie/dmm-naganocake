@@ -3,25 +3,23 @@
 
 <div class="row">
   <h2 class="view-title">商品新規登録</h2>
-  <% if @item.errors.any? %>
-    <div id="error_explanation">
+</div>
+
+<div class="row ml-5">
+  <%= form_with model: @item,url: {controller: 'admin/items', action: 'create' }, local: true do |f| %>
+   <% if @item.errors.any? %>
       <ul>
         <% @item.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
-    </div>
   <% end %>
-</div>
-
-<div class="row">
-  <%= form_with model: @item,url: {controller: 'admin/items', action: 'create' }, local: true do |f| %>
-    <div class="col-xs-4">
+    <div class="form-group col-xs-4">
       <%= f.attachment_field :item_image, class: "item_image" %>
     </div>
     <div class="col-xs-4">
       <div class="field">
-      	<%= f.label :name, "商品名" %>
+      	<%= f.label :name, "商品名　" %>
       	<%= f.text_field :name, class: "name" %>
       </div>
       <div class="field">
