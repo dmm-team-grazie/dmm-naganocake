@@ -12,7 +12,7 @@
 
 https://xfs.jp/XEgdtI
 
-## 機能()
+## 機能
 
 1.商品やユーザー情報、注文履歴が容易に閲覧・編集ができる。(顧客情報が一括管理できる)</br>
 2.会員が購入した商品を、注文者の住所以外にも発送できる。(友人や家族などのプレゼントとして送ることができる)</br>
@@ -43,7 +43,6 @@ https://xfs.jp/XEgdtI
 $ git clone https://github.com/dmm-team-grazie/dmm-naganocake.git</br>
 $ cd dmm-naganocake</br>
 $ rails s -b 0.0.0.0</br>
-$ ~do anything~</br>
 
 
 ## その他
@@ -52,9 +51,9 @@ $ ~do anything~</br>
 
 ## 作者
 
-チーム グラッチェメンバー
+チーム グラッチェメンバー</br>
 
-・ベンー
-・ムー
-・ペリー
-・おだっち
+・ベンー</br>
+・ムー</br>
+・ペリー</br>
+・おだっち</br>
