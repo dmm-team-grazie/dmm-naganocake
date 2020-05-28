@@ -1,0 +1,42 @@
+<%= stylesheet_link_tag 'items' %>
+
+
+<h2 class="view-title">商品詳細</h2>
+<div class="row">
+  <div class="col-xs-4">
+    <%= attachment_image_tag @item, :item_image, format:'jpg', fallback: "/assets/no-image.jpg", class: "card-img-top" %>
+  </div>
+  <div class="col-xs-4">
+    <table class="bottom-space">
+      <tr>
+        <td>商品名</td>
+        <td><%= @item.name %></td>
+      </tr>
+      <tr>
+        <td>商品説明</td>
+        <td><%= @item.introduction %></td>
+      </tr>
+      <tr>
+        <td>ジャンル</td>
+        <td><%= @item.genre.name %></td>
+      </tr>
+      <tr>
+        <td>税込価格 (税抜価格)</td>
+        <td><%= @price.to_s(:delimited) %>円(<%= @item.non_taxed_price.to_s(:delimited) %>円)</td>
+      </tr>
+      <tr>
+        <td>販売ステータス</td>
+        <td>
+        <% if @item.is_valid == true %>
+          <span>販売中</span>
+        <% else %>
+          <span>販売停止中</span>
+        <% end %>
+      </td>
+      </tr>
+    </table>
+    <div class="bottom-space">
+      <%= link_to "編集", edit_admin_item_path(@item), class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

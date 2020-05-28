@@ -1,0 +1,46 @@
+<%= stylesheet_link_tag 'items' %>
+
+<h2 class="view-title">商品編集</h2>
+<% if @item.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @item.errors.count %>件のエラーがありました</h2>
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="row">
+  <%= form_with model: @item,url: {controller: 'admin/items', action: 'update' }, local: true do |f| %>
+  <div class="col-xs-4">
+    <%= attachment_image_tag @item, :item_image, format:'jpg', fallback: "/assets/no-image.jpg", class: "card-img-top" %>
+    <%= f.attachment_field :item_image, class: "item_image" %>
+  </div>
+  <div class="col-xs-4 bottom-space">
+    <table>
+      <tr>
+        <td><%= f.label :name, "商品名" %></td>
+        <td><%= f.text_field :name, class: "name" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :introduction, "商品説明" %></td>
+        <td><%= f.text_area :introduction, class: "introduction" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :genre_id, "ジャンル" %></td>
+        <td><%= f.select :genre_id, Genre.all.map{|genre| [genre.name, genre.id]} %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :non_taxed_price, "税抜価格" %></td>
+        <td><%= f.text_field :non_taxed_price, class: "non_taxed_price" %>円</td>
+      </tr>
+      <tr>
+        <td><%= f.label :is_valid, "販売ステータス" %></td>
+        <td><%= f.select :is_valid,[["販売中",true],["販売停止中",false]],{include_blank: false, selected: true},{class: "is_valid"} %></td>
+      </tr>
+    </table>
+    <%= f.submit "変更を保存" , class:"btn btn-primary btn-sm" %>
+    <% end %>
+  </div>
+</div>

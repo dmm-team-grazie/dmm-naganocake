@@ -1,0 +1,86 @@
+<%= stylesheet_link_tag 'orders' %>
+  <h2 class="view-title">注文履歴詳細</h2>
+  <div class="row">
+
+    <table class="table table-borderless" style="margin-right: 10%;">
+      <tr>
+        <th class="col-xs-1">購入者</th>
+        <th class="col-xs-9"><%= @order.address_name %></th>
+      </tr>
+      <tr>
+        <th class="">配送先</th>
+        <th><%= @order.postal_code %><%= @order.address %><br><%= @order.address_name %></th>
+      </tr>
+      <tr>
+        <th class="">支払方法</th>
+        <th><%= @order.payment_method_i18n %></th>
+      </tr>
+      <tr>
+        <th class="">注文ステータス</th>
+        <th>
+          <%= form_with(model: @order, local: true, url: admin_order_path, method: :patch) do |f| %>
+            <%= f.select :order_status,
+                Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]},
+                :selected=> @order.order_status, prompt: "選択してください" %>
+            <%= f.submit "更新", class: "btn btn-primary" %>
+          <% end %>
+        </th>
+      </tr>
+    </table>
+  </div>
+
+
+   <div class="bottom-space mt-5" style="position: relative;">
+    <div class="row">
+      <div class="col-md-7">
+        <table class="table table-borderless">
+          <thead class="table_color">
+            <tr>
+              <th class="col-xs-3">商品名</th>
+              <th class="col-xs-2">単価（税込）</th>
+              <th class="col-xs-2">個数</th>
+              <th class="col-xs-2">小計</th>
+              <th class="col-xs-3">製作ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order.order_details.each do |order_detail| %>
+              <tr>
+                <td><%= order_detail.item.name %></td>
+                <td><%= order_detail.item.taxed_price.to_s(:delimited) %></td>
+                <td><%= order_detail.number %></td>
+                <td><%= (order_detail.item.taxed_price * order_detail.number).to_s(:delimited) %></td>
+                <td>
+                  <%= form_with(model: order_detail, local: true, url: admin_order_path, method: :patch) do |f| %>
+                    <%= f.select :production_status,
+                        OrderDetail.production_statuses.keys.map {|k| [I18n.t("enums.order_detail.production_status.#{k}"), k]},
+                        :selected=> order_detail.production_status, prompt: "選択してください" %>
+                    <%= hidden_field_tag :order_detail_id, order_detail.id%>
+                    <%= f.submit "更新", class: "btn btn-primary" %>
+                    <%#= f.hidden_field :order_detail_id, value: order_detail_id %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-3" style="position: fixed; right: -50px; bottom">
+        <table class="row table table-borderless">
+          <tr>
+            <th>送料</th>
+            <th><%= 800.to_i %>円</th>
+          </tr>
+          <tr>
+            <th class="col-xs-3">商品合計</th>
+            <th><%= @total_price.to_s(:delimited) %>円</th>
+          </tr>
+          <tr>
+            <th>請求金額合計</th>
+            <th><%= (@total_price + 800).to_s(:delimited) %>円</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>

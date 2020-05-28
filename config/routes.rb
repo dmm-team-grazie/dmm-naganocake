@@ -1,31 +1,46 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root '/public/home#top'
-  get '/public/member/leave' => 'public/members#leave'
-  get '/public/member/orders/thanks' => 'public/orders#thanks'
-  get '/public/member/orders/confirm' => 'public/orders#confirm'
-  get '/public/member/cart_items' => 'public/cart_items#destroy_all'
-  get '/public/member/cart_items/:id' => 'public/cart_items#destroy_each'
-  devise_for :users
-​
-  resources :admins do
-    resource :genres,           only: [:index, :create, :edit, :update]
-  end
-​
-  namespace :admin do
-    resources :members do
-      resource :items
-      resource :order_details,  only: [:update]
-      resource :orders,         only: [:index, :show, :update]
-    end
-  end
-​
+    devise_for :members, path: "public/members", controllers:{
+    registrations: 'members/registrations',
+    sessions: 'members/sessions',
+    passwords: 'members/passwords'
+}
+
+  # devise_for :members, :controllers => {:passwords => 'public/members/passwords'}
+  devise_for :admins, controllers:{
+    registrations: 'admins/registrations',
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords'
+}
+
   namespace :public do
-    resources :members do
-      resource :addresses
-      resource :orders
-      resource :items,          only: [:index, :show]
-      resource :cart_items,     only: [:index, :create, :update]
-    end
+    get '' => 'members#show'
+    get 'edit' => 'members#edit'
+    patch '' => 'members#update'
+    patch 'leave' => 'members#update_status'
+    get 'leave' => 'members#leave'
+    get 'cart_items' => 'cart_items#index'
+    delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_public_cart_items'
+    delete 'cart_items/:id' => 'cart_items#destroy_each',as: 'destroy_public_cart_item'
+    get 'orders/thanks' => 'orders#thanks'
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/member' => 'orders#member'
+    resource :members, only:[:create]
+    resources :items, except:[:destroy]
+    resources :addresses
+    resources :orders
+    resources :cart_items, only: [:create, :update]
+    resources :genres, only:[:show]
+  end
+  root 'public/homes#top'
+  namespace :admin do
+    get 'top' => 'admins#top'
+    get 'items/new' => 'items#new'
+    get 'members/:id/order' => 'orders#member', as: 'member_order'
+    get 'orders/today' => 'orders#today'
+    resources :items, except:[:new]
+    resources :members
+    resources :orders
+    resources :genres
+    resources :order_details, only: [:update]
   end
 end
