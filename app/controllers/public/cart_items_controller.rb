@@ -24,13 +24,13 @@ class Public::CartItemsController < ApplicationController
 			item.destroy
 		end
 		# @cart_items.destroy(cart_item_params)
-		redirect_to public_cart_items_path, notice: "successfully deleted all items"
+		redirect_to public_cart_items_path, notice: "カートが空になりました。"
 	end
 
 	def destroy_each
 		@cart_item = CartItem.find(params[:id])
 		@cart_item.destroy
-		redirect_to public_cart_items_path, notice: "successfully deleted the item"
+		redirect_to public_cart_items_path, notice: "商品を削除しました。"
 	end
 
 	private

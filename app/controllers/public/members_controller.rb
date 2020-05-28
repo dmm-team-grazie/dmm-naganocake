@@ -1,7 +1,7 @@
 class Public::MembersController < ApplicationController
 	before_action :authenticate_member!
 	
-	def show		
+	def show	
 	end
 
 	def edit
@@ -15,7 +15,7 @@ class Public::MembersController < ApplicationController
 	def update
 		@member = current_member
 		@member.update(member_params)
-		redirect_to public_path, notice: "successfully updated your information!"
+		redirect_to public_path, notice: "会員情報の編集に成功しました。"
 	end
 
 	def update_status
