@@ -42,15 +42,13 @@ ja:
         phone_number: 電話番号
         email: メールアドレス
         password: パスワード
-
-  activerecord:
-    attributes:
-      genre:
-        name: ジャンル
-
-  activerecord:
-    attributes:
       item:
         name: 商品名
-        non_taxed_price: 税抜き価格
+        non_taxed_price: 税抜価格
         introduction: 商品説明
+      genre:
+        name: ジャンル
+      address:
+        address: 郵便番号
+        address_name: 宛名
+        postal_code: 郵便番号
