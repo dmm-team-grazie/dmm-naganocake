@@ -5,7 +5,6 @@
   <h2 class="view-title">商品新規登録</h2>
   <% if @item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= @item.errors.count %>errors prohibited this obj from being saved:</h2>
       <ul>
         <% @item.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -13,7 +12,9 @@
       </ul>
     </div>
   <% end %>
+</div>
 
+<div class="row">
   <%= form_with model: @item,url: {controller: 'admin/items', action: 'create' }, local: true do |f| %>
     <div class="col-xs-4">
       <%= f.attachment_field :item_image, class: "item_image" %>
