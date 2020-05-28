@@ -1,5 +1,4 @@
 <%= stylesheet_link_tag 'orders' %>
-<div class="most-outline bottom_space" style="position: relative; min-height: 800px;">
   <h2 class="view-title">注文履歴詳細</h2>
   <div class="row">
 
@@ -30,57 +29,58 @@
     </table>
   </div>
 
-  <div class="row ">
-    <div class="col-md-9" style="position: absolute; bottom: 80px;">
-      <table class="table table-borderless">
-        <thead class="table_color">
-          <tr>
-            <th class="col-xs-3">商品名</th>
-            <th class="col-xs-2">単価（税込）</th>
-            <th class="col-xs-1">個数</th>
-            <th class="col-xs-2">小計</th>
-            <th class="col-xs-3">製作ステータス</th>
-            <th class="col-xs-1"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @order.order_details.each do |order_detail| %>
-            <tr>
-              <td><%= order_detail.item.name %></td>
-              <td><%= order_detail.item.taxed_price.to_s(:delimited) %></td>
-              <td><%= order_detail.number %></td>
-              <td><%= (order_detail.item.taxed_price * order_detail.number).to_s(:delimited) %></td>
-              <td>
-                <%= form_with(model: order_detail, local: true, url: admin_order_path, method: :patch) do |f| %>
-                  <%= f.select :production_status,
-                      OrderDetail.production_statuses.keys.map {|k| [I18n.t("enums.order_detail.production_status.#{k}"), k]},
-                      :selected=> order_detail.production_status, prompt: "選択してください" %>
-                  <%= hidden_field_tag :order_detail_id, order_detail.id%>
-                  <%= f.submit "更新", class: "btn btn-primary" %>
-                  <%#= f.hidden_field :order_detail_id, value: order_detail_id %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
 
-    <div class="col-md-3" style="position: absolute; bottom: 80px; right: -50px;">
-      <table class="row table table-borderless">
-        <tr>
-          <th>送料</th>
-          <th><%= 800.to_i %>円</th>
-        </tr>
-        <tr>
-          <th class="col-xs-3">商品合計</th>
-          <th><%= @total_price.to_s(:delimited) %>円</th>
-        </tr>
-        <tr>
-          <th>請求金額合計</th>
-          <th><%= (@total_price + 800).to_s(:delimited) %>円</th>
-        </tr>
-      </table>
+   <div class="bottom-space mt-5" style="position: relative;">
+    <div class="row">
+      <div class="col-md-7">
+        <table class="table table-borderless">
+          <thead class="table_color">
+            <tr>
+              <th class="col-xs-3">商品名</th>
+              <th class="col-xs-2">単価（税込）</th>
+              <th class="col-xs-2">個数</th>
+              <th class="col-xs-2">小計</th>
+              <th class="col-xs-3">製作ステータス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @order.order_details.each do |order_detail| %>
+              <tr>
+                <td><%= order_detail.item.name %></td>
+                <td><%= order_detail.item.taxed_price.to_s(:delimited) %></td>
+                <td><%= order_detail.number %></td>
+                <td><%= (order_detail.item.taxed_price * order_detail.number).to_s(:delimited) %></td>
+                <td>
+                  <%= form_with(model: order_detail, local: true, url: admin_order_path, method: :patch) do |f| %>
+                    <%= f.select :production_status,
+                        OrderDetail.production_statuses.keys.map {|k| [I18n.t("enums.order_detail.production_status.#{k}"), k]},
+                        :selected=> order_detail.production_status, prompt: "選択してください" %>
+                    <%= hidden_field_tag :order_detail_id, order_detail.id%>
+                    <%= f.submit "更新", class: "btn btn-primary" %>
+                    <%#= f.hidden_field :order_detail_id, value: order_detail_id %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-md-3" style="position: fixed; right: -50px; bottom">
+        <table class="row table table-borderless">
+          <tr>
+            <th>送料</th>
+            <th><%= 800.to_i %>円</th>
+          </tr>
+          <tr>
+            <th class="col-xs-3">商品合計</th>
+            <th><%= @total_price.to_s(:delimited) %>円</th>
+          </tr>
+          <tr>
+            <th>請求金額合計</th>
+            <th><%= (@total_price + 800).to_s(:delimited) %>円</th>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
-</div> 
